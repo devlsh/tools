@@ -26,7 +26,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: "⚙️ set up Node and pnpm"
+      - name: "⚙️ set up node and pnpm"
         id: setup
         uses: ./.github/actions/setup-node-pnpm
         with:
