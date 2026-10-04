@@ -5,7 +5,6 @@
       "pull-request-header": "",
       "pull-request-footer": "",
       "release-type": "node",
-      "release-as": "1.0.0",
       "include-component-in-tag": false,
       "include-v-in-tag": true
     }

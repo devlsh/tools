@@ -10,11 +10,6 @@ on:
         options:
           - prepare
           - publish
-      bootstrap:
-        description: "Temporary authentication for the initial npm publication"
-        required: false
-        type: boolean
-        default: false
 
 permissions: {}
 
@@ -41,7 +36,6 @@ jobs:
         shell: bash
         env:
           OPERATION: ${{ inputs.operation }}
-          BOOTSTRAP: ${{ inputs.bootstrap }}
         run: |
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/main
@@ -49,22 +43,6 @@ jobs:
             prepare|publish) ;;
             *) echo "Operation must be prepare or publish" >&2; exit 1 ;;
           esac
-          if [[ "$OPERATION" == prepare && "$BOOTSTRAP" == true ]]; then
-            echo "Bootstrap authentication is only available for publish" >&2
-            exit 1
-          fi
-
-      - name: "🛡️ require bootstrap credential"
-        if: inputs.operation == 'publish' && inputs.bootstrap
-        shell: bash
-        env:
-          NPM_BOOTSTRAP_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
-        run: |
-          set -euo pipefail
-          if [[ -z "${NPM_BOOTSTRAP_TOKEN:-}" ]]; then
-            echo "NPM_BOOTSTRAP_TOKEN must be configured for bootstrap publication" >&2
-            exit 1
-          fi
 
       - name: "🏷️ prepare or create release"
         id: release
@@ -72,8 +50,8 @@ jobs:
         with:
           token: ${{ github.token }}
           target-branch: main
-          config-file: release-please-config.json
-          manifest-file: .release-please-manifest.json
+          config-file: release.json
+          manifest-file: .manifest.json
           skip-github-release: ${{ inputs.operation == 'prepare' }}
           skip-github-pull-request: ${{ inputs.operation == 'publish' }}
 
@@ -98,24 +76,4 @@ jobs:
         uses: ./.github/actions/setup-devenv
 
       - name: "📦 publish"
-        if: ${{ !inputs.bootstrap }}
         run: devenv --no-tui shell -- pnpm publish --access public --tag latest --provenance --no-git-checks
-
-      - name: "📦 bootstrap publish"
-        if: inputs.bootstrap
-        shell: bash
-        env:
-          NPM_BOOTSTRAP_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
-        run: |
-          set -euo pipefail
-          if [[ -z "${NPM_BOOTSTRAP_TOKEN:-}" ]]; then
-            echo "NPM_BOOTSTRAP_TOKEN must be configured for bootstrap publication" >&2
-            exit 1
-          fi
-          umask 077
-          NPM_CONFIG_USERCONFIG=$(mktemp "$RUNNER_TEMP/npm-bootstrap.XXXXXX")
-          export NPM_CONFIG_USERCONFIG
-          # Keep the environment placeholder literal so the file never stores the token.
-          # shellcheck disable=SC2016
-          printf '%s\n' 'registry=https://registry.npmjs.org/' '//registry.npmjs.org/:_authToken=${NPM_BOOTSTRAP_TOKEN}' > "$NPM_CONFIG_USERCONFIG"
-          devenv --no-tui shell -- pnpm publish --access public --tag latest --provenance --no-git-checks
