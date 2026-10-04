@@ -1,12 +1,12 @@
 # Contributing
 
-Read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
+Read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating. This guide covers reporting problems, setting up your checkout, and submitting changes.
 
 ## Questions And Reports
 
-Use [GitHub Discussions](https://github.com/devlsh/tools/discussions) for questions and support, and [Issues](https://github.com/devlsh/tools/issues) for bugs and feature requests.
+Use [GitHub Discussions](https://github.com/devlsh/tools/discussions) for questions and support, and [Issues](https://github.com/devlsh/tools/issues) for bugs and feature requests. Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
 
-Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+Search open and closed issues before opening a new one. If you find a duplicate, add useful details there. Otherwise, describe the expected and actual behavior, steps to reproduce it, and relevant environment details. Distinguish what you observed from what you think caused it.
 
 ## Local Development
 
@@ -26,22 +26,47 @@ Nix handles ensuring Node/PNPM versions are properly managed and the correct ver
    direnv allow .
    ```
 
-2. Install dependencies:
+   To revoke approval, run `direnv deny .` and leave the directory to unload its environment. For manual activation, omit or disable your host shell's direnv hook and use the explicit devenv commands below. Those commands alone do not disable an existing hook.
+
+2. Confirm the current [dependency policy](#dependency-changes), then install dependencies with the frozen lockfile. This also installs Git hooks:
 
    ```sh
    devenv tasks run tools:install
    ```
 
-3. Run typecheck, lint, and formatting checks before requesting review.
+3. Before changing source, read the relevant implementation, tests, public usage examples, and package exports. Run static checks before requesting review:
 
    ```sh
-   pnpm check
+   devenv --no-tui shell -- pnpm check
    ```
+
+With an activated environment, use `pnpm <script>`. Without direnv, use `devenv shell -- pnpm <script>` from the repository root.
+
+## Dependency Changes
+
+Before installing or updating dependencies, confirm the current release-age policy and eligible versions. No threshold is currently declared in the manifest or workspace configuration. If the policy is unclear, resolve it before proceeding. Wait for an eligible version or choose another; do not bypass the policy or add exclusions. Include related manifest, lockfile, script, and configuration changes together.
+
+## Checks
+
+You can find available scripts in [package.json](package.json). `pnpm check` runs typechecking, linting, and formatting checks; linting builds the package first.
+
+To fix lint and formatting findings, run `pnpm lint:fix`, then `pnpm fmt`. Inspect the diff and fix any remaining findings before rerunning checks.
+
+`pnpm check` does not execute tests. There is no configured test script or Vitest runner. Existing Oxlint RuleTester `.test.ts` files are typechecked, not executed. For behavior changes, exercise relevant existing cases or consumer examples and describe what you verified.
+
+Linting, formatting, and hooks exclude `src/oxlint/anti-slop/**`; those plugin implementations and tests are still typechecked. For documentation changes, check local links and anchors as well as formatting.
 
 ## Pull Requests
 
-Search existing issues and pull requests before proposing duplicate work. Explain the problem, rationale, and scope. Link related issues, describe API and documentation impact, and identify release impact, including breaking changes. Give reviewers the areas that need attention and report the checks you ran or could not run.
+Search existing issues and PRs before proposing duplicate work. Keep your change focused and update affected callers, tests, [README examples](README.md#usage), and contributor instructions together.
 
-Target development at `main`. Use Conventional Commit titles/descriptions for release-relevant changes and explain breaking changes explicitly.
+Use the [PR template](.github/PULL_REQUEST_TEMPLATE.md) and:
 
-When public examples, package boundaries, or scripts change, update their canonical owners and affected onboarding links together.
+- Target `main`. Use Conventional Commit titles/descriptions for release-relevant changes.
+- Explain the problem, rationale, scope, and alternatives. Link related issues or PRs.
+- Describe API, documentation, and release impact, including breaking changes. Point reviewers to areas needing attention.
+- List the checks you ran and their results, regression coverage, and reasons for omitted tests or blocked checks.
+- For larger changes, open a draft once one working part passes its checks and describe the remaining work. Request final review after local and required CI checks pass and blocking findings are resolved; summarize how you addressed advisory findings.
+- If you use AI, write concise descriptions in your own words and disclose how you reviewed the code and reached its decisions.
+
+Release dispatch and publication are separate maintainer operations, not part of submitting a PR.

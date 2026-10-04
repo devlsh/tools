@@ -73,7 +73,7 @@ export default defineConfig({
 
 Please feel free to contribute by [submitting an issue](https://github.com/devlsh/tools/issues) or [joining the discussions](https://github.com/devlsh/tools/discussions).
 
-For local development, pull requests, and other contributions, see the [Contributing Guidelines](CONTRIBUTING.md), including automatic direnv/devenv setup, explicit dependency installation, and the manual activation opt-out.
+For local development, pull requests, and other contributions, see the [Contributing Guidelines](CONTRIBUTING.md).
 
 ## License
 
