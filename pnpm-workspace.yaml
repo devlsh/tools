@@ -1,0 +1,6 @@
+verifyDepsBeforeRun: error
+runtimeOnFail: error
+pmOnFail: error
+
+allowBuilds:
+  lefthook: true

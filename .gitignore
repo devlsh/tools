@@ -1,0 +1,51 @@
+# logs.
+*.log
+
+# runtime.
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# code coverage results.
+coverage
+
+# node addon binaries (https://nodejs.org/api/addons.html).
+build/Release
+
+# node modules.
+node_modules/
+
+# outputs.
+dist/
+*.tgz
+
+# dotenv.
+.env
+
+# macos stuff.
+.DS_Store
+
+# vim swap files.
+*.swp
+
+# vite(st).
+.vite
+.vitest
+
+# devenv.
+.devenv/
+.direnv/
+
+# turbo.
+.turbo
+
+# typescript.
+*.tsbuildinfo
+
+# local agent workflow artifacts.
+.worktrees/
+.scratch/
+/research
+/docs/plans
+/plans

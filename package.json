@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@devlsh/tools",
+  "version": "1.0.0",
+  "description": "Personal shared tooling and configs.",
+  "keywords": [
+    "agents",
+    "effect",
+    "format",
+    "javascript",
+    "lint",
+    "oxfmt",
+    "oxlint",
+    "presets",
+    "typescript"
+  ],
+  "homepage": "https://github.com/devlsh/tools#readme",
+  "bugs": {
+    "url": "https://github.com/devlsh/tools/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "devlsh",
+    "email": "contact@devlsh.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devlsh/tools.git"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/devlsh"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "type": "module",
+  "exports": {
+    "./oxlint": {
+      "types": "./dist/oxlint/index.d.ts",
+      "import": "./dist/oxlint/index.mjs"
+    },
+    "./oxlint/effect": {
+      "types": "./dist/oxlint/effect.d.ts",
+      "import": "./dist/oxlint/effect.mjs"
+    },
+    "./oxlint/anti-slop": {
+      "types": "./dist/oxlint/anti-slop/index.d.ts",
+      "import": "./dist/oxlint/anti-slop/index.mjs"
+    },
+    "./oxlint/anti-slop/effect": {
+      "types": "./dist/oxlint/anti-slop/effect/index.d.ts",
+      "import": "./dist/oxlint/anti-slop/effect/index.mjs"
+    },
+    "./oxfmt": {
+      "types": "./dist/oxfmt/index.d.ts",
+      "import": "./dist/oxfmt/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "check": "pnpm typecheck && pnpm lint && pnpm fmt:check",
+    "fix:all": "pnpm lint:fix && pnpm fmt",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "pnpm build && oxlint --deny-warnings",
+    "lint:fix": "pnpm build && oxlint --deny-warnings --fix",
+    "prepack": "pnpm build",
+    "prepare": "lefthook install --force",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.build.json --noEmit"
+  },
+  "devDependencies": {
+    "@oxlint/plugins": "1.86.0",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@tsconfig/node24": "24.0.5",
+    "@types/node": "24.19.0",
+    "lefthook": "2.1.14",
+    "oxfmt": "0.71.0",
+    "oxlint": "1.86.0",
+    "oxlint-tsgolint": "7.0.2003",
+    "tsdown": "0.23.0",
+    "typescript": "7.0.2"
+  },
+  "peerDependencies": {
+    "@oxlint/plugins": "^1.86.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "oxlint-tsgolint": "^7.0.2003"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.27.0",
+      "onFail": "error"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "24.21.0",
+      "onFail": "error"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+name: "⚙️ setup devenv"
+description: "install the development toolchain and dependencies"
+
+inputs:
+  cache:
+    description: "Restore pnpm caches"
+    required: false
+    default: "false"
+
+outputs:
+  store:
+    description: "pnpm store path"
+    value: ${{ steps.paths.outputs.store }}
+  metadata:
+    description: "pnpm metadata cache path"
+    value: ${{ steps.paths.outputs.metadata }}
+  cache-hit:
+    description: "Whether dependency cache was restored"
+    value: ${{ steps.cache.outputs.cache-hit }}
+  cache-key:
+    description: "Dependency cache key"
+    value: ${{ steps.cache.outputs.cache-primary-key }}
+
+runs:
+  using: composite
+  steps:
+    - name: "❄️ install nix"
+      uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+
+    - name: "📦 configure devenv cache"
+      uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866 # v17
+      with:
+        name: devenv
+        skipPush: true
+
+    - name: "⚙️ install devenv"
+      shell: bash
+      run: nix profile add --accept-flake-config github:cachix/devenv/ea3d94ac9d6bf6a1313773170122ca4e2ef5a0be#devenv
+
+    - name: "📂 locate pnpm caches"
+      id: paths
+      if: inputs.cache == 'true'
+      shell: bash
+      run: |
+        store=$(devenv --quiet --no-tui shell -- pnpm store path --silent)
+        metadata=$(devenv --quiet --no-tui shell -- pnpm cache path)
+        for path in "$store" "$metadata"; do
+          if [[ "$path" != /* || "$path" == *$'\n'* ]]; then
+            echo "Expected a single absolute pnpm cache path" >&2
+            exit 1
+          fi
+        done
+        printf 'store=%s\nmetadata=%s\n' "$store" "$metadata" >> "$GITHUB_OUTPUT"
+
+    - name: "📦 restore pnpm caches"
+      id: cache
+      if: inputs.cache == 'true'
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: |
+          ${{ steps.paths.outputs.store }}
+          ${{ steps.paths.outputs.metadata }}
+        key: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'pnpm-workspace.yaml', 'devenv.nix', 'devenv.yaml', 'devenv.lock') }}
+
+    - name: "📥 install dependencies"
+      shell: bash
+      run: devenv --no-tui tasks run tools:install
