@@ -72,8 +72,8 @@ jobs:
           ref: ${{ needs.release.outputs.sha }}
           persist-credentials: false
 
-      - name: "⚙️ set up devenv"
-        uses: ./.github/actions/setup-devenv
+      - name: "⚙️ set up Node and pnpm"
+        uses: ./.github/actions/setup-node-pnpm
 
       - name: "📦 publish"
-        run: devenv --no-tui shell -- pnpm publish --access public --tag latest --provenance --no-git-checks
+        run: pnpm publish --access public --tag latest --provenance --no-git-checks

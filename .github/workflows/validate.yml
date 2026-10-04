@@ -26,14 +26,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: "⚙️ set up devenv"
+      - name: "⚙️ set up Node and pnpm"
         id: setup
-        uses: ./.github/actions/setup-devenv
+        uses: ./.github/actions/setup-node-pnpm
         with:
           cache: "true"
 
       - name: "🧪 run checks"
-        run: devenv --no-tui shell -- pnpm check
+        run: pnpm check
 
       - name: "📦 save pnpm caches"
         if: >-

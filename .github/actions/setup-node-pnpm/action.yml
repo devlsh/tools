@@ -1,5 +1,5 @@
-name: "⚙️ setup devenv"
-description: "install the development toolchain and dependencies"
+name: "⚙️ setup node and pnpm"
+description: "install the dev toolchain and deps"
 
 inputs:
   cache:
@@ -15,7 +15,7 @@ outputs:
     description: "pnpm metadata cache path"
     value: ${{ steps.paths.outputs.metadata }}
   cache-hit:
-    description: "Whether dependency cache was restored"
+    description: "Whether cache was restored"
     value: ${{ steps.cache.outputs.cache-hit }}
   cache-key:
     description: "Dependency cache key"
@@ -24,32 +24,34 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: "❄️ install nix"
-      uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
-
-    - name: "📦 configure devenv cache"
-      uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866 # v17
+    - name: "⚙️ set up node"
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
       with:
-        name: devenv
-        skipPush: true
+        node-version-file: package.json
+        package-manager-cache: false
 
-    - name: "⚙️ install devenv"
-      shell: bash
-      run: nix profile add --accept-flake-config github:cachix/devenv/ea3d94ac9d6bf6a1313773170122ca4e2ef5a0be#devenv
+    - name: "⚙️ set up pnpm"
+      uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      with:
+        package_json_file: package.json
+        run_install: false
+        cache: false
 
     - name: "📂 locate pnpm caches"
       id: paths
       if: inputs.cache == 'true'
       shell: bash
       run: |
-        store=$(devenv --quiet --no-tui shell -- pnpm store path --silent)
-        metadata=$(devenv --quiet --no-tui shell -- pnpm cache path)
+        store=$(pnpm store path --silent)
+        metadata=$(pnpm cache path)
+
         for path in "$store" "$metadata"; do
           if [[ "$path" != /* || "$path" == *$'\n'* ]]; then
             echo "Expected a single absolute pnpm cache path" >&2
             exit 1
           fi
         done
+
         printf 'store=%s\nmetadata=%s\n' "$store" "$metadata" >> "$GITHUB_OUTPUT"
 
     - name: "📦 restore pnpm caches"
@@ -60,8 +62,8 @@ runs:
         path: |
           ${{ steps.paths.outputs.store }}
           ${{ steps.paths.outputs.metadata }}
-        key: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'pnpm-workspace.yaml', 'devenv.nix', 'devenv.yaml', 'devenv.lock') }}
+        key: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'pnpm-workspace.yaml') }}
 
     - name: "📥 install dependencies"
       shell: bash
-      run: devenv --no-tui tasks run tools:install
+      run: pnpm install --frozen-lockfile
