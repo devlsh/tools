@@ -2,8 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/v17.6.0/schemas/config.json",
   "packages": {
     ".": {
-      "pull-request-header": "",
-      "pull-request-footer": "",
       "release-type": "node",
       "include-component-in-tag": false,
       "include-v-in-tag": true
