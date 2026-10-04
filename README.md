@@ -6,7 +6,13 @@
 <br />
 
 <p align="center">
-  <a href="https://github.com/devlsh/tools" rel="nofollow">
+  <a href="https://www.npmjs.com/package/@devlsh/tools" rel="nofollow">
+    <img src="https://img.shields.io/npm/dm/%40devlsh%2Ftools?style=flat-square" alt="NPM Downloads" />
+  </a>
+  <a href="https://www.npmjs.com/package/@devlsh/tools" rel="nofollow">
+    <img src="https://img.shields.io/github/actions/workflow/status/devlsh/tools/validate.yml?style=flat-square" alt="Build Status" />
+  </a>
+  <a href="https://github.com/devlsh/tools/stargazers" rel="nofollow">
     <img src="https://img.shields.io/github/stars/devlsh/tools?style=flat-square" alt="GitHub Stars" />
   </a>
   <a href="https://github.com/devlsh/tools/blob/main/LICENSE" rel="nofollow">
