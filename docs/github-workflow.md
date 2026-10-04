@@ -35,6 +35,12 @@ This file owns issue and pull-request policy, local validation configuration, an
 
 [`../.github/workflows/validate.yml`](../.github/workflows/validate.yml) runs `devenv --no-tui shell -- pnpm check` on pull requests, pushes to `main`, and manual dispatch. [`../.github/actions/setup-devenv/action.yml`](../.github/actions/setup-devenv/action.yml) owns shared CI setup; [tooling and commands](tooling-and-commands.md#repository-task-usage) owns toolchain and CLI compatibility semantics. Validation restores pnpm store and metadata caches, keyed by runner OS/architecture and the dependency and Nix environment inputs. Only successful pushes or manual validation on `main` save them. These caches are separate from the public read-only Nix/Cachix cache; `node_modules` is never cached and frozen installation always runs. The publish job disables dependency caching. Refresh this description when these files change. Local workflow configuration does not prove hosted branch protection or required-check settings.
 
+## Manual Rulesets
+
+[main.json](../.github/rulesets/main.json) and [release-tags.json](../.github/rulesets/release-tags.json) are maintained repository state for [manual GitHub ruleset import](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository). Both use disabled enforcement and no bypass actors. Import them in the repository's **Settings > Rules > Rulesets**, review the imported settings, and explicitly activate them when ready. File changes do not synchronize hosted settings; reimport or edit the hosted rulesets manually after changing the files.
+
+The main ruleset targets `refs/heads/main`, requires squash-only pull requests with resolved review threads and the validation job's `🧪 check` context, and prevents deletion, force pushes, and nonlinear history when active. No approval is required. The check uses `integration_id: 15368` for GitHub Actions; verify the source binding after import. Refresh the context when [validate.yml](../.github/workflows/validate.yml) changes its job name. The tag ruleset targets `refs/tags/v*` and prevents deletion and updates when active. It leaves tag creation unrestricted so Release Please can create version tags.
+
 ## Release Prerequisites
 
 Before dispatching [release.yml](../.github/workflows/release.yml), establish all of the following:
