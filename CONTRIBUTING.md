@@ -16,7 +16,7 @@ Search open and closed issues before opening a new one. If you find a duplicate,
 - [devenv](https://devenv.sh/)
 - [direnv](https://direnv.net/) _(Optional)_
 
-Nix handles ensuring Node/PNPM versions are properly managed and the correct versions whilst working on the repository.
+The Nix environment in [devenv.nix](devenv.nix) selects Node and pnpm major package families from locked inputs. It does not verify exact versions. [package.json](package.json) `devEngines` is the sole authority for exact required versions; applicable pnpm commands reject mismatches.
 
 ### Workflow
 
@@ -44,7 +44,9 @@ With an activated environment, use `pnpm <script>`. Without direnv, use `devenv 
 
 ## Dependency Changes
 
-Before installing or updating dependencies, confirm the current release-age policy and eligible versions. No threshold is currently declared in the manifest or workspace configuration. If the policy is unclear, resolve it before proceeding. Wait for an eligible version or choose another; do not bypass the policy or add exclusions. Include related manifest, lockfile, script, and configuration changes together.
+Before installing or updating dependencies, confirm the current release-age policy and eligible versions. The manifest and workspace configuration declare no release-age threshold. If the policy owner or version eligibility is unclear, ask the maintainer to identify the applicable policy and confirm eligibility before proceeding. Wait for an eligible version or choose another. Do not bypass the policy or add exclusions.
+
+The frozen install uses the existing lockfile; it does not select new dependency versions. When selecting or updating versions, include related manifest, lockfile, script, and configuration changes together.
 
 ## Checks
 
