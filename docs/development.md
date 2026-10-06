@@ -12,6 +12,8 @@ This agent-only handbook owns package responsibilities, source/documentation aut
 - **[Effect plugin](../src/oxlint/anti-slop/effect/index.ts)** - Owns Effect-specific rules and nearby shared analysis.
 - **[Oxfmt preset](../src/oxfmt/index.ts)** - Owns reusable formatting.
 
+The repository also owns a [shared GitHub setup action](../github/setup/action.yml), separate from the npm package. [README usage](../README.md#github-setup-action) owns consumer examples with full commit SHA pins. Refresh this projection when the action path or transport changes.
+
 [package.json](../package.json) owns exact consumer paths, metadata, dependencies, scripts, export/import maps, and package contents; [tsdown.config.ts](../tsdown.config.ts) owns output. Edit source/build configuration, not ignored generated `dist/` modules/declarations; regenerate for affected consumers. `prepack` builds current source, neither runs tests nor requires an additional packing-validation gate. Refresh this projection when entrypoints or ownership change.
 
 [README.md](../README.md) owns public examples and human onboarding. Refresh examples with public surfaces and preserve contribution, security, and support routes. Internal modules use canonical docs/instructions/manifests, not module-local READMEs or compatibility policy copies; public-package READMEs may document external usage/API. [LICENSE](../LICENSE) grants MIT; [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md) retains vendored MIT notices/source attribution; [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md) is separately CC BY-SA 4.0 licensed.
@@ -115,8 +117,6 @@ Inspect manifest scripts/composition. Use root scripts for repository-wide work,
 [CONTRIBUTING checks](../CONTRIBUTING.md#checks) own shared command composition and test/coverage caveats. Typechecking emits nothing and checks both [src/plugin tests](../tsconfig.json) and [root tooling configs/imports](../tsconfig.build.json); the latter omits source declaration/output settings. Check does not execute tests: no test script/Vitest runner is configured. Existing RuleTester cases are typechecked, not executed. Lint builds package outputs first.
 
 Inspect [oxlint](../oxlint.config.ts), [oxfmt](../oxfmt.config.ts), presets, and hooks for coverage. Plugin implementations/tests under `src/oxlint/anti-slop/**` are lint/format/hook-excluded but typechecked; root lint/format exclude generated `dist`. Oxfmt also excludes `.github`, `pnpm-lock.yaml`, and only the generated root changelog without changing shared presets; other Markdown/nested changelogs remain covered unless separately excluded. Oxlint does not lint Markdown. Refresh caveats when owners change.
-
-[validate.yml](../.github/workflows/validate.yml) owns CI triggers/checks; [setup-node-pnpm](../.github/actions/setup-node-pnpm/action.yml) owns native manifest-driven Node/non-standalone pnpm selection, action inputs/pins, and optional cache mechanics. Frozen installation includes hook setup on cache hits; `node_modules` is not cached. CI runs `pnpm check` directly without Nix/devenv; local setup remains unchanged. Local workflows do not prove hosted protection/required checks. Refresh projections when executable owners change.
 
 ### Validation Selection
 

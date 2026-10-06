@@ -73,7 +73,7 @@ jobs:
           persist-credentials: false
 
       - name: "⚙️ set up node and pnpm"
-        uses: ./.github/actions/setup-node-pnpm
+        uses: ./github/setup
 
       - name: "📦 publish"
         run: pnpm publish --access public --tag latest --provenance --no-git-checks
