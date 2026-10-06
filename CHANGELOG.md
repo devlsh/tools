@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/devlsh/tools/compare/v1.0.1...v1.1.0) (2026-10-06)
+
+
+### Features
+
+* add Vue 3 lint and formatting support ([ba1b8b4](https://github.com/devlsh/tools/commit/ba1b8b4dd584bd45baa60a3f0aaa3512f4c6a65c))
+
 ## [1.0.1](https://github.com/devlsh/tools/compare/v1.0.0...v1.0.1) (2026-10-04)
 
 
