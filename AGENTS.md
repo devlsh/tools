@@ -17,7 +17,7 @@ Use `pnpm` for repository work, not `npm` or `yarn`. Executable files own discov
 Read the smallest applicable owner before editing, reviewing, or deeply analyzing its subject:
 
 - **Contribute or validate** - Read [CONTRIBUTING.md](CONTRIBUTING.md) for shared human contribution and setup procedures, then [Agent Workflow](docs/development.md#agent-workflow) for agent authorization, tracker discipline, tooling, cumulative validation, and closeout. Skills naming `docs/agents/issue-tracker.md` or `docs/agents/triage-labels.md` route to [Tracker Operations](docs/development.md#tracker-operations); do not create duplicate compatibility files.
-- **Develop the package** - Read [docs/development.md](docs/development.md) for responsibilities, public contracts, source authoring, TypeScript, comments, and documentation authority. Read its documentation policy when changing instructions or routing.
+- **Develop the package or shared GitHub action** - Read [docs/development.md](docs/development.md) for responsibilities, public contracts, source authoring, TypeScript, comments, and documentation authority. Read its documentation policy when changing instructions or routing.
 - **Release or recover** - Read [docs/releasing.md](docs/releasing.md) for hosted readiness, authorization, prepare/publish, verification, and partial failures.
 
 Update this file only for always-loaded authority, hard constraints, or task routing. Put branch-specific policy in its named owner and update affected links together.

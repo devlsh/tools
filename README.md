@@ -81,6 +81,22 @@ export default defineConfig({
 });
 ```
 
+### `node`/`pnpm` setup GitHub Action
+
+The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm caches. After setting things up, it will also run `pnpm install --frozen-lockfile`.
+
+```yaml
+steps:
+  - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    with:
+      persist-credentials: false
+  - uses: devlsh/tools/github/setup@<full-40-character-commit-SHA>
+    with:
+      cache: true # (optional) Whether to manage pnpm store and metadata caches.
+```
+
+> Replace `<full-40-character-commit-SHA>` with a commit SHA from this repo.
+
 ## Contributing
 
 Please feel free to contribute by [submitting an issue](https://github.com/devlsh/tools/issues) or [joining the discussions](https://github.com/devlsh/tools/discussions).

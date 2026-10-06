@@ -28,9 +28,9 @@ jobs:
 
       - name: "⚙️ set up node and pnpm"
         id: setup
-        uses: ./.github/actions/setup-node-pnpm
+        uses: ./github/setup
         with:
-          cache: "true"
+          cache: true
 
       - name: "🧪 run checks"
         run: pnpm check

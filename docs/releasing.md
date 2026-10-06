@@ -13,7 +13,7 @@ Before dispatch:
 3. Verify direct publish permission and npm trusted publishing for existing `@devlsh/tools`, repository `devlsh/tools`, GitHub-hosted runners, workflow `release.yml`, and no environment. Trust cannot create absent packages. Publication uses tokenless pnpm OIDC with provenance, without token fallback. Verify hosted trust and provenance acceptance live when authorized; static configuration is insufficient.
 4. Permit Actions to create release PRs/releases and use `autorelease: pending` and `autorelease: tagged` labels. Before merging, review branch protection, merge policy, required checks, and Actions policy/check path. Workflow GitHub-token PRs do not prove checks will run.
 
-Follow [local setup](../CONTRIBUTING.md#local-development), [validation](development.md#validation-selection), and [closeout](development.md#closeout). [Native CI setup](development.md#tooling-and-coverage) follows manifest `devEngines`; [setup-node-pnpm](../.github/actions/setup-node-pnpm/action.yml) owns action pins and frozen installation. Publication leaves caching disabled by default; commands run directly on the runner, retaining OIDC.
+Follow [local setup](../CONTRIBUTING.md#local-development), [validation](development.md#validation-selection), and [closeout](development.md#closeout). [Native CI setup](development.md#tooling-and-coverage) follows manifest `devEngines`; [setup](../github/setup/action.yml) owns action pins and frozen installation. Publication inherits the setup action's enabled cache restoration, without cache saves. Commands run directly on the runner, retaining OIDC.
 
 ## Hosted Rulesets
 
