@@ -56,6 +56,18 @@ export default defineConfig({
 
 For Effect projects, use `@devlsh/tools/oxlint/effect` instead. It already extends the base preset; no need to add both presets.
 
+For Vue 3 projects, this library includes strict rules for them too. Just enable the Vue plugin in `oxlint.config.ts`.
+
+```ts
+import preset from '@devlsh/tools/oxlint';
+import { defineConfig } from 'oxlint';
+
+export default defineConfig({
+  extends: [preset],
+  plugins: ['vue'],
+});
+```
+
 ### `oxfmt` preset
 
 In `oxfmt.config.ts`, spread the formatting preset into your config:

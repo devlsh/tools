@@ -5,6 +5,7 @@ export default defineConfig({
   arrowParens: 'always',
   bracketSpacing: true,
   embeddedLanguageFormatting: 'auto',
+  vueIndentScriptAndStyle: true,
   endOfLine: 'lf',
   sortPackageJson: {
     sortScripts: true,
