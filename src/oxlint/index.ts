@@ -351,11 +351,11 @@ export default defineConfig({
         checkTypeImports: false,
         pathGroupOverrides: [
           {
-            pattern: '**/*.{css,json,frag,png,vert}',
+            pattern: '**/*.{css,json,frag,png,vert,vue}',
             action: 'ignore',
           },
           {
-            pattern: '**/*.{css,json,frag,png,vert}?*',
+            pattern: '**/*.{css,json,frag,png,vert,vue}?*',
             action: 'ignore',
           },
         ],
