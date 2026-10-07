@@ -1,0 +1,25 @@
+id: no-react-class-components
+valid:
+  - |
+    function StatusCard() {
+      return <section />;
+    }
+invalid:
+  - |
+    class StatusCard extends React.Component<Props> {
+      render() {
+        return <section />;
+      }
+    }
+  - |
+    class LegacyCard extends PureComponent {
+      render() {
+        return <section />;
+      }
+    }
+  - |
+    class StatefulCard extends React.Component<Props, State> {
+      render() {
+        return <section />;
+      }
+    }

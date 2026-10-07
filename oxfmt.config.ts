@@ -6,9 +6,8 @@ export default defineConfig({
   ignorePatterns: [
     ...preset.ignorePatterns,
     '/CHANGELOG.md',
-    '.github',
+    'ast-grep/tests/__snapshots__/**',
     'dist/**',
-    'pnpm-lock.yaml',
     'src/oxlint/anti-slop/**',
   ],
 });

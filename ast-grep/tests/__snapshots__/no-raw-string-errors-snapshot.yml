@@ -1,0 +1,23 @@
+id: no-raw-string-errors
+snapshots:
+  ? |
+    return Result.err('Disconnected');
+  : labels:
+    - source: Result.err('Disconnected')
+      style: primary
+      start: 7
+      end: 33
+  ? |
+    return err('Failed');
+  : labels:
+    - source: err('Failed')
+      style: primary
+      start: 7
+      end: 20
+  ? |
+    throw 'Missing config';
+  : labels:
+    - source: throw 'Missing config';
+      style: primary
+      start: 0
+      end: 23

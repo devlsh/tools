@@ -1,0 +1,124 @@
+id: short-is-helper-candidates
+snapshots:
+  ? |
+    const hasViewAdd = (spy: Mock): boolean => spy.mock.calls.length > 0;
+  : labels:
+    - source: 'const hasViewAdd = (spy: Mock): boolean => spy.mock.calls.length > 0;'
+      style: primary
+      start: 0
+      end: 69
+  ? |
+    const isObject = (value: unknown): value is object => typeof value === 'object' && value !== null;
+  : labels:
+    - source: 'const isObject = (value: unknown): value is object => typeof value === ''object'' && value !== null;'
+      style: primary
+      start: 0
+      end: 98
+  ? |
+    const isRecord = (value: unknown): value is Record<string, unknown> => {
+      return typeof value === 'object' && value !== null;
+    };
+  : labels:
+    - source: |-
+        const isRecord = (value: unknown): value is Record<string, unknown> => {
+          return typeof value === 'object' && value !== null;
+        };
+      style: primary
+      start: 0
+      end: 129
+  ? |
+    export function isActionKind(value: unknown): value is ActionKind {
+      return value === 'retry' || value === 'dismiss';
+    }
+  : labels:
+    - source: |-
+        function isActionKind(value: unknown): value is ActionKind {
+          return value === 'retry' || value === 'dismiss';
+        }
+      style: primary
+      start: 7
+      end: 120
+  ? |
+    export function isDev() {
+      return stageEnv.TERIS_STAGE === 'development';
+    }
+  : labels:
+    - source: |-
+        function isDev() {
+          return stageEnv.TERIS_STAGE === 'development';
+        }
+      style: primary
+      start: 7
+      end: 76
+  ? |
+    export function isProd() {
+      return stageEnv.TERIS_STAGE === 'production';
+    }
+  : labels:
+    - source: |-
+        function isProd() {
+          return stageEnv.TERIS_STAGE === 'production';
+        }
+      style: primary
+      start: 7
+      end: 76
+  ? |
+    function hasMessage(value: unknown): value is { message: string } {
+      return typeof value === 'object' && value !== null && 'message' in value && typeof value.message === 'string';
+    }
+  : labels:
+    - source: |-
+        function hasMessage(value: unknown): value is { message: string } {
+          return typeof value === 'object' && value !== null && 'message' in value && typeof value.message === 'string';
+        }
+      style: primary
+      start: 0
+      end: 182
+  ? |
+    function isAreaKey(value: unknown): value is AreaKey {
+      return typeof value === 'string' && Object.values(AreaKey).includes(value as AreaKey);
+    }
+  : labels:
+    - source: |-
+        function isAreaKey(value: unknown): value is AreaKey {
+          return typeof value === 'string' && Object.values(AreaKey).includes(value as AreaKey);
+        }
+      style: primary
+      start: 0
+      end: 145
+  ? |
+    function isServerExposed(error: unknown): error is ServerExposed {
+      return typeof error === 'object' && error !== null && 'serverExposed' in error && error.serverExposed === true;
+    }
+  : labels:
+    - source: |-
+        function isServerExposed(error: unknown): error is ServerExposed {
+          return typeof error === 'object' && error !== null && 'serverExposed' in error && error.serverExposed === true;
+        }
+      style: primary
+      start: 0
+      end: 182
+  ? |
+    function isString(value: unknown): value is string {
+      return typeof value === 'string';
+    }
+  : labels:
+    - source: |-
+        function isString(value: unknown): value is string {
+          return typeof value === 'string';
+        }
+      style: primary
+      start: 0
+      end: 90
+  ? |
+    function isVisible(droplet: RainDroplet, bounds: RainBounds) {
+      return droplet.y < bounds.height;
+    }
+  : labels:
+    - source: |-
+        function isVisible(droplet: RainDroplet, bounds: RainBounds) {
+          return droplet.y < bounds.height;
+        }
+      style: primary
+      start: 0
+      end: 100

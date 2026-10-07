@@ -1,0 +1,27 @@
+id: no-set-immediate-promise-waits
+language: TypeScript
+severity: warning
+message: Prefer an observable delivery/idle promise over direct setImmediate Promise waits in tests.
+files:
+  - '**/*.{test,spec}.{ts,tsx}'
+  - '**/tests/**/*.{ts,tsx}'
+utils:
+  directSetImmediateWait:
+    any:
+      - pattern: new Promise<$TYPE>(($RESOLVE) => setImmediate($RESOLVE))
+      - pattern: new Promise(($RESOLVE) => setImmediate($RESOLVE))
+      - pattern: new Promise<$TYPE>(($RESOLVE, $$$REST) => setImmediate($RESOLVE))
+      - pattern: new Promise(($RESOLVE, $$$REST) => setImmediate($RESOLVE))
+      - pattern: new Promise<$TYPE>(($RESOLVE) => { setImmediate($RESOLVE); })
+      - pattern: new Promise(($RESOLVE) => { setImmediate($RESOLVE); })
+      - pattern: new Promise<$TYPE>(($RESOLVE, $$$REST) => { setImmediate($RESOLVE); })
+      - pattern: new Promise(($RESOLVE, $$$REST) => { setImmediate($RESOLVE); })
+rule:
+  all:
+    - matches: directSetImmediateWait
+    - not:
+        inside:
+          all:
+            - kind: call_expression
+            - regex: "^(test|it)\\(['\"][^'\"]*(event loop|setImmediate|macrotask)[^'\"]*['\"]"
+          stopBy: end

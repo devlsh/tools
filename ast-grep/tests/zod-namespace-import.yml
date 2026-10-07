@@ -1,0 +1,29 @@
+id: zod-namespace-import
+valid:
+  - |
+    import * as z from 'zod';
+  - |
+    import type * as z from 'zod';
+  - |
+    import { z } from 'zustand';
+  - |
+    import z from '@teris/core/zod';
+  - |
+    import * as Zod from 'not-zod';
+invalid:
+  - |
+    import { z } from 'zod';
+  - |
+    import z from 'zod';
+  - |
+    import z, { ZodError } from 'zod';
+  - |
+    import { z as schema } from 'zod';
+  - |
+    import * as Zod from 'zod';
+  - |
+    import type { ZodType } from 'zod';
+  - |
+    import 'zod';
+  - |
+    import * as z from "zod";

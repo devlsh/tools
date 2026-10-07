@@ -1,0 +1,14 @@
+id: no-inline-parameter-object-types
+language: Tsx
+severity: warning
+message: Do not inline object type literals in function parameters. Use a named interface or type.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  all:
+    - kind: object_type
+    - inside:
+        any:
+          - kind: required_parameter
+          - kind: optional_parameter
+        stopBy: end

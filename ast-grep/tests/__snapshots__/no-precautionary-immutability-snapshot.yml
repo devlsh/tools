@@ -1,0 +1,152 @@
+id: no-precautionary-immutability
+snapshots:
+  ? |
+    class RuntimeState {
+      state: { readonly id: string } = { id: 'state' };
+    }
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 32
+      end: 51
+  ? |
+    class RuntimeState {
+      update() {
+        interface LocalState {
+          readonly id: string;
+        }
+        return {} as LocalState;
+      }
+    }
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 67
+      end: 86
+  ? |
+    class RuntimeState {
+      update() {
+        type LocalState = { readonly id: string };
+        return {} as LocalState;
+      }
+    }
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 58
+      end: 77
+  ? |
+    const ItemKeysSchema = z.array(z.string()).readonly();
+  : labels:
+    - source: z.array(z.string()).readonly()
+      style: primary
+      start: 23
+      end: 53
+  ? |
+    const LazySchema = z.lazy(() => NodeSchema).readonly();
+  : labels:
+    - source: z.lazy(() => NodeSchema).readonly()
+      style: primary
+      start: 19
+      end: 54
+  ? |
+    const OptionalPlayerSchema = z.object({ id: z.string() }).optional().readonly();
+  : labels:
+    - source: 'z.object({ id: z.string() }).optional().readonly()'
+      style: primary
+      start: 29
+      end: 79
+  ? |
+    const PlayerSchema = z.object({ id: z.string() }).readonly();
+  : labels:
+    - source: 'z.object({ id: z.string() }).readonly()'
+      style: primary
+      start: 21
+      end: 60
+  ? |
+    const ResultSchema = z.discriminatedUnion('status', [OkSchema, ErrorSchema]).readonly();
+  : labels:
+    - source: z.discriminatedUnion('status', [OkSchema, ErrorSchema]).readonly()
+      style: primary
+      start: 21
+      end: 87
+  ? |
+    const player: { readonly id: string } = { id: 'player' };
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 16
+      end: 35
+  ? |
+    interface Dictionary {
+      readonly [key: string]: string;
+    }
+  : labels:
+    - source: 'readonly [key: string]: string'
+      style: primary
+      start: 25
+      end: 55
+  ? |
+    interface Player {
+      readonly id: string;
+    }
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 21
+      end: 40
+  ? |
+    type Dictionary<T> = {
+      readonly [K in keyof T]: T[K];
+    };
+  : labels:
+    - source: 'readonly [K in keyof T]: T[K]'
+      style: primary
+      start: 25
+      end: 54
+  ? |
+    type Handler = (input: { readonly id: string }) => void;
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 25
+      end: 44
+  ? |
+    type Immutable<T> = {
+      +readonly [K in keyof T]: T[K];
+    };
+  : labels:
+    - source: '+readonly [K in keyof T]: T[K]'
+      style: primary
+      start: 24
+      end: 54
+  ? |
+    type Player = {
+      readonly displayName?: string;
+      inventory: string[];
+    };
+  : labels:
+    - source: 'readonly displayName?: string'
+      style: primary
+      start: 18
+      end: 47
+  ? |
+    type Player = {
+      readonly id: string;
+    };
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 18
+      end: 37
+  ? |
+    type Session = {
+      player: {
+        readonly id: string;
+      };
+    };
+  : labels:
+    - source: 'readonly id: string'
+      style: primary
+      start: 33
+      end: 52

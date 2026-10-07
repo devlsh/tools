@@ -50,13 +50,19 @@ The frozen install uses the existing lockfile; it does not select new dependency
 
 ## Checks
 
-You can find available scripts in [package.json](package.json). `pnpm check` runs typechecking, linting, and formatting checks; linting builds the package first.
+You can find available scripts in [package.json](package.json). `pnpm check` runs typechecking, linting, native ast-grep fixture tests, and formatting checks. Linting builds the package first.
 
 To fix lint and formatting findings, run `pnpm lint:fix`, then `pnpm fmt`. Inspect the diff and fix any remaining findings before rerunning checks.
 
-`pnpm check` does not execute tests. There is no configured test script or Vitest runner. Existing Oxlint RuleTester `.test.ts` files are typechecked, not executed. For behavior changes, exercise relevant existing cases or consumer examples and describe what you verified.
+`pnpm ast:test` executes the YAML fixtures and diagnostic/fix snapshots under `ast-grep/tests`, through [sgconfig.yml](sgconfig.yml). Add valid, invalid, and relevant nested cases with each rule change. Inspect snapshot changes before acceptance. To update snapshots after an intentional behavior change, run `pnpm ast:test --update-all`, then rerun `pnpm ast:test` without that flag.
 
-Linting, formatting, and hooks exclude `src/oxlint/anti-slop/**`; those plugin implementations and tests are still typechecked. For documentation changes, check local links and anchors as well as formatting.
+There is no Vitest runner. Existing Oxlint RuleTester `.test.ts` files are typechecked, not executed. For Oxlint behavior changes, exercise relevant existing cases or consumer examples and describe what you verified.
+
+Native fixtures check syntax and fixes, not consumer file scopes. For ast-grep package changes, pack the package with `pnpm pack --pack-destination <temporary-directory>`. Install the tarball in a temporary consumer. Use its real `node_modules/@devlsh/tools/ast-grep/rules/<group>` directories in `sgconfig.yml`. Run `ast-grep scan --config sgconfig.yml` on accepted and rejected files, including scope boundaries. Inspect diagnostic IDs and fix output. The [README](README.md#ast-grep-rules) explains group selection and fix limits.
+
+If `pnpm exec ast-grep --version` reports a Node `SyntaxError` on a native binary after build approval, refresh bin links. Run `pnpm install --frozen-lockfile --no-optimistic-repeat-install`, then repeat the version check. The CLI needs its approved postinstall script to install the native executable.
+
+Linting, formatting, and hooks exclude `src/oxlint/anti-slop/**`; those plugin implementations and tests are still typechecked. Formatting also excludes native-generated ast-grep snapshots. For documentation changes, check local links and anchors as well as formatting.
 
 ## Pull Requests
 

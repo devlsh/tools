@@ -1,0 +1,15 @@
+id: no-screaming-snake-zod-schema
+language: TypeScript
+severity: warning
+message: Zod schemas should use PascalCase or lower camel case, not SCREAMING_SNAKE_CASE.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: const $NAME = z.$METHOD($$$ARGS)
+    - pattern: const $NAME = z.$METHOD($$$ARGS).$CHAIN($$$CHAIN_ARGS)
+constraints:
+  NAME:
+    regex: '^[A-Z][A-Z0-9_]*$'
+  METHOD:
+    regex: '^(object|enum|union|discriminatedUnion|array|record|tuple|string|number|boolean|literal)$'

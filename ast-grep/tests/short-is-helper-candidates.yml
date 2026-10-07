@@ -1,0 +1,59 @@
+id: short-is-helper-candidates
+valid:
+  - |
+    function readAreaKey(value: unknown): AreaKey | undefined {
+      return enumValue(AreaKey, value);
+    }
+  - |
+    function isVisible(droplet: RainDroplet, bounds: RainBounds) {
+      if (droplet.y < 0) {
+        return false;
+      }
+
+      return droplet.y < bounds.height;
+    }
+  - |
+    function createMessage(value: string) {
+      return { message: value };
+    }
+invalid:
+  - |
+    function isAreaKey(value: unknown): value is AreaKey {
+      return typeof value === 'string' && Object.values(AreaKey).includes(value as AreaKey);
+    }
+  - |
+    function hasMessage(value: unknown): value is { message: string } {
+      return typeof value === 'object' && value !== null && 'message' in value && typeof value.message === 'string';
+    }
+  - |
+    function isString(value: unknown): value is string {
+      return typeof value === 'string';
+    }
+  - |
+    export function isActionKind(value: unknown): value is ActionKind {
+      return value === 'retry' || value === 'dismiss';
+    }
+  - |
+    export function isProd() {
+      return stageEnv.TERIS_STAGE === 'production';
+    }
+  - |
+    const isObject = (value: unknown): value is object => typeof value === 'object' && value !== null;
+  - |
+    const isRecord = (value: unknown): value is Record<string, unknown> => {
+      return typeof value === 'object' && value !== null;
+    };
+  - |
+    function isVisible(droplet: RainDroplet, bounds: RainBounds) {
+      return droplet.y < bounds.height;
+    }
+  - |
+    function isServerExposed(error: unknown): error is ServerExposed {
+      return typeof error === 'object' && error !== null && 'serverExposed' in error && error.serverExposed === true;
+    }
+  - |
+    export function isDev() {
+      return stageEnv.TERIS_STAGE === 'development';
+    }
+  - |
+    const hasViewAdd = (spy: Mock): boolean => spy.mock.calls.length > 0;

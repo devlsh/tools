@@ -1,0 +1,117 @@
+id: multiline-arrow-expression-requires-block
+snapshots:
+  ? |
+    const read = () =>
+      () =>
+        createValue({
+          enabled: true,
+          name: 'value',
+        });
+  : labels:
+    - source: |-
+        () =>
+            createValue({
+              enabled: true,
+              name: 'value',
+            })
+      style: primary
+      start: 21
+      end: 93
+    - source: |-
+        () =>
+          () =>
+            createValue({
+              enabled: true,
+              name: 'value',
+            })
+      style: secondary
+      start: 13
+      end: 93
+  ? |
+    const read = () =>
+      createValue({
+        enabled: true,
+        name: 'value',
+      });
+  : labels:
+    - source: |-
+        createValue({
+            enabled: true,
+            name: 'value',
+          })
+      style: primary
+      start: 21
+      end: 77
+    - source: |-
+        () =>
+          createValue({
+            enabled: true,
+            name: 'value',
+          })
+      style: secondary
+      start: 13
+      end: 77
+  ? |
+    const read = () => createValue({
+      enabled: true,
+      name: 'value',
+    });
+  : labels:
+    - source: |-
+        createValue({
+          enabled: true,
+          name: 'value',
+        })
+      style: primary
+      start: 19
+      end: 69
+    - source: |-
+        () => createValue({
+          enabled: true,
+          name: 'value',
+        })
+      style: secondary
+      start: 13
+      end: 69
+  ? |
+    const read = () => tag`first
+    second`;
+  : labels:
+    - source: |-
+        tag`first
+        second`
+      style: primary
+      start: 19
+      end: 36
+    - source: |-
+        () => tag`first
+        second`
+      style: secondary
+      start: 13
+      end: 36
+  ? |
+    declare function perform(value: {
+      enabled: boolean;
+      name: string;
+    }): void;
+    const run = () => perform({
+      enabled: true,
+      name: 'value',
+    });
+  : labels:
+    - source: |-
+        perform({
+          enabled: true,
+          name: 'value',
+        })
+      style: primary
+      start: 98
+      end: 144
+    - source: |-
+        () => perform({
+          enabled: true,
+          name: 'value',
+        })
+      style: secondary
+      start: 92
+      end: 144

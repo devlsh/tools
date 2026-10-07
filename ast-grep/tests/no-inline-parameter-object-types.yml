@@ -1,0 +1,23 @@
+id: no-inline-parameter-object-types
+valid:
+  - |
+    interface Options {
+      enabled: boolean;
+    }
+    function createRuntime(options: Options) {
+      return options.enabled;
+    }
+  - |
+    type Payload = { id: string };
+    const handle = (payload: Payload) => payload.id;
+invalid:
+  - |
+    function createRuntime(options: { enabled: boolean }) {
+      return options.enabled;
+    }
+  - |
+    const handle = async (payload: { id: string }) => payload.id;
+  - |
+    class Service {
+      constructor(options: { logger: Logger }) {}
+    }

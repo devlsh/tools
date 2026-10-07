@@ -1,0 +1,37 @@
+id: no-precautionary-immutability-tsx
+valid:
+  - |
+    type ItemKeys = readonly string[];
+    type Position = readonly [number, number];
+  - |
+    type ExistingLibraryContract = Readonly<{ id: string }>;
+    type ExistingListContract = ReadonlyArray<string>;
+  - |
+    interface Inventory {
+      items: readonly string[];
+    }
+  - |
+    class RuntimeState {
+      readonly ids: readonly string[] = [];
+    }
+invalid:
+  - |
+    type PlayerCardProps = {
+      readonly displayName: string;
+    };
+
+    const PlayerCard = ({ displayName }: PlayerCardProps) => <div>{displayName}</div>;
+  - |
+    interface InventoryProps {
+      readonly items: readonly string[];
+    }
+
+    const Inventory = ({ items }: InventoryProps) => <div>{items.length}</div>;
+  - |
+    class PlayerCardState {
+      state: { readonly id: string } = { id: 'player' };
+
+      render() {
+        return <div>{this.state.id}</div>;
+      }
+    }

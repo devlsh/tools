@@ -1,0 +1,50 @@
+id: no-one-expect-helper-bodies
+snapshots:
+  ? |
+    const assertResponse = function (response: unknown) {
+      expect(response).toMatchObject({ ok: true });
+    };
+  : labels:
+    - source: |-
+        const assertResponse = function (response: unknown) {
+          expect(response).toMatchObject({ ok: true });
+        };
+      style: primary
+      start: 0
+      end: 104
+  ? |
+    const expectMetadata = (metadata: unknown) => {
+      expect(metadata).toEqual({ rewardState: 'pending' });
+    };
+  : labels:
+    - source: |-
+        const expectMetadata = (metadata: unknown) => {
+          expect(metadata).toEqual({ rewardState: 'pending' });
+        };
+      style: primary
+      start: 0
+      end: 106
+  ? |
+    function assertResult(result: Result<unknown, Error>) {
+      expect(result.isOk()).toBe(true);
+    }
+  : labels:
+    - source: |-
+        function assertResult(result: Result<unknown, Error>) {
+          expect(result.isOk()).toBe(true);
+        }
+      style: primary
+      start: 0
+      end: 93
+  ? |
+    function expectValue(value: unknown) {
+      expect(value).toBe('ready');
+    }
+  : labels:
+    - source: |-
+        function expectValue(value: unknown) {
+          expect(value).toBe('ready');
+        }
+      style: primary
+      start: 0
+      end: 71

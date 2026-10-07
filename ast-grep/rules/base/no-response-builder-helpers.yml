@@ -1,0 +1,16 @@
+id: no-response-builder-helpers
+language: TypeScript
+severity: error
+message: Inline one-line Response builders at the call site instead of hiding the response contract behind a helper.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: function $NAME($$$ARGS) { return new Response($$$VALUES) }
+    - pattern: 'function $NAME($$$ARGS): $RETURN { return new Response($$$VALUES) }'
+    - pattern: const $NAME = ($$$ARGS) => new Response($$$VALUES)
+    - pattern: 'const $NAME = ($$$ARGS): $RETURN => new Response($$$VALUES)'
+    - pattern: function $NAME($$$ARGS) { return Response.$METHOD($$$VALUES) }
+    - pattern: 'function $NAME($$$ARGS): $RETURN { return Response.$METHOD($$$VALUES) }'
+    - pattern: const $NAME = ($$$ARGS) => Response.$METHOD($$$VALUES)
+    - pattern: 'const $NAME = ($$$ARGS): $RETURN => Response.$METHOD($$$VALUES)'

@@ -1,0 +1,18 @@
+id: no-runtime-freeze-tsx
+snapshots:
+  ? |
+    const config = Object.freeze({ enabled: true });
+    const view = <div>{config.enabled}</div>;
+  : labels:
+    - source: 'Object.freeze({ enabled: true })'
+      style: primary
+      start: 15
+      end: 47
+  ? |
+    const config = globalThis.Object['freeze']({ enabled: true });
+    const view = <div>{config.enabled}</div>;
+  : labels:
+    - source: 'globalThis.Object[''freeze'']({ enabled: true })'
+      style: primary
+      start: 15
+      end: 61

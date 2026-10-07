@@ -1,0 +1,15 @@
+id: no-raw-string-errors
+valid:
+  - |
+    throw new InvalidConfigError({ message: 'Missing config' });
+  - |
+    return Result.err(new RoomConnectionError({ message: 'Disconnected' }));
+  - |
+    return err(new ResultError({ message: 'Failed' }));
+invalid:
+  - |
+    throw 'Missing config';
+  - |
+    return Result.err('Disconnected');
+  - |
+    return err('Failed');

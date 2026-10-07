@@ -1,0 +1,45 @@
+id: short-is-helper-candidates
+language: TypeScript
+severity: hint
+message: 'Short predicate helper functions are often AI-added slop. Re-review this 1-statement helper: inline it, use an existing shared helper, or replace it with a real domain parser at the boundary.'
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  all:
+    - any:
+        - all:
+            - pattern: 'function $NAME($$$ARGS) { return $EXPR }'
+            - regex: '^function is[A-Z]'
+        - all:
+            - pattern: 'function $NAME($$$ARGS): $TYPE { return $EXPR }'
+            - regex: '^function is[A-Z]'
+        - all:
+            - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return $EXPR }'
+            - regex: '^function (is|has)[A-Z]'
+        - all:
+            - pattern: 'function $NAME($$$ARGS): boolean { return $EXPR }'
+            - regex: '^function (is|has)[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($$$ARGS) => $EXPR'
+            - regex: '^const is[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($$$ARGS): $TYPE => $EXPR'
+            - regex: '^const is[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => $EXPR'
+            - regex: '^const (is|has)[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($$$ARGS): boolean => $EXPR'
+            - regex: '^const (is|has)[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($$$ARGS) => { return $EXPR }'
+            - regex: '^const is[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($$$ARGS): $TYPE => { return $EXPR }'
+            - regex: '^const is[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => { return $EXPR }'
+            - regex: '^const (is|has)[A-Z]'
+        - all:
+            - pattern: 'const $NAME = ($$$ARGS): boolean => { return $EXPR }'
+            - regex: '^const (is|has)[A-Z]'

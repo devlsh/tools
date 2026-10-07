@@ -1,0 +1,31 @@
+id: no-runtime-freeze
+valid:
+  - |
+    const config = { enabled: true };
+  - |
+    const sealed = Object.seal({ enabled: true });
+  - |
+    const prevented = Object.preventExtensions({ enabled: true });
+  - |
+    const frozen = registry.freeze(value);
+  - |
+    const text = 'Object.freeze(value)';
+  - |
+    const value = CustomObject.freeze(config);
+invalid:
+  - |
+    const config = Object.freeze({ enabled: true });
+  - |
+    export const itemKeys = Object.freeze(['copper', 'iron']);
+  - |
+    const config = globalThis.Object.freeze({ enabled: true });
+  - |
+    const config = Object['freeze']({ enabled: true });
+  - |
+    const config = Object["freeze"]({ enabled: true });
+  - |
+    const config = globalThis.Object['freeze']({ enabled: true });
+  - |
+    const config = globalThis.Object["freeze"]({ enabled: true });
+  - |
+    const config = Object.freeze<{ enabled: boolean }>({ enabled: true });

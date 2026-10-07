@@ -1,6 +1,6 @@
 # Tools Agent Root
 
-`@devlsh/tools` is one TypeScript package for shared Oxlint presets, Oxlint plugins, and an Oxfmt preset. This file owns startup routing and hard authorization boundaries.
+`@devlsh/tools` is one package for shared Oxlint presets, Oxlint plugins, an Oxfmt preset, and native ast-grep YAML rules. This file owns startup routing and hard authorization boundaries.
 
 ## Authority And Safety
 

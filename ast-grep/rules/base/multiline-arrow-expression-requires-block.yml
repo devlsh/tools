@@ -1,0 +1,40 @@
+id: multiline-arrow-expression-requires-block
+language: TypeScript
+severity: error
+message: Use a block body with an explicit return for a multiline arrow expression.
+files:
+  - '**/*.ts'
+rule:
+  all:
+    - pattern: $BODY
+    - any:
+        - kind: array
+        - kind: arrow_function
+        - kind: as_expression
+        - kind: assignment_expression
+        - kind: await_expression
+        - kind: binary_expression
+        - kind: call_expression
+        - kind: class
+        - kind: function_expression
+        - kind: identifier
+        - kind: instantiation_expression
+        - kind: member_expression
+        - kind: new_expression
+        - kind: non_null_expression
+        - kind: object
+        - kind: parenthesized_expression
+        - kind: satisfies_expression
+        - kind: sequence_expression
+        - kind: subscript_expression
+        - kind: template_string
+        - kind: ternary_expression
+        - kind: type_assertion
+        - kind: unary_expression
+        - kind: update_expression
+        - kind: yield_expression
+    - regex: '(?s).*\n.*'
+    - inside:
+        field: body
+        kind: arrow_function
+        stopBy: neighbor

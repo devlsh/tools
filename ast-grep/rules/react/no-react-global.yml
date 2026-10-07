@@ -1,0 +1,11 @@
+id: no-react-global
+language: Tsx
+severity: error
+message: Do not use React as a global.
+note: Import the required value or type directly from the `react` package.
+files:
+  - '**/*.tsx'
+rule:
+  all:
+    - kind: identifier
+    - regex: '^React$'

@@ -1,0 +1,38 @@
+id: no-fixed-promise-resolve-drains
+valid:
+  - |
+    await Promise.resolve();
+    expect(delivered).toBe(true);
+  - |
+    async function flushOneTurnForResolvedPromise() {
+      await Promise.resolve();
+    }
+  - |
+    await writer.idle();
+  - |
+    await explicitIdlePromise;
+  - |
+    for (const event of events) {
+      await event.delivered;
+    }
+invalid:
+  - |
+    async function flushRouteDispatch() {
+      await Promise.resolve();
+      await Promise.resolve();
+    }
+  - |
+    async function drainMicrotasks() {
+      for (let i = 0; i < 8; i += 1) {
+        await Promise.resolve();
+      }
+    }
+  - |
+    while (pendingTurns > 0) {
+      pendingTurns -= 1;
+      await Promise.resolve();
+    }
+  - |
+    do {
+      await Promise.resolve();
+    } while (needsAnotherTurn());

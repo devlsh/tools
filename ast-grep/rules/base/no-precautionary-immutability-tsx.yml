@@ -1,0 +1,24 @@
+id: no-precautionary-immutability-tsx
+language: Tsx
+severity: error
+message: Readonly property and index modifiers and Zod .readonly() are not approved readonly contracts.
+note: Class fields and as const are allowed. Readonly collections, tuples, and utilities require a separately approved ownership or type-inference contract. Object.freeze is enforced by no-runtime-freeze-tsx.
+files:
+  - '**/*.tsx'
+utils:
+  readonlyMemberSyntax:
+    any:
+      - all:
+          - kind: property_signature
+          - regex: '^readonly\b'
+      - all:
+          - kind: index_signature
+          - regex: '^\+?readonly\b'
+  zodReadonlyCall:
+    all:
+      - pattern: $SCHEMA.readonly()
+      - regex: '^z\.'
+rule:
+  any:
+    - matches: zodReadonlyCall
+    - matches: readonlyMemberSyntax

@@ -1,0 +1,86 @@
+id: no-screaming-snake-zod-schema
+snapshots:
+  ? |
+    const COUNT_SCHEMA = z.number().int();
+  : labels:
+    - source: const COUNT_SCHEMA = z.number().int();
+      style: primary
+      start: 0
+      end: 38
+  ? |
+    const ENABLED_SCHEMA = z.boolean();
+  : labels:
+    - source: const ENABLED_SCHEMA = z.boolean();
+      style: primary
+      start: 0
+      end: 35
+  ? |
+    const EVENT_SCHEMA = z.discriminatedUnion('type', [created, deleted]);
+  : labels:
+    - source: const EVENT_SCHEMA = z.discriminatedUnion('type', [created, deleted]);
+      style: primary
+      start: 0
+      end: 70
+  ? |
+    const KIND_SCHEMA = z.literal('release');
+  : labels:
+    - source: const KIND_SCHEMA = z.literal('release');
+      style: primary
+      start: 0
+      end: 41
+  ? |
+    const NAME_SCHEMA = z.string().min(1);
+  : labels:
+    - source: const NAME_SCHEMA = z.string().min(1);
+      style: primary
+      start: 0
+      end: 38
+  ? |
+    const RECORD_SCHEMA = z.record(z.string());
+  : labels:
+    - source: const RECORD_SCHEMA = z.record(z.string());
+      style: primary
+      start: 0
+      end: 43
+  ? |
+    const ROLE_SCHEMA = z.enum(['USER', 'ADMIN']);
+  : labels:
+    - source: const ROLE_SCHEMA = z.enum(['USER', 'ADMIN']);
+      style: primary
+      start: 0
+      end: 46
+  ? |
+    const SEARCH_SCHEMA = z.union([z.string(), z.number()]);
+  : labels:
+    - source: const SEARCH_SCHEMA = z.union([z.string(), z.number()]);
+      style: primary
+      start: 0
+      end: 56
+  ? |
+    const TAGS_SCHEMA = z.array(z.string());
+  : labels:
+    - source: const TAGS_SCHEMA = z.array(z.string());
+      style: primary
+      start: 0
+      end: 40
+  ? |
+    const TUPLE_SCHEMA = z.tuple([z.string(), z.number()]);
+  : labels:
+    - source: const TUPLE_SCHEMA = z.tuple([z.string(), z.number()]);
+      style: primary
+      start: 0
+      end: 55
+  ? |
+    const USER_INPUT_SCHEMA = z.object({ name: z.string() }).strict();
+  : labels:
+    - source: 'const USER_INPUT_SCHEMA = z.object({ name: z.string() }).strict();'
+      style: primary
+      start: 0
+      end: 66
+  ? |
+    const USER_SCHEMA = z.object({ name: z.string() });
+  : labels:
+    - source: 'const USER_SCHEMA = z.object({ name: z.string() });'
+      style: primary
+      start: 0
+      end: 51

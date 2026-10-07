@@ -1,0 +1,36 @@
+id: multiline-arrow-expression-requires-block-tsx
+valid:
+  - const Component = () => <div />;
+  - |
+    const Component = () => {
+      return (
+        <section>
+          <div />
+        </section>
+      );
+    };
+invalid:
+  - |
+    const Component = () => (
+      <section>
+        <div />
+      </section>
+    );
+  - |
+    const Component = () => <section>
+      <div />
+    </section>;
+  - |
+    const Component = () => (
+      // Keep this comment with the returned JSX.
+      <section>
+        <div />
+      </section>
+    );
+  - |
+    const Component = () =>
+      items.map((item) => (
+        <section key={item.id}>
+          <div />
+        </section>
+      ));

@@ -1,0 +1,25 @@
+id: no-trivial-type-predicate-helper
+language: TypeScript
+severity: error
+message: Do not add trivial type-predicate helpers for native checks. Re-review this change for one-shot/no-added-value helpers and inline the guard or replace it with a meaningful domain parser.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return typeof $VALUE === $KIND }'
+    - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return typeof $VALUE !== $KIND }'
+    - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return Array.isArray($VALUE) }'
+    - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return $VALUE instanceof $CLASS }'
+    - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return $VALUE !== null }'
+    - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return $VALUE != null }'
+    - pattern: "function $NAME($VALUE: unknown): $VALUE is $TYPE { return typeof $VALUE === 'object' && $VALUE !== null }"
+    - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => typeof $VALUE === $KIND'
+    - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => typeof $VALUE !== $KIND'
+    - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => Array.isArray($VALUE)'
+    - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => $VALUE instanceof $CLASS'
+    - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => $VALUE !== null'
+    - pattern: 'const $NAME = ($VALUE: unknown): $VALUE is $TYPE => $VALUE != null'
+    - pattern: "const $NAME = ($VALUE: unknown): $VALUE is $TYPE => typeof $VALUE === 'object' && $VALUE !== null"
+constraints:
+  NAME:
+    regex: '^is(String|Number|Boolean|BigInt|Symbol|Function|Object|Record|Array|NonNull|Defined|Present|Nullish|Unknown)$'

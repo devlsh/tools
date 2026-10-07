@@ -1,0 +1,15 @@
+id: no-read-string-helper
+language: TypeScript
+severity: error
+message: Do not add readString helpers. Re-review this change for AI-added parsing slop; inline the narrow read at the boundary or give the parser a domain-specific name.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: 'function readString($$$ARGS) { $$$BODY }'
+    - pattern: 'function readString($$$ARGS): $TYPE { $$$BODY }'
+    - pattern: 'const readString = ($$$ARGS) => $$$BODY'
+    - pattern: 'const readString = ($$$ARGS): $TYPE => $$$BODY'
+    - pattern: 'const readString = ($$$ARGS) => { $$$BODY }'
+    - pattern: 'const readString = ($$$ARGS): $TYPE => { $$$BODY }'
+    - pattern: 'readString($$$ARGS)'

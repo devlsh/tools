@@ -29,7 +29,8 @@ Shared tooling and configs I use across various projects. The idea is to build t
   - Inlcudes [`anti-slop`](https://github.com/dmmulroy/anti-slop) rules from [@dmmulroy](https://github.com/dmmulroy) - _most_ enabled by default, with exceptions where I enforce tighter rules outside of the ruleset. Also includes his Effect ruleset (must be enabled manually).
 - [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter) config.
   - Pretty standard - enables some more advanced sorting and preset ignores I use a lot.
-- More soon.
+- [`ast-grep`](https://ast-grep.github.io) rules.
+  - Native shared rules with opt-in test and library groups. Helps cut down on more complex AI slop.
 
 <br />
 
@@ -79,6 +80,31 @@ import { defineConfig } from 'oxfmt';
 export default defineConfig({
   ...preset,
 });
+```
+
+### `ast-grep` rules
+
+In `sgconfig.yml`, select the base group:
+
+```yaml
+ruleDirs:
+  - node_modules/@devlsh/tools/ast-grep/rules/base
+```
+
+Beyond a set of [`base`](ast-grep/rules/base/README.md) rules, there are also library/environment-specific rules you can enable.
+
+- [`tests`](ast-grep/rules/tests/README.md)
+- [`react`](ast-grep/rules/react/README.md)
+- [`zod`](ast-grep/rules/zod/README.md)
+- [`browser`](ast-grep/rules/browser/README.md)
+- [`vite`](ast-grep/rules/vite/README.md)
+
+For example, to add `react` rules alongside the base:
+
+```yaml
+ruleDirs:
+  - node_modules/@devlsh/tools/ast-grep/rules/base
+  - node_modules/@devlsh/tools/ast-grep/rules/react
 ```
 
 ### `node`/`pnpm` setup GitHub Action

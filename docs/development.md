@@ -4,13 +4,14 @@ This agent-only handbook owns package responsibilities, source/documentation aut
 
 ## Package Responsibilities
 
-`@devlsh/tools` is one ESM TypeScript lint/format package, not an application or deployment stack. Its public consumer contracts are:
+`@devlsh/tools` is one ESM lint/format package with native ast-grep assets, not an application or deployment stack. Its public consumer contracts are:
 
 - **[Base Oxlint preset](../src/oxlint/index.ts)** - Registers generic anti-slop rules.
 - **[Opt-in Effect preset](../src/oxlint/effect.ts)** - Extends base with Effect-specific rules.
 - **[Generic plugin](../src/oxlint/anti-slop/index.ts)** - Owns generic rules and nearby shared analysis.
 - **[Effect plugin](../src/oxlint/anti-slop/effect/index.ts)** - Owns Effect-specific rules and nearby shared analysis.
 - **[Oxfmt preset](../src/oxfmt/index.ts)** - Owns reusable formatting.
+- **[ast-grep rules](../ast-grep/rules)** - Owns native YAML rule groups. Consumers select directories through `sgconfig.yml` `ruleDirs`, not JavaScript exports. [README usage](../README.md#ast-grep-rules) owns public group selection and shared scope/fix caveats. Each public group README owns its per-rule reference and links to the executable YAML owner. Refresh those references when rule behavior or scope changes.
 
 The repository also owns a [shared GitHub setup action](../github/setup/action.yml), separate from the npm package. [README usage](../README.md#github-setup-action) owns consumer examples with full commit SHA pins. Refresh this projection when the action path or transport changes.
 
@@ -114,9 +115,9 @@ Absent `minimumReleaseAge` declarations do not prove eligibility. Stop when the 
 
 Inspect manifest scripts/composition. Use root scripts for repository-wide work, root-relative paths with `pnpm exec <tool> ...`, and `pnpm why <dependency>` from the consumer rather than assuming root links. Bounded fixers require explicit paths; pathless means repository-wide. Apply `pnpm lint:fix <files>` then `pnpm fmt <files>`, inspect scoped changes, and repair remaining/semantic findings. Format directly when intended; narrow failures and fix causes instead of blind retries. Establish operational prerequisites/recovery; target CI setup to consumer artifacts.
 
-[CONTRIBUTING checks](../CONTRIBUTING.md#checks) own shared command composition and test/coverage caveats. Typechecking emits nothing and checks both [src/plugin tests](../tsconfig.json) and [root tooling configs/imports](../tsconfig.build.json); the latter omits source declaration/output settings. Check does not execute tests: no test script/Vitest runner is configured. Existing RuleTester cases are typechecked, not executed. Lint builds package outputs first.
+[CONTRIBUTING checks](../CONTRIBUTING.md#checks) own shared command composition and test/coverage caveats. Typechecking emits nothing and checks both [src/plugin tests](../tsconfig.json) and [root tooling configs/imports](../tsconfig.build.json); the latter omits source declaration/output settings. Check executes native ast-grep fixtures and snapshots through [sgconfig.yml](../sgconfig.yml). No Vitest runner is configured. Existing Oxlint RuleTester cases are typechecked, not executed. Lint builds package outputs first.
 
-Inspect [oxlint](../oxlint.config.ts), [oxfmt](../oxfmt.config.ts), presets, and hooks for coverage. Plugin implementations/tests under `src/oxlint/anti-slop/**` are lint/format/hook-excluded but typechecked; root lint/format exclude generated `dist`. Oxfmt also excludes `.github`, `pnpm-lock.yaml`, and only the generated root changelog without changing shared presets; other Markdown/nested changelogs remain covered unless separately excluded. Oxlint does not lint Markdown. Refresh caveats when owners change.
+Inspect [oxlint](../oxlint.config.ts), [oxfmt](../oxfmt.config.ts), presets, and hooks for coverage. Plugin implementations/tests under `src/oxlint/anti-slop/**` are lint/format/hook-excluded but typechecked; root lint/format exclude generated `dist`. Oxfmt also excludes native-generated ast-grep snapshots, `.github`, `pnpm-lock.yaml`, and only the generated root changelog without changing shared presets; other Markdown/nested changelogs remain covered unless separately excluded. Oxlint does not lint Markdown. Refresh caveats when owners change.
 
 ### Validation Selection
 
@@ -125,6 +126,7 @@ Select cumulatively by change type and every affected interface. Repository comm
 - **Docs** - Inspect Markdown, paths/anchors, lists, and routing. Run `pnpm fmt <changed-files>`, `pnpm fmt:check`, and `pnpm check`. No independent code review is required for docs-only work.
 - **TypeScript** - Focused `pnpm lint <changed-file>`, `pnpm typecheck`, and established behavior checks. Cross-module changes finish with check unless blocked/explicitly outside scope; broad migrations/refactors verify each logical batch.
 - **Rules/presets** - Select representative existing RuleTester cases or consumer invocations; report an execution gap without an established test command.
+- **ast-grep assets** - Use `pnpm ast:test` for the full native fixture inventory. Preserve rule IDs, grammar, severities, matchers, transforms, and fixes unless the assigned behavior changes them. Keep diagnostic and fix acceptance in native YAML fixtures/snapshots. For directory/package changes, verify a packed, installed consumer through native `ruleDirs` and `scan`, including path scope and diagnostic/fix behavior. [CONTRIBUTING checks](../CONTRIBUTING.md#checks) owns commands and recovery. Record the exact commands, exit status, and diff revision. Later edits, formatters, or generators invalidate affected evidence. Rerun affected checks before closeout.
 - **Packaging** - `pnpm build` for changed entrypoints, output configuration/declarations, or built consumer imports, not default static validation.
 - **Source/exports** - Typecheck/behavior plus consumer checks for imports/exports/shared types/values.
 - **Diagnostics/fixes** - Verify accepted/rejected inputs, diagnostic identity, and fixes at tool/RuleTester seams; types do not prove diagnostics.

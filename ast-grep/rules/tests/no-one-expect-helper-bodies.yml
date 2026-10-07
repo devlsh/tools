@@ -1,0 +1,15 @@
+id: no-one-expect-helper-bodies
+language: TypeScript
+severity: warning
+message: Inline generic helpers whose body only wraps one expect assertion and adds no setup or domain vocabulary.
+files:
+  - '**/*.{test,spec}.{ts,tsx}'
+  - '**/tests/**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: function $NAME($$$ARGS) { expect($$$EXPECT_ARGS).$MATCHER($$$MATCHER_ARGS); }
+    - pattern: const $NAME = ($$$ARGS) => { expect($$$EXPECT_ARGS).$MATCHER($$$MATCHER_ARGS); }
+    - pattern: const $NAME = function ($$$ARGS) { expect($$$EXPECT_ARGS).$MATCHER($$$MATCHER_ARGS); }
+constraints:
+  NAME:
+    regex: '^(assert|expect)(Value|Result|State|Metadata|Response|Payload|Output|Condition|Data|Error|Success|Failure|Helper)?$'

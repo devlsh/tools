@@ -1,0 +1,52 @@
+id: no-response-builder-helpers
+snapshots:
+  ? |
+    const emptyResponse = (): Response => new Response(null, { status: 204 });
+  : labels:
+    - source: 'const emptyResponse = (): Response => new Response(null, { status: 204 });'
+      style: primary
+      start: 0
+      end: 74
+  ? |
+    const internalError = () => Response.json({ error: 'internal_error' }, { status: 500 });
+  : labels:
+    - source: 'const internalError = () => Response.json({ error: ''internal_error'' }, { status: 500 });'
+      style: primary
+      start: 0
+      end: 88
+  ? |
+    function invalidRequest() {
+      return Response.json({ error: 'invalid_request' }, { status: 400 });
+    }
+  : labels:
+    - source: |-
+        function invalidRequest() {
+          return Response.json({ error: 'invalid_request' }, { status: 400 });
+        }
+      style: primary
+      start: 0
+      end: 100
+  ? |
+    function redirectResponse(): Response {
+      return Response.redirect('https://example.com');
+    }
+  : labels:
+    - source: |-
+        function redirectResponse(): Response {
+          return Response.redirect('https://example.com');
+        }
+      style: primary
+      start: 0
+      end: 92
+  ? |
+    function textResponse() {
+      return new Response('ready');
+    }
+  : labels:
+    - source: |-
+        function textResponse() {
+          return new Response('ready');
+        }
+      style: primary
+      start: 0
+      end: 59
