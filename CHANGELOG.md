@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/devlsh/tools/compare/v1.1.0...v1.2.0) (2026-10-07)
+
+
+### Features
+
+* add reusable GitHub setup action ([5a43d10](https://github.com/devlsh/tools/commit/5a43d10d4535a7cf1368acd9313e70d417ac6235))
+
+
+### Bug Fixes
+
+* **oxlint:** exempt Vue imports from extension checks ([25fb9fe](https://github.com/devlsh/tools/commit/25fb9fe56353935b5346b0a46b82e4affe95c133))
+
 ## [1.1.0](https://github.com/devlsh/tools/compare/v1.0.1...v1.1.0) (2026-10-06)
 
 
