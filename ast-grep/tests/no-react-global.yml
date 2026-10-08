@@ -1,0 +1,56 @@
+id: no-react-global
+valid:
+  - |
+    import { createElement, Fragment } from 'react';
+
+    const node = createElement(Fragment);
+  - |
+    import { Fragment } from 'react';
+
+    const fragment = <Fragment />;
+  - |
+    import { type ReactNode } from 'react';
+
+    interface Props {
+      children: ReactNode;
+    }
+  - |
+    import { useState } from 'react';
+
+    function Counter() {
+      const [count] = useState(0);
+      return <span>{count}</span>;
+    }
+invalid:
+  - |
+    import React from 'react';
+
+    const node: React.ReactNode = React.createElement('div');
+  - |
+    import * as React from 'react';
+
+    const fragment = <React.Fragment />;
+  - |
+    import type React from 'react';
+
+    interface Props {
+      children: React.ReactNode;
+    }
+  - |
+    interface Props {
+      children: React.ReactNode;
+    }
+  - |
+    function createNode() {
+      return React.createElement('div');
+    }
+  - |
+    const fragment = <React.Fragment />;
+  - |
+    import { useState } from 'react';
+
+    const node: React.ReactNode = null;
+  - |
+    import ReactRuntime from 'react';
+
+    const node = React.createElement(ReactRuntime.Fragment);

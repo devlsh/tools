@@ -1,0 +1,14 @@
+id: no-inline-shader-source
+valid:
+  - |
+    import fragmentShader from './shaders/lighting.frag?raw';
+  - |
+    const shaderPath = './shaders/lighting.frag?raw';
+invalid:
+  - |
+    const fragmentShader = `
+      varying vec2 vTextureCoord;
+      void main() {}
+    `;
+  - |
+    import vertexShader from './lighting.glsl';

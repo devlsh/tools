@@ -1,0 +1,22 @@
+id: no-constructor-parameter-properties
+valid:
+  - |
+    class Service {
+      private readonly deps: Deps;
+      constructor(deps: Deps) {
+        this.deps = deps;
+      }
+    }
+invalid:
+  - |
+    class Service {
+      constructor(private readonly deps: Deps) {}
+    }
+  - |
+    class PlayerSession {
+      constructor(public id: string, protected logger: Logger) {}
+    }
+  - |
+    class ReadonlySession {
+      constructor(readonly id?: string) {}
+    }

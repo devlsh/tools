@@ -1,0 +1,65 @@
+id: no-constructor-parameter-properties
+snapshots:
+  ? |
+    class PlayerSession {
+      constructor(public id: string, protected logger: Logger) {}
+    }
+  : labels:
+      - source: 'public id: string'
+        style: primary
+        start: 36
+        end: 53
+      - source: public
+        style: secondary
+        start: 36
+        end: 42
+      - source: constructor
+        style: secondary
+        start: 24
+        end: 35
+      - source: 'constructor(public id: string, protected logger: Logger) {}'
+        style: secondary
+        start: 24
+        end: 83
+  ? |
+    class ReadonlySession {
+      constructor(readonly id?: string) {}
+    }
+  : labels:
+      - source: 'readonly id?: string'
+        style: primary
+        start: 38
+        end: 58
+      - source: readonly
+        style: secondary
+        start: 38
+        end: 46
+      - source: constructor
+        style: secondary
+        start: 26
+        end: 37
+      - source: 'constructor(readonly id?: string) {}'
+        style: secondary
+        start: 26
+        end: 62
+  ? |
+    class Service {
+      constructor(private readonly deps: Deps) {}
+    }
+  : labels:
+      - source: 'private readonly deps: Deps'
+        style: primary
+        start: 30
+        end: 57
+      - source: private
+        style: secondary
+        start: 30
+        end: 37
+      - source: constructor
+        style: secondary
+        start: 18
+        end: 29
+      - source: 'constructor(private readonly deps: Deps) {}'
+        style: secondary
+        start: 18
+        end: 61

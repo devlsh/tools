@@ -1,0 +1,35 @@
+id: no-response-builder-helpers
+valid:
+  - |
+    function handleRequest(input: unknown) {
+      const parsed = Input.safeParse(input);
+
+      if (!parsed.success) {
+        return Response.json({ error: 'invalid_request' }, { status: 400 });
+      }
+
+      return Response.json(parsed.data);
+    }
+  - |
+    const buildPayload = () => ({ ready: true });
+  - |
+    function createRequest() {
+      return new Request('https://example.com');
+    }
+invalid:
+  - |
+    function invalidRequest() {
+      return Response.json({ error: 'invalid_request' }, { status: 400 });
+    }
+  - |
+    function redirectResponse(): Response {
+      return Response.redirect('https://example.com');
+    }
+  - |
+    const internalError = () => Response.json({ error: 'internal_error' }, { status: 500 });
+  - |
+    const emptyResponse = (): Response => new Response(null, { status: 204 });
+  - |
+    function textResponse() {
+      return new Response('ready');
+    }

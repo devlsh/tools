@@ -3,4 +3,5 @@ runtimeOnFail: error
 pmOnFail: error
 
 allowBuilds:
+  '@ast-grep/cli': true
   lefthook: true

@@ -1,0 +1,15 @@
+id: browser-safe-no-node-imports
+valid:
+  - |
+    import { log } from 'evlog/client';
+  - |
+    const moduleName = 'node:fs';
+invalid:
+  - |
+    import { readFileSync } from 'node:fs';
+  - |
+    import path from 'path';
+  - |
+    const fs = await import('node:fs/promises');
+  - |
+    export { readFileSync } from 'node:fs';

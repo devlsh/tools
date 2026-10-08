@@ -1,0 +1,23 @@
+id: no-duplicate-imported-type-alias
+language: TypeScript
+severity: warning
+message: Do not import the same symbol as both a value and a type alias. Use the value import as the type.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  all:
+    - kind: import_statement
+    - has:
+        any:
+          - pattern:
+              context: import { type $NAME as $ALIAS } from 'x'
+              selector: import_specifier
+          - pattern:
+              context: import { type $NAME } from 'x'
+              selector: import_specifier
+        stopBy: end
+    - has:
+        pattern:
+          context: import { $NAME } from 'x'
+          selector: import_specifier
+        stopBy: end

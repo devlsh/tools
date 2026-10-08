@@ -1,0 +1,37 @@
+id: no-precautionary-immutability-tsx
+snapshots:
+  ? |
+    class PlayerCardState {
+      state: { readonly id: string } = { id: 'player' };
+
+      render() {
+        return <div>{this.state.id}</div>;
+      }
+    }
+  : labels:
+      - source: 'readonly id: string'
+        style: primary
+        start: 35
+        end: 54
+  ? |
+    interface InventoryProps {
+      readonly items: readonly string[];
+    }
+
+    const Inventory = ({ items }: InventoryProps) => <div>{items.length}</div>;
+  : labels:
+      - source: 'readonly items: readonly string[]'
+        style: primary
+        start: 29
+        end: 62
+  ? |
+    type PlayerCardProps = {
+      readonly displayName: string;
+    };
+
+    const PlayerCard = ({ displayName }: PlayerCardProps) => <div>{displayName}</div>;
+  : labels:
+      - source: 'readonly displayName: string'
+        style: primary
+        start: 27
+        end: 55

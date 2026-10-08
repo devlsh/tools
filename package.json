@@ -32,6 +32,7 @@
     "url": "https://github.com/sponsors/devlsh"
   },
   "files": [
+    "ast-grep/rules",
     "dist",
     "LICENSE",
     "THIRD_PARTY_NOTICES.md"
@@ -63,9 +64,13 @@
     "access": "public"
   },
   "scripts": {
+    "ast:fix": "ast-grep scan --globs '!src/oxlint/anti-slop/**' --update-all",
+    "ast:scan": "ast-grep scan --globs '!src/oxlint/anti-slop/**'",
+    "ast:test": "ast-grep test",
+    "ast:test:update": "ast-grep test --update-all",
     "build": "tsdown",
-    "check": "pnpm typecheck && pnpm lint && pnpm fmt:check",
-    "fix:all": "pnpm lint:fix && pnpm fmt",
+    "check": "pnpm typecheck && pnpm lint && pnpm ast:test && pnpm ast:scan && pnpm fmt:check",
+    "fix:all": "pnpm lint:fix && pnpm ast:fix && pnpm fmt",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "lint": "pnpm build && oxlint --deny-warnings",
@@ -75,6 +80,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.build.json --noEmit"
   },
   "devDependencies": {
+    "@ast-grep/cli": "0.45.3",
     "@oxlint/plugins": "1.86.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "@tsconfig/node24": "24.0.5",

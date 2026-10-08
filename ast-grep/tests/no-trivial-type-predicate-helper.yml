@@ -1,0 +1,29 @@
+id: no-trivial-type-predicate-helper
+valid:
+  - |
+    function isAreaKey(value: unknown): value is AreaKey {
+      return typeof value === 'string' && Object.values(AreaKey).includes(value as AreaKey);
+    }
+  - |
+    function hasMessage(value: unknown): value is { message: string } {
+      return typeof value === 'object' && value !== null && 'message' in value && typeof value.message === 'string';
+    }
+  - |
+    const isIdentifier = (value: unknown): value is string | number => typeof value === 'string' || typeof value === 'number';
+invalid:
+  - |
+    function isString(value: unknown): value is string {
+      return typeof value === 'string';
+    }
+  - |
+    function isArray(value: unknown): value is unknown[] {
+      return Array.isArray(value);
+    }
+  - |
+    function isObject(value: unknown): value is object {
+      return typeof value === 'object' && value !== null;
+    }
+  - |
+    const isDefined = (value: unknown): value is NonNullable<unknown> => value != null;
+  - |
+    const isFunction = (value: unknown): value is Function => typeof value === 'function';

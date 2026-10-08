@@ -1,4 +1,5 @@
 {
+  "astGrep.serverPath": "./node_modules/.bin/ast-grep",
   "editor.wordWrap": "off",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {

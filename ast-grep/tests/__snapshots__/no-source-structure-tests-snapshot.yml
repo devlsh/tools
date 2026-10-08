@@ -1,0 +1,33 @@
+id: no-source-structure-tests
+snapshots:
+  ? |
+    import ts from 'typescript';
+    const sourceFile = ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest);
+  : labels:
+      - source: import ts from 'typescript';
+        style: primary
+        start: 0
+        end: 28
+      - source: typescript
+        style: secondary
+        start: 16
+        end: 26
+  ? |
+    import { readFileSync } from 'node:fs';
+    const source = readFileSync('src/index.ts', 'utf8');
+    expect(source).toContain('export');
+  : labels:
+      - source: readFileSync('src/index.ts', 'utf8')
+        style: primary
+        start: 55
+        end: 91
+  ? |
+    import { readFileSync } from 'node:fs';
+    import { join } from 'node:path';
+    const reference = readFileSync(join(root, 'apps/server/src/entities/schema/index.ts'), 'utf8');
+    expect(reference).toContain('export');
+  : labels:
+      - source: readFileSync(join(root, 'apps/server/src/entities/schema/index.ts'), 'utf8')
+        style: primary
+        start: 92
+        end: 168

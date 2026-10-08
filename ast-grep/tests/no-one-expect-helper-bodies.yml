@@ -1,0 +1,39 @@
+id: no-one-expect-helper-bodies
+valid:
+  - |
+    expect(result.isOk()).toBe(true);
+  - |
+    function expectValue(value: unknown) {
+      const normalized = normalize(value);
+      expect(normalized).toEqual('ready');
+    }
+  - |
+    function expectResult(result: Result<unknown, Error>) {
+      expect(result.isOk()).toBe(true);
+      expect(result.isErr()).toBe(false);
+    }
+  - |
+    function expectPubSubEnvelope(envelope: PubSubEnvelope) {
+      expect(normalize(envelope)).toEqual({ id: 'event-a' });
+    }
+  - |
+    const expectHarvestingPendingReward = (metadata: ResourceNodeMetadata) => {
+      expect(metadata.rewardState).toBe('pending');
+    };
+invalid:
+  - |
+    function expectValue(value: unknown) {
+      expect(value).toBe('ready');
+    }
+  - |
+    function assertResult(result: Result<unknown, Error>) {
+      expect(result.isOk()).toBe(true);
+    }
+  - |
+    const expectMetadata = (metadata: unknown) => {
+      expect(metadata).toEqual({ rewardState: 'pending' });
+    };
+  - |
+    const assertResponse = function (response: unknown) {
+      expect(response).toMatchObject({ ok: true });
+    };

@@ -1,0 +1,15 @@
+id: no-runtime-freeze-tsx
+valid:
+  - |
+    const config = { enabled: true } as const;
+    const view = <div>{config.enabled}</div>;
+  - |
+    const frozen = registry.freeze(value);
+    const view = <div>{frozen.enabled}</div>;
+invalid:
+  - |
+    const config = Object.freeze({ enabled: true });
+    const view = <div>{config.enabled}</div>;
+  - |
+    const config = globalThis.Object['freeze']({ enabled: true });
+    const view = <div>{config.enabled}</div>;

@@ -1,0 +1,15 @@
+id: zod-namespace-import
+language: TypeScript
+severity: error
+message: Import Zod with `import * as z from 'zod';` or `import type * as z from 'zod';`.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  all:
+    - kind: import_statement
+    - has:
+        kind: string_fragment
+        regex: '^zod$'
+        stopBy: end
+    - not:
+        regex: "^import\\s+(type\\s+)?\\*\\s+as\\s+z\\s+from\\s+'zod';?$"

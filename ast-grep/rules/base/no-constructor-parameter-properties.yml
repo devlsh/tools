@@ -1,0 +1,23 @@
+id: no-constructor-parameter-properties
+language: Tsx
+severity: error
+message: Do not use TypeScript constructor parameter properties. Declare fields explicitly and assign inside the constructor.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  all:
+    - any:
+        - kind: required_parameter
+        - kind: optional_parameter
+    - has:
+        any:
+          - kind: accessibility_modifier
+          - regex: '^readonly\b'
+        stopBy: end
+    - inside:
+        kind: method_definition
+        has:
+          kind: property_identifier
+          regex: '^constructor$'
+          stopBy: end
+        stopBy: end

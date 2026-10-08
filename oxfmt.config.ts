@@ -3,12 +3,5 @@ import { defineConfig } from 'oxfmt';
 
 export default defineConfig({
   ...preset,
-  ignorePatterns: [
-    ...preset.ignorePatterns,
-    '/CHANGELOG.md',
-    '.github',
-    'dist/**',
-    'pnpm-lock.yaml',
-    'src/oxlint/anti-slop/**',
-  ],
+  ignorePatterns: [...preset.ignorePatterns, '/CHANGELOG.md', 'dist/**', 'src/oxlint/anti-slop/**'],
 });

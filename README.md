@@ -29,7 +29,8 @@ Shared tooling and configs I use across various projects. The idea is to build t
   - Inlcudes [`anti-slop`](https://github.com/dmmulroy/anti-slop) rules from [@dmmulroy](https://github.com/dmmulroy) - _most_ enabled by default, with exceptions where I enforce tighter rules outside of the ruleset. Also includes his Effect ruleset (must be enabled manually).
 - [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter) config.
   - Pretty standard - enables some more advanced sorting and preset ignores I use a lot.
-- More soon.
+- [`ast-grep`](https://ast-grep.github.io) rules.
+  - Native shared rules with opt-in groups. Helps cut down on more complex AI slop.
 
 <br />
 
@@ -81,9 +82,34 @@ export default defineConfig({
 });
 ```
 
+### `ast-grep` rules
+
+In `sgconfig.yml`, select the base group:
+
+```yaml
+ruleDirs:
+  - node_modules/@devlsh/tools/ast-grep/rules/base
+```
+
+Beyond a set of [`base`](ast-grep/rules/base/README.md) rules, there are also library/environment-specific rules you can enable.
+
+- [`tests`](ast-grep/rules/tests/README.md)
+- [`react`](ast-grep/rules/react/README.md)
+- [`zod`](ast-grep/rules/zod/README.md)
+- [`browser`](ast-grep/rules/browser/README.md)
+- [`vite`](ast-grep/rules/vite/README.md)
+
+For example, to add `react` rules alongside the base:
+
+```yaml
+ruleDirs:
+  - node_modules/@devlsh/tools/ast-grep/rules/base
+  - node_modules/@devlsh/tools/ast-grep/rules/react
+```
+
 ### `node`/`pnpm` setup GitHub Action
 
-The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm caches. After setting things up, it will also run `pnpm install --frozen-lockfile`.
+The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm caches.
 
 ```yaml
 steps:
@@ -92,7 +118,7 @@ steps:
       persist-credentials: false
   - uses: devlsh/tools/github/setup@<full-40-character-commit-SHA>
     with:
-      cache: true # (optional) Whether to manage pnpm store and metadata caches.
+      cache: true # (optional) Whether to manage pnpm store and metadata caches. Defaults to `true`.
 ```
 
 > Replace `<full-40-character-commit-SHA>` with a commit SHA from this repo.

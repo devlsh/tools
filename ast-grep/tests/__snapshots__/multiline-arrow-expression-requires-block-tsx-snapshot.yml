@@ -1,0 +1,101 @@
+id: multiline-arrow-expression-requires-block-tsx
+snapshots:
+  ? |
+    const Component = () =>
+      items.map((item) => (
+        <section key={item.id}>
+          <div />
+        </section>
+      ));
+  : labels:
+      - source: |-
+          items.map((item) => (
+              <section key={item.id}>
+                <div />
+              </section>
+            ))
+        style: primary
+        start: 26
+        end: 109
+      - source: |-
+          () =>
+            items.map((item) => (
+              <section key={item.id}>
+                <div />
+              </section>
+            ))
+        style: secondary
+        start: 18
+        end: 109
+  ? |
+    const Component = () => (
+      // Keep this comment with the returned JSX.
+      <section>
+        <div />
+      </section>
+    );
+  : labels:
+      - source: |-
+          (
+            // Keep this comment with the returned JSX.
+            <section>
+              <div />
+            </section>
+          )
+        style: primary
+        start: 24
+        end: 110
+      - source: |-
+          () => (
+            // Keep this comment with the returned JSX.
+            <section>
+              <div />
+            </section>
+          )
+        style: secondary
+        start: 18
+        end: 110
+  ? |
+    const Component = () => (
+      <section>
+        <div />
+      </section>
+    );
+  : labels:
+      - source: |-
+          (
+            <section>
+              <div />
+            </section>
+          )
+        style: primary
+        start: 24
+        end: 64
+      - source: |-
+          () => (
+            <section>
+              <div />
+            </section>
+          )
+        style: secondary
+        start: 18
+        end: 64
+  ? |
+    const Component = () => <section>
+      <div />
+    </section>;
+  : labels:
+      - source: |-
+          <section>
+            <div />
+          </section>
+        style: primary
+        start: 24
+        end: 54
+      - source: |-
+          () => <section>
+            <div />
+          </section>
+        style: secondary
+        start: 18
+        end: 54

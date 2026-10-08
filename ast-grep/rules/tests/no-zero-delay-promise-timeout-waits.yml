@@ -1,0 +1,17 @@
+id: no-zero-delay-promise-timeout-waits
+language: TypeScript
+severity: warning
+message: Prefer an observable test seam over zero-delay Promise setTimeout waits.
+files:
+  - '**/*.{test,spec}.{ts,tsx}'
+  - '**/tests/**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: new Promise<$TYPE>(($RESOLVE) => setTimeout($RESOLVE, 0))
+    - pattern: new Promise(($RESOLVE) => setTimeout($RESOLVE, 0))
+    - pattern: new Promise<$TYPE>(($RESOLVE, $$$REST) => setTimeout($RESOLVE, 0))
+    - pattern: new Promise(($RESOLVE, $$$REST) => setTimeout($RESOLVE, 0))
+    - pattern: new Promise<$TYPE>(($RESOLVE) => { setTimeout($RESOLVE, 0); })
+    - pattern: new Promise(($RESOLVE) => { setTimeout($RESOLVE, 0); })
+    - pattern: new Promise<$TYPE>(($RESOLVE, $$$REST) => { setTimeout($RESOLVE, 0); })
+    - pattern: new Promise(($RESOLVE, $$$REST) => { setTimeout($RESOLVE, 0); })

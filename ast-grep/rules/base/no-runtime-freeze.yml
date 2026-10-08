@@ -1,0 +1,11 @@
+id: no-runtime-freeze
+language: TypeScript
+severity: error
+message: Runtime object freezing is not an approved shared-reference contract.
+note: Runtime freezing requires a documented shared-reference contract with observable mutation rejection and matching shallow or deep enforcement.
+files:
+  - '**/*.ts'
+rule:
+  all:
+    - kind: call_expression
+    - regex: "^(?:globalThis\\.)?Object(?:\\.freeze|\\[['\"]freeze['\"]\\])(?:<[\\s\\S]*>)?\\("

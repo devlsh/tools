@@ -1,0 +1,39 @@
+id: no-inline-parameter-object-types
+snapshots:
+  ? |
+    class Service {
+      constructor(options: { logger: Logger }) {}
+    }
+  : labels:
+      - source: '{ logger: Logger }'
+        style: primary
+        start: 39
+        end: 57
+      - source: 'options: { logger: Logger }'
+        style: secondary
+        start: 30
+        end: 57
+  ? |
+    const handle = async (payload: { id: string }) => payload.id;
+  : labels:
+      - source: '{ id: string }'
+        style: primary
+        start: 31
+        end: 45
+      - source: 'payload: { id: string }'
+        style: secondary
+        start: 22
+        end: 45
+  ? |
+    function createRuntime(options: { enabled: boolean }) {
+      return options.enabled;
+    }
+  : labels:
+      - source: '{ enabled: boolean }'
+        style: primary
+        start: 32
+        end: 52
+      - source: 'options: { enabled: boolean }'
+        style: secondary
+        start: 23
+        end: 52

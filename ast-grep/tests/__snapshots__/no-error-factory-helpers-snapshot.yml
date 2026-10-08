@@ -1,0 +1,76 @@
+id: no-error-factory-helpers
+snapshots:
+  ? |
+    const makeValidationFailure = (message: string) => new ValidationFailure({ message });
+  : labels:
+      - source: 'const makeValidationFailure = (message: string) => new ValidationFailure({ message });'
+        style: primary
+        start: 0
+        end: 86
+  ? |
+    const notJoined = () => Result.err(new GameCommandFailure({ code: 'NOT_JOINED' }));
+  : labels:
+      - source: "const notJoined = () => Result.err(new GameCommandFailure({ code: 'NOT_JOINED' }));"
+        style: primary
+        start: 0
+        end: 83
+  ? |
+    function createConfigError() {
+      throw new InvalidConfigError({ message: 'Invalid config' });
+    }
+  : labels:
+      - source: |-
+          function createConfigError() {
+            throw new InvalidConfigError({ message: 'Invalid config' });
+          }
+        style: primary
+        start: 0
+        end: 95
+  ? |
+    function createRoomError(cause: unknown) {
+      return new RoomConnectionError({ message: 'Room failed', cause });
+    }
+  : labels:
+      - source: |-
+          function createRoomError(cause: unknown) {
+            return new RoomConnectionError({ message: 'Room failed', cause });
+          }
+        style: primary
+        start: 0
+        end: 113
+  ? |
+    function invalidPresenceRecord(context: string): PresenceError {
+      return new PresenceError({ message: `Invalid ${context}` });
+    }
+  : labels:
+      - source: |-
+          function invalidPresenceRecord(context: string): PresenceError {
+            return new PresenceError({ message: `Invalid ${context}` });
+          }
+        style: primary
+        start: 0
+        end: 129
+  ? |
+    function lifecycleError(code: GameLifecycleErrorCode, message: string, retryable = false) {
+      return new GameLifecycleError({ code, message, retryable });
+    }
+  : labels:
+      - source: |-
+          function lifecycleError(code: GameLifecycleErrorCode, message: string, retryable = false) {
+            return new GameLifecycleError({ code, message, retryable });
+          }
+        style: primary
+        start: 0
+        end: 156
+  ? |
+    function unauthorized() {
+      return Result.err(new GameCommandError({ code: 'UNAUTHORIZED', message: 'Permission denied' }));
+    }
+  : labels:
+      - source: |-
+          function unauthorized() {
+            return Result.err(new GameCommandError({ code: 'UNAUTHORIZED', message: 'Permission denied' }));
+          }
+        style: primary
+        start: 0
+        end: 126

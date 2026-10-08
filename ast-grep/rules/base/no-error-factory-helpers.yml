@@ -1,0 +1,21 @@
+id: no-error-factory-helpers
+language: TypeScript
+severity: warning
+message: Do not add helper functions whose main job is constructing, wrapping, throwing, or returning errors.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: function $NAME($$$ARGS) { return new $ERR($$$VALUES) }
+    - pattern: 'function $NAME($$$ARGS): $RETURN { return new $ERR($$$VALUES) }'
+    - pattern: const $NAME = ($$$ARGS) => new $ERR($$$VALUES)
+    - pattern: 'const $NAME = ($$$ARGS): $RETURN => new $ERR($$$VALUES)'
+    - pattern: function $NAME($$$ARGS) { throw new $ERR($$$VALUES) }
+    - pattern: 'function $NAME($$$ARGS): $RETURN { throw new $ERR($$$VALUES) }'
+    - pattern: function $FACTORY($$$ARGS) { return Result.err(new $ERR($$$VALUES)) }
+    - pattern: 'function $FACTORY($$$ARGS): $RETURN { return Result.err(new $ERR($$$VALUES)) }'
+    - pattern: const $FACTORY = ($$$ARGS) => Result.err(new $ERR($$$VALUES))
+    - pattern: 'const $FACTORY = ($$$ARGS): $RETURN => Result.err(new $ERR($$$VALUES))'
+constraints:
+  ERR:
+    regex: '.*(Error|Failure)$'

@@ -1,0 +1,50 @@
+id: multiline-arrow-expression-requires-block
+valid:
+  - const read = () => value;
+  - |
+    const read = (
+      first: string,
+      second: string,
+    ) => first + second;
+  - |
+    const read = () => {
+      return createValue({
+        enabled: true,
+        name: 'value',
+      });
+    };
+  - |
+    const run = () => {
+      performWork();
+    };
+invalid:
+  - |
+    const read = () =>
+      createValue({
+        enabled: true,
+        name: 'value',
+      });
+  - |
+    const read = () => createValue({
+      enabled: true,
+      name: 'value',
+    });
+  - |
+    const read = () => tag`first
+    second`;
+  - |
+    declare function perform(value: {
+      enabled: boolean;
+      name: string;
+    }): void;
+    const run = () => perform({
+      enabled: true,
+      name: 'value',
+    });
+  - |
+    const read = () =>
+      () =>
+        createValue({
+          enabled: true,
+          name: 'value',
+        });

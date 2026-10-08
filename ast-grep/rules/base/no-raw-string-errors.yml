@@ -1,0 +1,11 @@
+id: no-raw-string-errors
+language: TypeScript
+severity: warning
+message: Do not use raw strings as primary errors.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: throw '$MSG'
+    - pattern: Result.err('$MSG')
+    - pattern: err('$MSG')

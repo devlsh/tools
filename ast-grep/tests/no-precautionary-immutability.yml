@@ -1,0 +1,159 @@
+id: no-precautionary-immutability
+valid:
+  - |
+    type Player = {
+      id: string;
+      inventory: string[];
+    };
+  - |
+    interface Player {
+      id: string;
+      inventory?: string[];
+    }
+  - |
+    type NestedState = {
+      player: {
+        id: string;
+        position: [number, number];
+      };
+    };
+  - |
+    const stages = {
+      morning: 0,
+      night: 1,
+    } as const;
+  - |
+    const itemKeys = ['copper', 'iron'] as const;
+  - |
+    const config = { enabled: true };
+    const items = [config];
+  - |
+    const sealed = Object.seal({ enabled: true });
+    const prevented = Object.preventExtensions({ enabled: true });
+  - |
+    const PlayerSchema = z.object({ id: z.string() });
+    const ItemKeysSchema = z.array(z.string());
+  - |
+    const customSchema = schema.readonly();
+    const frozenRegistry = registry.readonly();
+  - |
+    const customSchema = custom(z.string()).readonly();
+  - |
+    const promiseSchema = Promise.resolve(z.string()).readonly();
+  - |
+    const frozen = registry.freeze(value);
+    const freeze = (value: unknown) => value;
+    freeze(frozen);
+  - |
+    class RuntimeState {
+      readonly id: string;
+      private readonly records = new Map<string, unknown>();
+    }
+  - |
+    class RuntimeState {
+      readonly ids: readonly string[] = [];
+      readonly player: { id: string } = { id: 'player' };
+    }
+  - |
+    class RuntimeState {
+      constructor(readonly id: string) {}
+    }
+  - |
+    type ExistingLibraryContract = Readonly<{ id: string }>;
+    type ExistingListContract = ReadonlyArray<string>;
+  - |
+    type ItemKeys = readonly string[];
+    type Position = readonly [number, number];
+  - |
+    interface Inventory {
+      items: readonly string[];
+    }
+  - |
+    function readIds(ids: readonly string[]): readonly string[] {
+      return ids;
+    }
+  - |
+    const keys = [] satisfies readonly string[];
+  - |
+    type Mutable<T> = {
+      -readonly [K in keyof T]: T[K];
+    };
+  - |
+    interface Labels {
+      mode: 'readonly' | 'mutable';
+      description: 'Object.freeze';
+    }
+  - |
+    function createState() {
+      interface LocalState {
+        id: string;
+      }
+
+      return { id: 'state' } satisfies LocalState;
+    }
+invalid:
+  - |
+    type Player = {
+      readonly id: string;
+    };
+  - |
+    type Player = {
+      readonly displayName?: string;
+      inventory: string[];
+    };
+  - |
+    interface Player {
+      readonly id: string;
+    }
+  - |
+    interface Dictionary {
+      readonly [key: string]: string;
+    }
+  - |
+    type Dictionary<T> = {
+      readonly [K in keyof T]: T[K];
+    };
+  - |
+    type Immutable<T> = {
+      +readonly [K in keyof T]: T[K];
+    };
+  - |
+    type Session = {
+      player: {
+        readonly id: string;
+      };
+    };
+  - |
+    type Handler = (input: { readonly id: string }) => void;
+  - |
+    const player: { readonly id: string } = { id: 'player' };
+  - |
+    class RuntimeState {
+      update() {
+        type LocalState = { readonly id: string };
+        return {} as LocalState;
+      }
+    }
+  - |
+    class RuntimeState {
+      update() {
+        interface LocalState {
+          readonly id: string;
+        }
+        return {} as LocalState;
+      }
+    }
+  - |
+    class RuntimeState {
+      state: { readonly id: string } = { id: 'state' };
+    }
+  - |
+    const PlayerSchema = z.object({ id: z.string() }).readonly();
+  - |
+    const ItemKeysSchema = z.array(z.string()).readonly();
+  - |
+    const OptionalPlayerSchema = z.object({ id: z.string() }).optional().readonly();
+  - |
+    const ResultSchema = z.discriminatedUnion('status', [OkSchema, ErrorSchema]).readonly();
+  - |
+    const LazySchema = z.lazy(() => NodeSchema).readonly();

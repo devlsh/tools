@@ -1,0 +1,42 @@
+id: browser-safe-no-node-imports
+snapshots:
+  ? |
+    const fs = await import('node:fs/promises');
+  : labels:
+      - source: import('node:fs/promises')
+        style: primary
+        start: 17
+        end: 43
+  ? |
+    export { readFileSync } from 'node:fs';
+  : labels:
+      - source: export { readFileSync } from 'node:fs';
+        style: primary
+        start: 0
+        end: 39
+      - source: node:fs
+        style: secondary
+        start: 30
+        end: 37
+  ? |
+    import path from 'path';
+  : labels:
+      - source: import path from 'path';
+        style: primary
+        start: 0
+        end: 24
+      - source: path
+        style: secondary
+        start: 18
+        end: 22
+  ? |
+    import { readFileSync } from 'node:fs';
+  : labels:
+      - source: import { readFileSync } from 'node:fs';
+        style: primary
+        start: 0
+        end: 39
+      - source: node:fs
+        style: secondary
+        start: 30
+        end: 37

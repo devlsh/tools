@@ -1,0 +1,25 @@
+id: browser-safe-no-node-imports
+language: Tsx
+severity: error
+message: Browser-safe modules must not import Node-only APIs.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - all:
+        - kind: import_statement
+        - has:
+            kind: string_fragment
+            regex: '^(node:|fs$|fs/|path$|path/|crypto$|crypto/|stream$|stream/|buffer$|buffer/|url$|url/)'
+            stopBy: end
+    - all:
+        - kind: export_statement
+        - has:
+            kind: string_fragment
+            regex: '^(node:|fs$|fs/|path$|path/|crypto$|crypto/|stream$|stream/|buffer$|buffer/|url$|url/)'
+            stopBy: end
+    - pattern: import('$PATH')
+    - pattern: import("$PATH")
+constraints:
+  PATH:
+    regex: '^(node:|fs$|fs/|path$|path/|crypto$|crypto/|stream$|stream/|buffer$|buffer/|url$|url/)'

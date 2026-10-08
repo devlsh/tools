@@ -1,0 +1,23 @@
+id: no-inline-shader-source
+snapshots:
+  ? |
+    const fragmentShader = `
+      varying vec2 vTextureCoord;
+      void main() {}
+    `;
+  : labels:
+      - source: |-
+          const fragmentShader = `
+            varying vec2 vTextureCoord;
+            void main() {}
+          `;
+        style: primary
+        start: 0
+        end: 74
+  ? |
+    import vertexShader from './lighting.glsl';
+  : labels:
+      - source: import vertexShader from './lighting.glsl';
+        style: primary
+        start: 0
+        end: 43

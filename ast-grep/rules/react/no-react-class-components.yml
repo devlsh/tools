@@ -1,0 +1,20 @@
+id: no-react-class-components
+language: Tsx
+severity: error
+message: Do not author class-based React components.
+files:
+  - '**/*.{ts,tsx}'
+rule:
+  any:
+    - pattern: class $NAME extends React.Component { $$$BODY }
+    - pattern: class $NAME extends React.Component<$PROPS> { $$$BODY }
+    - pattern: class $NAME extends React.Component<$PROPS, $STATE> { $$$BODY }
+    - pattern: class $NAME extends React.PureComponent { $$$BODY }
+    - pattern: class $NAME extends React.PureComponent<$PROPS> { $$$BODY }
+    - pattern: class $NAME extends React.PureComponent<$PROPS, $STATE> { $$$BODY }
+    - pattern: class $NAME extends Component { $$$BODY }
+    - pattern: class $NAME extends Component<$PROPS> { $$$BODY }
+    - pattern: class $NAME extends Component<$PROPS, $STATE> { $$$BODY }
+    - pattern: class $NAME extends PureComponent { $$$BODY }
+    - pattern: class $NAME extends PureComponent<$PROPS> { $$$BODY }
+    - pattern: class $NAME extends PureComponent<$PROPS, $STATE> { $$$BODY }

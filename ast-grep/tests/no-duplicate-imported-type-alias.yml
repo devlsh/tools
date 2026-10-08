@@ -1,0 +1,18 @@
+id: no-duplicate-imported-type-alias
+valid:
+  - |
+    import { Entity, type Player as PlayerType } from '@teris/core/entities';
+  - |
+    import { type Entity as EntityType } from '@teris/core/entities';
+  - |
+    import { Entity } from '@teris/core/entities';
+    import { type Entity as EntityType } from '@teris/core/entity-types';
+invalid:
+  - |
+    import { Entity, type Entity as EntityType } from '@teris/core/entities';
+  - |
+    import { type Player as PlayerType, Player } from '@teris/core/entities';
+  - |
+    import { Area, Entity, type Entity as EntityType, Player } from '@teris/core/entities';
+  - |
+    import { Entity, type Entity } from '@teris/core/entities';

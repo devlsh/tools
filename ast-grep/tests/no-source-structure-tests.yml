@@ -1,0 +1,20 @@
+id: no-source-structure-tests
+valid:
+  - |
+
+    it('renders behavior', () => {
+      expect(render()).toBeVisible();
+    });
+invalid:
+  - |
+    import { readFileSync } from 'node:fs';
+    const source = readFileSync('src/index.ts', 'utf8');
+    expect(source).toContain('export');
+  - |
+    import { readFileSync } from 'node:fs';
+    import { join } from 'node:path';
+    const reference = readFileSync(join(root, 'apps/server/src/entities/schema/index.ts'), 'utf8');
+    expect(reference).toContain('export');
+  - |
+    import ts from 'typescript';
+    const sourceFile = ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest);
