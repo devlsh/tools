@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/devlsh/tools/compare/v1.2.0...v1.3.0) (2026-10-08)
+
+
+### Features
+
+* add native ast-grep rules ([491313b](https://github.com/devlsh/tools/commit/491313b83b1f74e06d91f0682c3d19146160732a))
+
 ## [1.2.0](https://github.com/devlsh/tools/compare/v1.1.0...v1.2.0) (2026-10-07)
 
 
