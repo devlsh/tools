@@ -7,15 +7,15 @@ snapshots:
       }
     }
   : labels:
-    - source: |-
-        class LegacyCard extends PureComponent {
-          render() {
-            return <section />;
+      - source: |-
+          class LegacyCard extends PureComponent {
+            render() {
+              return <section />;
+            }
           }
-        }
-      style: primary
-      start: 0
-      end: 83
+        style: primary
+        start: 0
+        end: 83
   ? |
     class StatefulCard extends React.Component<Props, State> {
       render() {
@@ -23,15 +23,15 @@ snapshots:
       }
     }
   : labels:
-    - source: |-
-        class StatefulCard extends React.Component<Props, State> {
-          render() {
-            return <section />;
+      - source: |-
+          class StatefulCard extends React.Component<Props, State> {
+            render() {
+              return <section />;
+            }
           }
-        }
-      style: primary
-      start: 0
-      end: 101
+        style: primary
+        start: 0
+        end: 101
   ? |
     class StatusCard extends React.Component<Props> {
       render() {
@@ -39,12 +39,12 @@ snapshots:
       }
     }
   : labels:
-    - source: |-
-        class StatusCard extends React.Component<Props> {
-          render() {
-            return <section />;
+      - source: |-
+          class StatusCard extends React.Component<Props> {
+            render() {
+              return <section />;
+            }
           }
-        }
-      style: primary
-      start: 0
-      end: 92
+        style: primary
+        start: 0
+        end: 92

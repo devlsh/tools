@@ -3,17 +3,17 @@ snapshots:
   ? |
     const name = readString(record, 'name');
   : labels:
-    - source: readString(record, 'name')
-      style: primary
-      start: 13
-      end: 39
+      - source: readString(record, 'name')
+        style: primary
+        start: 13
+        end: 39
   ? |
     const readString = (value: unknown): string | undefined => typeof value === 'string' ? value : undefined;
   : labels:
-    - source: 'const readString = (value: unknown): string | undefined => typeof value === ''string'' ? value : undefined;'
-      style: primary
-      start: 0
-      end: 105
+      - source: "const readString = (value: unknown): string | undefined => typeof value === 'string' ? value : undefined;"
+        style: primary
+        start: 0
+        end: 105
   ? |
     function readString(record: Record<string, unknown>, key: string): string | undefined {
       const value = record[key];
@@ -21,12 +21,12 @@ snapshots:
       return typeof value === 'string' ? value : undefined;
     }
   : labels:
-    - source: |-
-        function readString(record: Record<string, unknown>, key: string): string | undefined {
-          const value = record[key];
+      - source: |-
+          function readString(record: Record<string, unknown>, key: string): string | undefined {
+            const value = record[key];
 
-          return typeof value === 'string' ? value : undefined;
-        }
-      style: primary
-      start: 0
-      end: 175
+            return typeof value === 'string' ? value : undefined;
+          }
+        style: primary
+        start: 0
+        end: 175

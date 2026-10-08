@@ -12,10 +12,12 @@ export default defineConfig({
   format: 'esm',
   platform: 'node',
   fixedExtension: true,
-  outExtensions: () => ({
-    js: '.mjs',
-    dts: '.d.ts',
-  }),
+  outExtensions: () => {
+    return {
+      js: '.mjs',
+      dts: '.d.ts',
+    };
+  },
   minify: true,
   dts: true,
   clean: true,

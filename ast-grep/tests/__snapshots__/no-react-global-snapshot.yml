@@ -3,46 +3,46 @@ snapshots:
   ? |
     const fragment = <React.Fragment />;
   : labels:
-    - source: React
-      style: primary
-      start: 18
-      end: 23
+      - source: React
+        style: primary
+        start: 18
+        end: 23
   ? |
     function createNode() {
       return React.createElement('div');
     }
   : labels:
-    - source: React
-      style: primary
-      start: 33
-      end: 38
+      - source: React
+        style: primary
+        start: 33
+        end: 38
   ? |
     import * as React from 'react';
 
     const fragment = <React.Fragment />;
   : labels:
-    - source: React
-      style: primary
-      start: 12
-      end: 17
+      - source: React
+        style: primary
+        start: 12
+        end: 17
   ? |
     import React from 'react';
 
     const node: React.ReactNode = React.createElement('div');
   : labels:
-    - source: React
-      style: primary
-      start: 7
-      end: 12
+      - source: React
+        style: primary
+        start: 7
+        end: 12
   ? |
     import ReactRuntime from 'react';
 
     const node = React.createElement(ReactRuntime.Fragment);
   : labels:
-    - source: React
-      style: primary
-      start: 48
-      end: 53
+      - source: React
+        style: primary
+        start: 48
+        end: 53
   ? |
     import type React from 'react';
 
@@ -50,25 +50,25 @@ snapshots:
       children: React.ReactNode;
     }
   : labels:
-    - source: React
-      style: primary
-      start: 12
-      end: 17
+      - source: React
+        style: primary
+        start: 12
+        end: 17
   ? |
     import { useState } from 'react';
 
     const node: React.ReactNode = null;
   : labels:
-    - source: React
-      style: primary
-      start: 47
-      end: 52
+      - source: React
+        style: primary
+        start: 47
+        end: 52
   ? |
     interface Props {
       children: React.ReactNode;
     }
   : labels:
-    - source: React
-      style: primary
-      start: 30
-      end: 35
+      - source: React
+        style: primary
+        start: 30
+        end: 35

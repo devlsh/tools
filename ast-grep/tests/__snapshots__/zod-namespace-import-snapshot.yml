@@ -3,88 +3,88 @@ snapshots:
   ? |
     import 'zod';
   : labels:
-    - source: import 'zod';
-      style: primary
-      start: 0
-      end: 13
-    - source: zod
-      style: secondary
-      start: 8
-      end: 11
+      - source: import 'zod';
+        style: primary
+        start: 0
+        end: 13
+      - source: zod
+        style: secondary
+        start: 8
+        end: 11
   ? |
     import * as Zod from 'zod';
   : labels:
-    - source: import * as Zod from 'zod';
-      style: primary
-      start: 0
-      end: 27
-    - source: zod
-      style: secondary
-      start: 22
-      end: 25
+      - source: import * as Zod from 'zod';
+        style: primary
+        start: 0
+        end: 27
+      - source: zod
+        style: secondary
+        start: 22
+        end: 25
   ? |
     import * as z from "zod";
   : labels:
-    - source: import * as z from "zod";
-      style: primary
-      start: 0
-      end: 25
-    - source: zod
-      style: secondary
-      start: 20
-      end: 23
+      - source: import * as z from "zod";
+        style: primary
+        start: 0
+        end: 25
+      - source: zod
+        style: secondary
+        start: 20
+        end: 23
   ? |
     import type { ZodType } from 'zod';
   : labels:
-    - source: import type { ZodType } from 'zod';
-      style: primary
-      start: 0
-      end: 35
-    - source: zod
-      style: secondary
-      start: 30
-      end: 33
+      - source: import type { ZodType } from 'zod';
+        style: primary
+        start: 0
+        end: 35
+      - source: zod
+        style: secondary
+        start: 30
+        end: 33
   ? |
     import z from 'zod';
   : labels:
-    - source: import z from 'zod';
-      style: primary
-      start: 0
-      end: 20
-    - source: zod
-      style: secondary
-      start: 15
-      end: 18
+      - source: import z from 'zod';
+        style: primary
+        start: 0
+        end: 20
+      - source: zod
+        style: secondary
+        start: 15
+        end: 18
   ? |
     import z, { ZodError } from 'zod';
   : labels:
-    - source: import z, { ZodError } from 'zod';
-      style: primary
-      start: 0
-      end: 34
-    - source: zod
-      style: secondary
-      start: 29
-      end: 32
+      - source: import z, { ZodError } from 'zod';
+        style: primary
+        start: 0
+        end: 34
+      - source: zod
+        style: secondary
+        start: 29
+        end: 32
   ? |
     import { z as schema } from 'zod';
   : labels:
-    - source: import { z as schema } from 'zod';
-      style: primary
-      start: 0
-      end: 34
-    - source: zod
-      style: secondary
-      start: 29
-      end: 32
+      - source: import { z as schema } from 'zod';
+        style: primary
+        start: 0
+        end: 34
+      - source: zod
+        style: secondary
+        start: 29
+        end: 32
   ? |
     import { z } from 'zod';
   : labels:
-    - source: import { z } from 'zod';
-      style: primary
-      start: 0
-      end: 24
-    - source: zod
-      style: secondary
-      start: 19
-      end: 22
+      - source: import { z } from 'zod';
+        style: primary
+        start: 0
+        end: 24
+      - source: zod
+        style: secondary
+        start: 19
+        end: 22

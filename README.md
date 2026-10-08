@@ -30,7 +30,7 @@ Shared tooling and configs I use across various projects. The idea is to build t
 - [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter) config.
   - Pretty standard - enables some more advanced sorting and preset ignores I use a lot.
 - [`ast-grep`](https://ast-grep.github.io) rules.
-  - Native shared rules with opt-in test and library groups. Helps cut down on more complex AI slop.
+  - Native shared rules with opt-in groups. Helps cut down on more complex AI slop.
 
 <br />
 
@@ -109,7 +109,7 @@ ruleDirs:
 
 ### `node`/`pnpm` setup GitHub Action
 
-The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm caches. After setting things up, it will also run `pnpm install --frozen-lockfile`.
+The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm caches.
 
 ```yaml
 steps:
@@ -118,7 +118,7 @@ steps:
       persist-credentials: false
   - uses: devlsh/tools/github/setup@<full-40-character-commit-SHA>
     with:
-      cache: true # (optional) Whether to manage pnpm store and metadata caches.
+      cache: true # (optional) Whether to manage pnpm store and metadata caches. Defaults to `true`.
 ```
 
 > Replace `<full-40-character-commit-SHA>` with a commit SHA from this repo.

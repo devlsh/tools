@@ -8,25 +8,25 @@ snapshots:
           name: 'value',
         });
   : labels:
-    - source: |-
-        () =>
-            createValue({
-              enabled: true,
-              name: 'value',
-            })
-      style: primary
-      start: 21
-      end: 93
-    - source: |-
-        () =>
+      - source: |-
           () =>
-            createValue({
-              enabled: true,
-              name: 'value',
-            })
-      style: secondary
-      start: 13
-      end: 93
+              createValue({
+                enabled: true,
+                name: 'value',
+              })
+        style: primary
+        start: 21
+        end: 93
+      - source: |-
+          () =>
+            () =>
+              createValue({
+                enabled: true,
+                name: 'value',
+              })
+        style: secondary
+        start: 13
+        end: 93
   ? |
     const read = () =>
       createValue({
@@ -34,61 +34,61 @@ snapshots:
         name: 'value',
       });
   : labels:
-    - source: |-
-        createValue({
-            enabled: true,
-            name: 'value',
-          })
-      style: primary
-      start: 21
-      end: 77
-    - source: |-
-        () =>
+      - source: |-
           createValue({
-            enabled: true,
-            name: 'value',
-          })
-      style: secondary
-      start: 13
-      end: 77
+              enabled: true,
+              name: 'value',
+            })
+        style: primary
+        start: 21
+        end: 77
+      - source: |-
+          () =>
+            createValue({
+              enabled: true,
+              name: 'value',
+            })
+        style: secondary
+        start: 13
+        end: 77
   ? |
     const read = () => createValue({
       enabled: true,
       name: 'value',
     });
   : labels:
-    - source: |-
-        createValue({
-          enabled: true,
-          name: 'value',
-        })
-      style: primary
-      start: 19
-      end: 69
-    - source: |-
-        () => createValue({
-          enabled: true,
-          name: 'value',
-        })
-      style: secondary
-      start: 13
-      end: 69
+      - source: |-
+          createValue({
+            enabled: true,
+            name: 'value',
+          })
+        style: primary
+        start: 19
+        end: 69
+      - source: |-
+          () => createValue({
+            enabled: true,
+            name: 'value',
+          })
+        style: secondary
+        start: 13
+        end: 69
   ? |
     const read = () => tag`first
     second`;
   : labels:
-    - source: |-
-        tag`first
-        second`
-      style: primary
-      start: 19
-      end: 36
-    - source: |-
-        () => tag`first
-        second`
-      style: secondary
-      start: 13
-      end: 36
+      - source: |-
+          tag`first
+          second`
+        style: primary
+        start: 19
+        end: 36
+      - source: |-
+          () => tag`first
+          second`
+        style: secondary
+        start: 13
+        end: 36
   ? |
     declare function perform(value: {
       enabled: boolean;
@@ -99,19 +99,19 @@ snapshots:
       name: 'value',
     });
   : labels:
-    - source: |-
-        perform({
-          enabled: true,
-          name: 'value',
-        })
-      style: primary
-      start: 98
-      end: 144
-    - source: |-
-        () => perform({
-          enabled: true,
-          name: 'value',
-        })
-      style: secondary
-      start: 92
-      end: 144
+      - source: |-
+          perform({
+            enabled: true,
+            name: 'value',
+          })
+        style: primary
+        start: 98
+        end: 144
+      - source: |-
+          () => perform({
+            enabled: true,
+            name: 'value',
+          })
+        style: secondary
+        start: 92
+        end: 144

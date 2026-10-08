@@ -7,62 +7,62 @@ snapshots:
       }
     }
   : labels:
-    - source: |-
-        for (let i = 0; i < 8; i += 1) {
-            await Promise.resolve();
-          }
-      style: primary
-      start: 37
-      end: 102
-    - source: await Promise.resolve();
-      style: secondary
-      start: 74
-      end: 98
+      - source: |-
+          for (let i = 0; i < 8; i += 1) {
+              await Promise.resolve();
+            }
+        style: primary
+        start: 37
+        end: 102
+      - source: await Promise.resolve();
+        style: secondary
+        start: 74
+        end: 98
   ? |
     async function flushRouteDispatch() {
       await Promise.resolve();
       await Promise.resolve();
     }
   : labels:
-    - source: await Promise.resolve();
-      style: primary
-      start: 40
-      end: 64
-    - source: await Promise.resolve();
-      style: secondary
-      start: 67
-      end: 91
+      - source: await Promise.resolve();
+        style: primary
+        start: 40
+        end: 64
+      - source: await Promise.resolve();
+        style: secondary
+        start: 67
+        end: 91
   ? |
     do {
       await Promise.resolve();
     } while (needsAnotherTurn());
   : labels:
-    - source: |-
-        do {
-          await Promise.resolve();
-        } while (needsAnotherTurn());
-      style: primary
-      start: 0
-      end: 61
-    - source: await Promise.resolve();
-      style: secondary
-      start: 7
-      end: 31
+      - source: |-
+          do {
+            await Promise.resolve();
+          } while (needsAnotherTurn());
+        style: primary
+        start: 0
+        end: 61
+      - source: await Promise.resolve();
+        style: secondary
+        start: 7
+        end: 31
   ? |
     while (pendingTurns > 0) {
       pendingTurns -= 1;
       await Promise.resolve();
     }
   : labels:
-    - source: |-
-        while (pendingTurns > 0) {
-          pendingTurns -= 1;
-          await Promise.resolve();
-        }
-      style: primary
-      start: 0
-      end: 76
-    - source: await Promise.resolve();
-      style: secondary
-      start: 50
-      end: 74
+      - source: |-
+          while (pendingTurns > 0) {
+            pendingTurns -= 1;
+            await Promise.resolve();
+          }
+        style: primary
+        start: 0
+        end: 76
+      - source: await Promise.resolve();
+        style: secondary
+        start: 50
+        end: 74

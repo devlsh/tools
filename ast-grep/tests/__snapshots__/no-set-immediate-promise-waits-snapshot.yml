@@ -3,76 +3,76 @@ snapshots:
   ? |
     await new Promise((resolve) => setImmediate(resolve));
   : labels:
-    - source: new Promise((resolve) => setImmediate(resolve))
-      style: primary
-      start: 6
-      end: 53
+      - source: new Promise((resolve) => setImmediate(resolve))
+        style: primary
+        start: 6
+        end: 53
   ? |
     await new Promise((resolve) => {
       setImmediate(resolve);
     });
   : labels:
-    - source: |-
-        new Promise((resolve) => {
-          setImmediate(resolve);
-        })
-      style: primary
-      start: 6
-      end: 60
+      - source: |-
+          new Promise((resolve) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 6
+        end: 60
   ? |
     await new Promise((resolve, reject) => setImmediate(resolve));
   : labels:
-    - source: new Promise((resolve, reject) => setImmediate(resolve))
-      style: primary
-      start: 6
-      end: 61
+      - source: new Promise((resolve, reject) => setImmediate(resolve))
+        style: primary
+        start: 6
+        end: 61
   ? |
     await new Promise((resolve, reject) => {
       setImmediate(resolve);
     });
   : labels:
-    - source: |-
-        new Promise((resolve, reject) => {
-          setImmediate(resolve);
-        })
-      style: primary
-      start: 6
-      end: 68
+      - source: |-
+          new Promise((resolve, reject) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 6
+        end: 68
   ? |
     await new Promise<void>((resolve) => setImmediate(resolve));
   : labels:
-    - source: new Promise<void>((resolve) => setImmediate(resolve))
-      style: primary
-      start: 6
-      end: 59
+      - source: new Promise<void>((resolve) => setImmediate(resolve))
+        style: primary
+        start: 6
+        end: 59
   ? |
     await new Promise<void>((resolve) => {
       setImmediate(resolve);
     });
   : labels:
-    - source: |-
-        new Promise<void>((resolve) => {
-          setImmediate(resolve);
-        })
-      style: primary
-      start: 6
-      end: 66
+      - source: |-
+          new Promise<void>((resolve) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 6
+        end: 66
   ? |
     await new Promise<void>((resolve, reject) => setImmediate(resolve));
   : labels:
-    - source: new Promise<void>((resolve, reject) => setImmediate(resolve))
-      style: primary
-      start: 6
-      end: 67
+      - source: new Promise<void>((resolve, reject) => setImmediate(resolve))
+        style: primary
+        start: 6
+        end: 67
   ? |
     await new Promise<void>((resolve, reject) => {
       setImmediate(resolve);
     });
   : labels:
-    - source: |-
-        new Promise<void>((resolve, reject) => {
-          setImmediate(resolve);
-        })
-      style: primary
-      start: 6
-      end: 74
+      - source: |-
+          new Promise<void>((resolve, reject) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 6
+        end: 74

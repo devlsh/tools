@@ -64,10 +64,13 @@
     "access": "public"
   },
   "scripts": {
-    "ast:test": "ast-grep test --config sgconfig.yml",
+    "ast:fix": "ast-grep scan --globs '!src/oxlint/anti-slop/**' --update-all",
+    "ast:scan": "ast-grep scan --globs '!src/oxlint/anti-slop/**'",
+    "ast:test": "ast-grep test",
+    "ast:test:update": "ast-grep test --update-all",
     "build": "tsdown",
-    "check": "pnpm typecheck && pnpm lint && pnpm ast:test && pnpm fmt:check",
-    "fix:all": "pnpm lint:fix && pnpm fmt",
+    "check": "pnpm typecheck && pnpm lint && pnpm ast:test && pnpm ast:scan && pnpm fmt:check",
+    "fix:all": "pnpm lint:fix && pnpm ast:fix && pnpm fmt",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "lint": "pnpm build && oxlint --deny-warnings",

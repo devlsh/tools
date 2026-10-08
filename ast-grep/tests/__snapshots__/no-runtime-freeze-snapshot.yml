@@ -3,56 +3,56 @@ snapshots:
   ? |
     const config = Object.freeze({ enabled: true });
   : labels:
-    - source: 'Object.freeze({ enabled: true })'
-      style: primary
-      start: 15
-      end: 47
+      - source: 'Object.freeze({ enabled: true })'
+        style: primary
+        start: 15
+        end: 47
   ? |
     const config = Object.freeze<{ enabled: boolean }>({ enabled: true });
   : labels:
-    - source: 'Object.freeze<{ enabled: boolean }>({ enabled: true })'
-      style: primary
-      start: 15
-      end: 69
+      - source: 'Object.freeze<{ enabled: boolean }>({ enabled: true })'
+        style: primary
+        start: 15
+        end: 69
   ? |
     const config = Object["freeze"]({ enabled: true });
   : labels:
-    - source: 'Object["freeze"]({ enabled: true })'
-      style: primary
-      start: 15
-      end: 50
+      - source: 'Object["freeze"]({ enabled: true })'
+        style: primary
+        start: 15
+        end: 50
   ? |
     const config = Object['freeze']({ enabled: true });
   : labels:
-    - source: 'Object[''freeze'']({ enabled: true })'
-      style: primary
-      start: 15
-      end: 50
+      - source: "Object['freeze']({ enabled: true })"
+        style: primary
+        start: 15
+        end: 50
   ? |
     const config = globalThis.Object.freeze({ enabled: true });
   : labels:
-    - source: 'globalThis.Object.freeze({ enabled: true })'
-      style: primary
-      start: 15
-      end: 58
+      - source: 'globalThis.Object.freeze({ enabled: true })'
+        style: primary
+        start: 15
+        end: 58
   ? |
     const config = globalThis.Object["freeze"]({ enabled: true });
   : labels:
-    - source: 'globalThis.Object["freeze"]({ enabled: true })'
-      style: primary
-      start: 15
-      end: 61
+      - source: 'globalThis.Object["freeze"]({ enabled: true })'
+        style: primary
+        start: 15
+        end: 61
   ? |
     const config = globalThis.Object['freeze']({ enabled: true });
   : labels:
-    - source: 'globalThis.Object[''freeze'']({ enabled: true })'
-      style: primary
-      start: 15
-      end: 61
+      - source: "globalThis.Object['freeze']({ enabled: true })"
+        style: primary
+        start: 15
+        end: 61
   ? |
     export const itemKeys = Object.freeze(['copper', 'iron']);
   : labels:
-    - source: Object.freeze(['copper', 'iron'])
-      style: primary
-      start: 24
-      end: 57
+      - source: Object.freeze(['copper', 'iron'])
+        style: primary
+        start: 24
+        end: 57

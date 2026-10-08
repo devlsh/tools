@@ -3,76 +3,76 @@ snapshots:
   ? |
     await new Promise((resolve) => setTimeout(resolve, 0));
   : labels:
-    - source: new Promise((resolve) => setTimeout(resolve, 0))
-      style: primary
-      start: 6
-      end: 54
+      - source: new Promise((resolve) => setTimeout(resolve, 0))
+        style: primary
+        start: 6
+        end: 54
   ? |
     await new Promise((resolve) => {
       setTimeout(resolve, 0);
     });
   : labels:
-    - source: |-
-        new Promise((resolve) => {
-          setTimeout(resolve, 0);
-        })
-      style: primary
-      start: 6
-      end: 61
+      - source: |-
+          new Promise((resolve) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 6
+        end: 61
   ? |
     await new Promise((resolve, reject) => setTimeout(resolve, 0));
   : labels:
-    - source: new Promise((resolve, reject) => setTimeout(resolve, 0))
-      style: primary
-      start: 6
-      end: 62
+      - source: new Promise((resolve, reject) => setTimeout(resolve, 0))
+        style: primary
+        start: 6
+        end: 62
   ? |
     await new Promise((resolve, reject) => {
       setTimeout(resolve, 0);
     });
   : labels:
-    - source: |-
-        new Promise((resolve, reject) => {
-          setTimeout(resolve, 0);
-        })
-      style: primary
-      start: 6
-      end: 69
+      - source: |-
+          new Promise((resolve, reject) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 6
+        end: 69
   ? |
     await new Promise<void>((resolve) => setTimeout(resolve, 0));
   : labels:
-    - source: new Promise<void>((resolve) => setTimeout(resolve, 0))
-      style: primary
-      start: 6
-      end: 60
+      - source: new Promise<void>((resolve) => setTimeout(resolve, 0))
+        style: primary
+        start: 6
+        end: 60
   ? |
     await new Promise<void>((resolve) => {
       setTimeout(resolve, 0);
     });
   : labels:
-    - source: |-
-        new Promise<void>((resolve) => {
-          setTimeout(resolve, 0);
-        })
-      style: primary
-      start: 6
-      end: 67
+      - source: |-
+          new Promise<void>((resolve) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 6
+        end: 67
   ? |
     await new Promise<void>((resolve, reject) => setTimeout(resolve, 0));
   : labels:
-    - source: new Promise<void>((resolve, reject) => setTimeout(resolve, 0))
-      style: primary
-      start: 6
-      end: 68
+      - source: new Promise<void>((resolve, reject) => setTimeout(resolve, 0))
+        style: primary
+        start: 6
+        end: 68
   ? |
     await new Promise<void>((resolve, reject) => {
       setTimeout(resolve, 0);
     });
   : labels:
-    - source: |-
-        new Promise<void>((resolve, reject) => {
-          setTimeout(resolve, 0);
-        })
-      style: primary
-      start: 6
-      end: 75
+      - source: |-
+          new Promise<void>((resolve, reject) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 6
+        end: 75
