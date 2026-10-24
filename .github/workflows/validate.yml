@@ -27,22 +27,7 @@ jobs:
           persist-credentials: false
 
       - name: "⚙️ set up node and pnpm"
-        id: setup
         uses: ./github/setup
-        with:
-          cache: true
 
       - name: "🧪 run checks"
         run: pnpm check
-
-      - name: "📦 save pnpm caches"
-        if: >-
-          success() && steps.setup.outputs.cache-hit != 'true' &&
-          github.ref == 'refs/heads/main' &&
-          (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: |
-            ${{ steps.setup.outputs.store }}
-            ${{ steps.setup.outputs.metadata }}
-          key: ${{ steps.setup.outputs.cache-key }}

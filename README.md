@@ -109,7 +109,7 @@ ruleDirs:
 
 ### `node`/`pnpm` setup GitHub Action
 
-The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm caches.
+The repository provides a [composite setup action](github/setup/action.yml) for Node, pnpm, and installing dependencies. The action selects Node and pnpm versions to use from your `package.json` (like `devEngines`), also managing caching the various pnpm cache directories.
 
 ```yaml
 steps:
@@ -118,7 +118,7 @@ steps:
       persist-credentials: false
   - uses: devlsh/tools/github/setup@<full-40-character-commit-SHA>
     with:
-      cache: true # (optional) Whether to manage pnpm store and metadata caches. Defaults to `true`.
+      cache: true # Restore/save pnpm caches. Defaults to `true`.
 ```
 
 > Replace `<full-40-character-commit-SHA>` with a commit SHA from this repo.

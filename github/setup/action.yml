@@ -3,7 +3,7 @@ description: 'install the dev toolchain and deps'
 
 inputs:
   cache:
-    description: 'Restore pnpm caches'
+    description: 'Maintain pnpm caches'
     required: false
     default: 'true'
 
@@ -19,7 +19,7 @@ outputs:
     value: ${{ steps.cache.outputs.cache-hit }}
   cache-key:
     description: 'Dependency cache key'
-    value: ${{ steps.cache.outputs.cache-primary-key }}
+    value: ${{ steps.paths.outputs.key }}
 
 runs:
   using: composite
@@ -41,6 +41,8 @@ runs:
       id: paths
       if: inputs.cache == 'true'
       shell: bash
+      env:
+        CACHE_KEY: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'pnpm-workspace.yaml') }}
       run: |
         store=$(pnpm store path --silent)
         metadata=$(pnpm cache path)
@@ -52,17 +54,17 @@ runs:
           fi
         done
 
-        printf 'store=%s\nmetadata=%s\n' "$store" "$metadata" >> "$GITHUB_OUTPUT"
+        printf 'store=%s\nmetadata=%s\nkey=%s\n' "$store" "$metadata" "$CACHE_KEY" >> "$GITHUB_OUTPUT"
 
-    - name: '📦 restore pnpm caches'
+    - name: '📦 cache pnpm dependencies'
       id: cache
       if: inputs.cache == 'true'
-      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: |
           ${{ steps.paths.outputs.store }}
           ${{ steps.paths.outputs.metadata }}
-        key: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'pnpm-workspace.yaml') }}
+        key: ${{ steps.paths.outputs.key }}
 
     - name: '📥 install dependencies'
       shell: bash
