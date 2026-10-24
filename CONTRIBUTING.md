@@ -57,7 +57,9 @@ pnpm ast:scan
 
 Review every changed snapshot and rerun `pnpm check` before submitting.
 
-For Oxlint rule changes, exercise relevant cases or consumer examples and describe the results in your PR. Existing RuleTester files are typechecked, not executed by `pnpm check`.
+For Oxlint rule or preset changes, exercise relevant consumer examples and describe the results in your PR.
+
+Retain the imported anti-slop test files only to stay synchronized with upstream. We do not run or extend them as a local test suite. `pnpm check` typechecks these files but does not execute them.
 
 ## Snapshot Automation
 

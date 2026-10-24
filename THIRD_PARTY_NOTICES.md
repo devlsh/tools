@@ -33,7 +33,7 @@ SOFTWARE.
 
 ## anti-slop
 
-The material in `src/oxlint/anti-slop/` derives from [anti-slop](https://github.com/dmmulroy/anti-slop). Its [upstream MIT license](https://github.com/dmmulroy/anti-slop/blob/c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b/LICENSE), retrieved from commit `c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b`, is retained verbatim in [local LICENSE](src/oxlint/anti-slop/LICENSE).
+The material in `src/oxlint/anti-slop/` derives from [anti-slop at commit `13909c9e07590f5a85d93c62712259fe14a883f7`](https://github.com/dmmulroy/anti-slop/commit/13909c9e07590f5a85d93c62712259fe14a883f7). Its MIT license is retained verbatim in [local LICENSE](src/oxlint/anti-slop/LICENSE).
 
 The following MIT notice applies to that upstream material. The project's MIT license does not replace the upstream copyright attribution or its notice requirements.
 
