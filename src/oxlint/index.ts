@@ -204,7 +204,7 @@ export default defineConfig({
       'error',
       {
         allowEmptyCase: true,
-        commentPattern: 'falls?\\s?through',
+        commentPattern: String.raw`falls?\s?through`,
         reportUnusedFallthroughComment: true,
       },
     ],
