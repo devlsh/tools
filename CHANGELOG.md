@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/devlsh/tools/compare/v1.3.0...v1.4.0) (2026-10-24)
+
+
+### Features
+
+* sync anti-slop and refine agent documentation ([c2a43bc](https://github.com/devlsh/tools/commit/c2a43bc2abfc1b3faefc89b67548223a3cb7aafc))
+
 ## [1.3.0](https://github.com/devlsh/tools/compare/v1.2.0...v1.3.0) (2026-10-08)
 
 
