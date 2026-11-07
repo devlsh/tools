@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/devlsh/tools/compare/v1.4.0...v1.5.0) (2026-11-07)
+
+
+### Features
+
+* **oxfmt:** configure Tailwind, import, and JSDoc formatting ([5bcd141](https://github.com/devlsh/tools/commit/5bcd1418dade590160c2bc44ce11590d16a2aab4))
+
 ## [1.4.0](https://github.com/devlsh/tools/compare/v1.3.0...v1.4.0) (2026-10-24)
 
 
