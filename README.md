@@ -71,7 +71,7 @@ export default defineConfig({
 
 ### `oxfmt` preset
 
-In `oxfmt.config.ts`, spread the formatting preset into your config:
+`oxfmt` doesn't have the concept of presets, so in `oxfmt.config.ts`, spread the formatting preset into your config:
 
 ```ts
 import preset from '@devlsh/tools/oxfmt';
@@ -79,6 +79,22 @@ import { defineConfig } from 'oxfmt';
 
 export default defineConfig({
   ...preset,
+  sortImports: {
+    ...preset.sortImports,
+    groups: [
+      ['side_effect'],
+      ['builtin', 'external', 'type-external'],
+      ['myapp'],
+      ['subpath', 'type-subpath', 'internal', 'type-internal', 'index', 'type-index'],
+      ['parent', 'type-parent', 'sibling', 'type-sibling'],
+    ],
+    customGroups: [
+      {
+        groupName: 'myapp',
+        elementNamePattern: ['@myapp/'],
+      },
+    ],
+  },
 });
 ```
 

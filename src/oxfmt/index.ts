@@ -24,7 +24,27 @@ export default defineConfig({
   sortPackageJson: {
     sortScripts: true,
   },
+  sortTailwindcss: {
+    functions: ['clsx', 'cn', 'cva', 'tw'],
+    preserveDuplicates: false,
+    preserveWhitespace: false,
+  },
+  sortImports: {
+    sortSideEffects: false,
+  },
   insertFinalNewline: true,
+  jsdoc: {
+    addDefaultToDescription: true,
+    bracketSpacing: false,
+    capitalizeDescriptions: true,
+    commentLineStrategy: 'multiline',
+    descriptionWithDot: true,
+    keepUnparsableExampleIndent: true,
+    lineWrappingStyle: 'balance',
+    preferCodeFences: true,
+    separateReturnsFromParam: false,
+    separateTagGroups: true,
+  },
   jsxSingleQuote: false,
   objectWrap: 'preserve',
   printWidth: 120,
