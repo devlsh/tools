@@ -1,3 +1,6 @@
+# macos.
+.DS_Store
+
 # logs.
 *.log
 
@@ -7,30 +10,32 @@ pids
 *.seed
 *.pid.lock
 
-# code coverage results.
-coverage
-
 # node modules.
-node_modules
+node_modules/
 
 # outputs.
+.nitro/
+.tanstack/
+.wrangler/
+.output/
+.vinxi/
 dist/
+dist-ssr/
 *.tgz
 
-# macos stuff.
-.DS_Store
-
 # vite(st).
-.vite
-.vitest
+.vite/
+.vitest/
+coverage/
 
 # typescript.
 *.tsbuildinfo
 
 # local agent workflow artifacts.
-.worktrees
-.scratch
-/docs/research
-/research
-/docs/plans
-/plans
+.out-of-scope/
+.worktrees/
+.scratch/
+research/
+plans/
+docs/research/
+docs/plans/
