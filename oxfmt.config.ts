@@ -1,5 +1,6 @@
-import preset from './src/oxfmt/index.ts';
 import { defineConfig } from 'oxfmt';
+
+import preset from './src/oxfmt/index.ts';
 
 export default defineConfig({
   ...preset,

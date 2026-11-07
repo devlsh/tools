@@ -1,4 +1,5 @@
 import { defineConfig } from 'oxlint';
+
 import preset from './src/oxlint/index.ts';
 
 export default defineConfig({
