@@ -11,8 +11,10 @@ export default defineConfig({
   ],
   options: {
     reportUnusedDisableDirectives: 'error',
+    respectEslintDisableDirectives: false,
     typeAware: true,
     typeCheck: false,
+    denyWarnings: false,
   },
   ignorePatterns: [
     '.agent/**',
@@ -26,6 +28,8 @@ export default defineConfig({
     '.pi/**',
     '.roo/**',
     '.windsurf/**',
+    '.vscode/**',
+    '*-lock.yaml',
   ],
   rules: {
     'anti-slop/no-array-filter-map': 'error',
@@ -242,6 +246,7 @@ export default defineConfig({
       'error',
       {
         builtinGlobals: true,
+        ignoreDeclarationMerge: false,
       },
     ],
     'eslint/no-return-assign': ['error', 'always'],
@@ -633,6 +638,7 @@ export default defineConfig({
     'typescript/no-unnecessary-type-assertion': 'error',
     'typescript/no-unnecessary-type-constraint': 'error',
     'typescript/no-unnecessary-type-conversion': 'error',
+    'typescript/no-unsafe-enum-assignment': 'error',
     'typescript/no-unsafe-function-type': 'error',
     'typescript/no-unsafe-member-access': 'error',
     'typescript/no-unsafe-return': 'error',
@@ -828,6 +834,7 @@ export default defineConfig({
       rules: {
         'import/no-anonymous-default-export': 'off',
         'import/no-default-export': 'off',
+        'import/extensions': 'off',
       },
     },
   ],

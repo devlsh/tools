@@ -1,7 +1,21 @@
 import { defineConfig } from 'oxfmt';
 
 export default defineConfig({
-  ignorePatterns: ['.github', '.opencode', '.vscode', 'pnpm-lock.yaml'],
+  ignorePatterns: [
+    '.agent/**',
+    '.agents/**',
+    '.claude/**',
+    '.codex/**',
+    '.continue/**',
+    '.cursor/**',
+    '.gemini/**',
+    '.opencode/**',
+    '.pi/**',
+    '.roo/**',
+    '.windsurf/**',
+    '.vscode/**',
+    '*-lock.yaml',
+  ],
   arrowParens: 'always',
   bracketSpacing: true,
   embeddedLanguageFormatting: 'auto',

@@ -3,3 +3,7 @@ verifyDepsBeforeRun: error
 allowBuilds:
   '@ast-grep/cli': true
   lefthook: true
+
+permissions:
+  tsdown:
+    skills: false

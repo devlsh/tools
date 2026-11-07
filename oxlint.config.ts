@@ -3,7 +3,7 @@ import preset from './src/oxlint/index.ts';
 
 export default defineConfig({
   extends: [preset],
-  ignorePatterns: ['/CHANGELOG.md', 'dist/**', 'src/oxlint/anti-slop/**'],
+  ignorePatterns: ['CHANGELOG.md', 'src/oxlint/anti-slop/**'],
   overrides: [
     {
       files: ['src/**/*.ts'],
@@ -13,7 +13,7 @@ export default defineConfig({
       },
     },
     {
-      files: ['*.config.ts', 'src/oxlint/effect.ts'],
+      files: ['src/oxlint/effect.ts'],
       rules: {
         'import/extensions': 'off',
       },
