@@ -1,4 +1,4 @@
-name: "🧪 validate"
+name: '🧪 validate'
 
 on:
   workflow_dispatch:
@@ -16,18 +16,18 @@ concurrency:
 
 jobs:
   check:
-    name: "🧪 check"
+    name: '🧪 check'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     steps:
-      - name: "📥 check out repository"
+      - name: '📥 check out repository'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: "⚙️ set up node and pnpm"
+      - name: '⚙️ set up node and pnpm'
         uses: ./github/setup
 
-      - name: "🧪 run checks"
+      - name: '🧪 run checks'
         run: pnpm check

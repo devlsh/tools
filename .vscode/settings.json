@@ -1,13 +1,13 @@
 {
-  "astGrep.serverPath": "./node_modules/.bin/ast-grep",
   "editor.wordWrap": "off",
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
   },
-  "oxc.fmt.configPath": "oxfmt.config.ts",
-  "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnSaveMode": "file",
-  "oxc.typeAware": true,
-  "oxc.enable.oxfmt": true
+
+  "astGrep.serverPath": "./node_modules/.bin/ast-grep",
+
+  "oxc.enable": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode"
 }
