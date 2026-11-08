@@ -1,0 +1,54 @@
+id: no-set-immediate-promise-waits-tsx
+valid:
+  - |
+    render(<Status />);
+    await delivery.completed;
+  - |
+    await pubSubIdle();
+  - |
+    scheduleProductionDelivery(() => setImmediate(flush));
+  - |
+    test('documents setImmediate event loop ordering', async () => {
+      render(<Status />);
+      await new Promise<void>((resolve) => setImmediate(resolve));
+    });
+  - |
+    it('documents macrotask ordering', async () => {
+      render(<Status />);
+      await new Promise((resolve) => { setImmediate(resolve); });
+    });
+invalid:
+  - |
+    render(<Status />);
+    await new Promise((resolve) => setImmediate(resolve));
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve) => setImmediate(resolve));
+  - |
+    render(<Status />);
+    await new Promise((resolve, reject) => setImmediate(resolve));
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve, reject) => setImmediate(resolve));
+  - |
+    render(<Status />);
+    await new Promise((resolve) => {
+      setImmediate(resolve);
+    });
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve) => {
+      setImmediate(resolve);
+    });
+  - |
+    render(<Status />);
+    await new Promise((resolve, reject) => {
+      setImmediate(resolve);
+    });
+  - |
+    test('renders a status', async () => {
+      render(<Status />);
+      await new Promise<void>((resolve, reject) => {
+        setImmediate(resolve);
+      });
+    });

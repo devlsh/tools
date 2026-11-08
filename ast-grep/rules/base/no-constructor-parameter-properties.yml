@@ -3,7 +3,7 @@ language: Tsx
 severity: error
 message: Do not use TypeScript constructor parameter properties. Declare fields explicitly and assign inside the constructor.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.tsx'
 rule:
   all:
     - any:

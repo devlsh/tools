@@ -1,0 +1,15 @@
+id: no-inline-shader-source-tsx
+language: Tsx
+severity: warning
+message: Keep shader source in local shaders/ files and import it through Vite raw imports.
+files:
+  - '**/*.tsx'
+rule:
+  any:
+    - pattern: const $NAME = `$$$SOURCE`
+    - pattern: import $NAME from '$PATH'
+constraints:
+  NAME:
+    regex: '.*(shader|Shader|fragment|Fragment|vertex|Vertex).*'
+  PATH:
+    regex: '.*\.(glsl|wgsl)$'

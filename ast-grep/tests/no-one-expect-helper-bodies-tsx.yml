@@ -1,0 +1,39 @@
+id: no-one-expect-helper-bodies-tsx
+valid:
+  - |
+    expect(render(<Status />)).toBeVisible();
+  - |
+    function expectValue(value: unknown) {
+      render(<Status value={value} />);
+      expect(value).toEqual('ready');
+    }
+  - |
+    function expectResult(result: Result<unknown, Error>) {
+      expect(render(<Status result={result} />)).toBeVisible();
+      expect(result.isErr()).toBe(false);
+    }
+  - |
+    function expectStatusCard(value: unknown) {
+      expect(render(<Status value={value} />)).toBeVisible();
+    }
+  - |
+    const expectHarvestingPendingReward = (metadata: ResourceNodeMetadata) => {
+      expect(render(<Reward metadata={metadata} />)).toBeVisible();
+    };
+invalid:
+  - |
+    function expectValue(value: unknown) {
+      expect(render(<Status value={value} />)).toBeVisible();
+    }
+  - |
+    function assertResult(result: Result<unknown, Error>) {
+      expect(result.isOk()).toBe(true);
+    }
+  - |
+    const expectMetadata = (metadata: unknown) => {
+      expect(render(<Status metadata={metadata} />)).toBeVisible();
+    };
+  - |
+    const assertResponse = function (response: unknown) {
+      expect(render(<Status response={response} />)).toBeVisible();
+    };

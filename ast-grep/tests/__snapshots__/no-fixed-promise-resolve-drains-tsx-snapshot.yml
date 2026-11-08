@@ -1,0 +1,69 @@
+id: no-fixed-promise-resolve-drains-tsx
+snapshots:
+  "async function drainMicrotasks() {\n  for (let i = 0; i < 8; i += 1) {\n    render(<Status />);\n    await Promise.resolve();\n  }\n}\n":
+    labels:
+      - source: |-
+          for (let i = 0; i < 8; i += 1) {
+              render(<Status />);
+              await Promise.resolve();
+            }
+        style: primary
+        start: 37
+        end: 126
+      - source: await Promise.resolve();
+        style: secondary
+        start: 98
+        end: 122
+  "async function flushRouteDispatch() {\n  render(<Status />);\n  await Promise.resolve();\n  await Promise.resolve();\n}\n":
+    labels:
+      - source: await Promise.resolve();
+        style: primary
+        start: 62
+        end: 86
+      - source: await Promise.resolve();
+        style: secondary
+        start: 89
+        end: 113
+  "do {\n  render(<Status />);\n  await Promise.resolve();\n} while (needsAnotherTurn());\n":
+    labels:
+      - source: |-
+          do {
+            render(<Status />);
+            await Promise.resolve();
+          } while (needsAnotherTurn());
+        style: primary
+        start: 0
+        end: 83
+      - source: await Promise.resolve();
+        style: secondary
+        start: 29
+        end: 53
+  "for (const event of events) {\n  render(<Event data={event} />);\n  await Promise.resolve();\n}\n":
+    labels:
+      - source: |-
+          for (const event of events) {
+            render(<Event data={event} />);
+            await Promise.resolve();
+          }
+        style: primary
+        start: 0
+        end: 92
+      - source: await Promise.resolve();
+        style: secondary
+        start: 66
+        end: 90
+  "while (pendingTurns > 0) {\n  render(<Status />);\n  pendingTurns -= 1;\n  await Promise.resolve();\n}\n":
+    labels:
+      - source: |-
+          while (pendingTurns > 0) {
+            render(<Status />);
+            pendingTurns -= 1;
+            await Promise.resolve();
+          }
+        style: primary
+        start: 0
+        end: 98
+      - source: await Promise.resolve();
+        style: secondary
+        start: 72
+        end: 96

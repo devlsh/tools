@@ -1,0 +1,62 @@
+id: no-zero-delay-promise-timeout-waits-tsx
+snapshots:
+  "render(<Status />);\nawait new Promise((resolve) => setTimeout(resolve, 0));\n":
+    labels:
+      - source: new Promise((resolve) => setTimeout(resolve, 0))
+        style: primary
+        start: 26
+        end: 74
+  "render(<Status />);\nawait new Promise((resolve) => {\n  setTimeout(resolve, 0);\n});\n":
+    labels:
+      - source: |-
+          new Promise((resolve) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 26
+        end: 81
+  "render(<Status />);\nawait new Promise((resolve, reject) => setTimeout(resolve, 0));\n":
+    labels:
+      - source: new Promise((resolve, reject) => setTimeout(resolve, 0))
+        style: primary
+        start: 26
+        end: 82
+  "render(<Status />);\nawait new Promise((resolve, reject) => {\n  setTimeout(resolve, 0);\n});\n":
+    labels:
+      - source: |-
+          new Promise((resolve, reject) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 26
+        end: 89
+  "render(<Status />);\nawait new Promise<void>((resolve) => setTimeout(resolve, 0));\n":
+    labels:
+      - source: new Promise<void>((resolve) => setTimeout(resolve, 0))
+        style: primary
+        start: 26
+        end: 80
+  "render(<Status />);\nawait new Promise<void>((resolve) => {\n  setTimeout(resolve, 0);\n});\n":
+    labels:
+      - source: |-
+          new Promise<void>((resolve) => {
+            setTimeout(resolve, 0);
+          })
+        style: primary
+        start: 26
+        end: 87
+  "render(<Status />);\nawait new Promise<void>((resolve, reject) => setTimeout(resolve, 0));\n":
+    labels:
+      - source: new Promise<void>((resolve, reject) => setTimeout(resolve, 0))
+        style: primary
+        start: 26
+        end: 88
+  "test('renders a status', async () => {\n  render(<Status />);\n  await new Promise<void>((resolve, reject) => {\n    setTimeout(resolve, 0);\n  });\n});\n":
+    labels:
+      - source: |-
+          new Promise<void>((resolve, reject) => {
+              setTimeout(resolve, 0);
+            })
+        style: primary
+        start: 69
+        end: 142

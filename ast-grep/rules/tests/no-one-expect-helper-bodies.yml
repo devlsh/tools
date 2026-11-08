@@ -3,8 +3,8 @@ language: TypeScript
 severity: warning
 message: Inline generic helpers whose body only wraps one expect assertion and adds no setup or domain vocabulary.
 files:
-  - '**/*.{test,spec}.{ts,tsx}'
-  - '**/tests/**/*.{ts,tsx}'
+  - '**/*.{test,spec}.ts'
+  - '**/tests/**/*.ts'
 rule:
   any:
     - pattern: function $NAME($$$ARGS) { expect($$$EXPECT_ARGS).$MATCHER($$$MATCHER_ARGS); }

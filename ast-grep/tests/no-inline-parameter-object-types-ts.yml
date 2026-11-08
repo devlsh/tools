@@ -1,0 +1,34 @@
+id: no-inline-parameter-object-types-ts
+valid:
+  - |
+    interface Options {
+      enabled: boolean;
+    }
+    function createRuntime(options: Options) {
+      return options.enabled;
+    }
+  - |
+    type Payload = { id: string };
+    const handle = <T>(payload: Payload, value: T) => <T>value;
+  - |
+    function createRuntime(): { enabled: boolean } {
+      const options: { enabled: boolean } = { enabled: true };
+      return options;
+    }
+invalid:
+  - |
+    function createRuntime(options: { enabled: boolean }) {
+      return options.enabled;
+    }
+  - |
+    const handle = async (payload: { id: string }) => payload.id;
+  - |
+    class Service {
+      constructor(options: { logger: Logger }) {}
+    }
+  - |
+    const handle = <T>(value: T, options?: { nested: { enabled: boolean } }) => value;
+  - |
+    function createRuntime() {
+      return (options: { enabled: boolean }) => options.enabled;
+    }

@@ -1,6 +1,10 @@
 # Vite Rules
 
+Load this directory to enable separate rules for TypeScript (`.ts`) and TSX (`.tsx`).
+
 ## [`no-inline-shader-source`](no-inline-shader-source.yml)
+
+TypeScript rule; TSX counterpart: [`no-inline-shader-source-tsx`](no-inline-shader-source-tsx.yml).
 
 Requires separate shader files imported with `?raw`.
 

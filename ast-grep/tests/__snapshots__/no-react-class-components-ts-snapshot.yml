@@ -1,0 +1,110 @@
+id: no-react-class-components-ts
+snapshots:
+  "class StatusCard extends Component {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends Component {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 86
+  "class StatusCard extends Component<Props, State> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends Component<Props, State> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 100
+  "class StatusCard extends Component<Props> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends Component<Props> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 93
+  "class StatusCard extends PureComponent {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends PureComponent {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 90
+  "class StatusCard extends PureComponent<Props, State> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends PureComponent<Props, State> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 104
+  "class StatusCard extends PureComponent<Props> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends PureComponent<Props> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 97
+  "class StatusCard extends React.Component {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends React.Component {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 92
+  "class StatusCard extends React.Component<Props, State> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends React.Component<Props, State> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 106
+  "class StatusCard extends React.Component<Props> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends React.Component<Props> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 99
+  "class StatusCard extends React.PureComponent {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends React.PureComponent {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 96
+  "class StatusCard extends React.PureComponent<Props, State> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends React.PureComponent<Props, State> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 110
+  "class StatusCard extends React.PureComponent<Props> {\n  render() { return createElement('section'); }\n}\n":
+    labels:
+      - source: |-
+          class StatusCard extends React.PureComponent<Props> {
+            render() { return createElement('section'); }
+          }
+        style: primary
+        start: 0
+        end: 103

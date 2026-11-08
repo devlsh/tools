@@ -1,0 +1,39 @@
+id: no-trivial-type-predicate-helper-tsx
+valid:
+  - |
+    function isAreaKey(value: unknown): value is AreaKey {
+      return typeof value === 'string' && Object.values(AreaKey).includes(value as AreaKey);
+    }
+    const view = <section />;
+  - |
+    function hasMessage(value: unknown): value is { message: string } {
+      return typeof value === 'object' && value !== null && 'message' in value && typeof value.message === 'string';
+    }
+    const view = <section />;
+  - |
+    const isIdentifier = (value: unknown): value is string | number => typeof value === 'string' || typeof value === 'number';
+    const view = <section />;
+invalid:
+  - |
+    function isString(value: unknown): value is string {
+      return typeof value === 'string';
+    }
+    const view = <section />;
+  - |
+    function isArray(value: unknown): value is unknown[] {
+      return Array.isArray(value);
+    }
+    const view = <section />;
+  - |
+    function isObject(value: unknown): value is object {
+      return typeof value === 'object' && value !== null;
+    }
+    const view = <section />;
+  - |
+    const isDefined = (value: unknown): value is NonNullable<unknown> => value != null;
+    const view = <section />;
+  - |
+    function Status() {
+      const isFunction = (value: unknown): value is Function => typeof value === 'function';
+      return <section>{String(isFunction(value))}</section>;
+    }

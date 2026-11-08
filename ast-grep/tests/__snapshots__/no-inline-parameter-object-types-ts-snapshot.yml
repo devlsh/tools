@@ -1,0 +1,52 @@
+id: no-inline-parameter-object-types-ts
+snapshots:
+  "class Service {\n  constructor(options: { logger: Logger }) {}\n}\n":
+    labels:
+      - source: '{ logger: Logger }'
+        style: primary
+        start: 39
+        end: 57
+      - source: 'options: { logger: Logger }'
+        style: secondary
+        start: 30
+        end: 57
+  "const handle = <T>(value: T, options?: { nested: { enabled: boolean } }) => value;\n":
+    labels:
+      - source: '{ nested: { enabled: boolean } }'
+        style: primary
+        start: 39
+        end: 71
+      - source: 'options?: { nested: { enabled: boolean } }'
+        style: secondary
+        start: 29
+        end: 71
+  "const handle = async (payload: { id: string }) => payload.id;\n":
+    labels:
+      - source: '{ id: string }'
+        style: primary
+        start: 31
+        end: 45
+      - source: 'payload: { id: string }'
+        style: secondary
+        start: 22
+        end: 45
+  "function createRuntime() {\n  return (options: { enabled: boolean }) => options.enabled;\n}\n":
+    labels:
+      - source: '{ enabled: boolean }'
+        style: primary
+        start: 46
+        end: 66
+      - source: 'options: { enabled: boolean }'
+        style: secondary
+        start: 37
+        end: 66
+  "function createRuntime(options: { enabled: boolean }) {\n  return options.enabled;\n}\n":
+    labels:
+      - source: '{ enabled: boolean }'
+        style: primary
+        start: 32
+        end: 52
+      - source: 'options: { enabled: boolean }'
+        style: secondary
+        start: 23
+        end: 52

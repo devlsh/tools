@@ -3,7 +3,7 @@ language: TypeScript
 severity: error
 message: Inline one-line Response builders at the call site instead of hiding the response contract behind a helper.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   any:
     - pattern: function $NAME($$$ARGS) { return new Response($$$VALUES) }

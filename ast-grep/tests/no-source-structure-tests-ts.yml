@@ -1,0 +1,26 @@
+id: no-source-structure-tests-ts
+valid:
+  - |
+    it('calculates behavior', () => {
+      expect(calculateTotal([{ price: 5, quantity: 2 }])).toBe(10);
+    });
+  - |
+    import { parse } from './parser';
+    const sourceFile = parse(input);
+invalid:
+  - |
+    import ts from 'typescript';
+  - |
+    import { Project } from 'ts-morph';
+  - |
+    const source = readFileSync('src/index.ts', 'utf8');
+  - |
+    const source = await readFile('src/index.ts', 'utf8');
+  - |
+    const source = fs.readFileSync('src/index.ts', 'utf8');
+  - |
+    const source = await fs.readFile('src/index.ts', 'utf8');
+  - |
+    const sourceFile = project.addSourceFileAtPath('src/index.ts');
+  - |
+    const sourceFile = ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest);

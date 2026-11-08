@@ -1,0 +1,35 @@
+id: zod-namespace-import-tsx
+valid:
+  - |
+    import * as z from 'zod';
+    const view = <Form schema={z.string()} />;
+  - |
+    import type * as z from 'zod';
+    const view = <Form<string> />;
+  - |
+    import { z } from 'zustand';
+    const view = <Status store={z} />;
+  - |
+    import z from '@teris/core/zod';
+  - |
+    import * as Zod from 'not-zod';
+invalid:
+  - |
+    import { z } from 'zod';
+    const view = <Form schema={z.string()} />;
+  - |
+    import z from 'zod';
+    const view = <Form schema={z.string()} />;
+  - |
+    import z, { ZodError } from 'zod';
+  - |
+    import { z as schema } from 'zod';
+  - |
+    import * as Zod from 'zod';
+  - |
+    import type { ZodType } from 'zod';
+    const view = <Form<string> />;
+  - |
+    import 'zod';
+  - |
+    import * as z from "zod";

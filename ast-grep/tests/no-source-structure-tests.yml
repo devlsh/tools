@@ -1,11 +1,18 @@
 id: no-source-structure-tests
 valid:
   - |
+    it('renders a status', () => {
+      expect(render(<Status />)).toBeVisible();
+    });
+  - |
 
     it('renders behavior', () => {
       expect(render()).toBeVisible();
     });
 invalid:
+  - |
+    const view = <Status />;
+    const source = readFileSync('src/status.tsx', 'utf8');
   - |
     import { readFileSync } from 'node:fs';
     const source = readFileSync('src/index.ts', 'utf8');

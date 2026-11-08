@@ -1,0 +1,60 @@
+id: no-duplicate-imported-type-alias-tsx
+snapshots:
+  "import { Area, Entity, type Entity as EntityType, Player } from '@example/entities';\nconst view = <Area><Entity /><Player /></Area>;\n":
+    labels:
+      - source: >-
+          import { Area, Entity, type Entity as EntityType, Player } from
+          '@example/entities';
+        style: primary
+        start: 0
+        end: 84
+      - source: type Entity as EntityType
+        style: secondary
+        start: 23
+        end: 48
+      - source: Entity
+        style: secondary
+        start: 15
+        end: 21
+  "import { Entity, type Entity as EntityType } from '@example/entities';\nconst view = <Entity />;\n":
+    labels:
+      - source: import { Entity, type Entity as EntityType } from '@example/entities';
+        style: primary
+        start: 0
+        end: 70
+      - source: type Entity as EntityType
+        style: secondary
+        start: 17
+        end: 42
+      - source: Entity
+        style: secondary
+        start: 9
+        end: 15
+  "import { Entity, type Entity } from '@example/entities';\nconst view = <Entity />;\n":
+    labels:
+      - source: import { Entity, type Entity } from '@example/entities';
+        style: primary
+        start: 0
+        end: 56
+      - source: type Entity
+        style: secondary
+        start: 17
+        end: 28
+      - source: Entity
+        style: secondary
+        start: 9
+        end: 15
+  "import { type Player as PlayerType, Player } from '@example/entities';\nconst view = <section><Player /></section>;\n":
+    labels:
+      - source: import { type Player as PlayerType, Player } from '@example/entities';
+        style: primary
+        start: 0
+        end: 70
+      - source: type Player as PlayerType
+        style: secondary
+        start: 9
+        end: 34
+      - source: Player
+        style: secondary
+        start: 36
+        end: 42

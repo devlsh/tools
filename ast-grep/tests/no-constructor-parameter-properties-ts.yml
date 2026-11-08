@@ -1,0 +1,33 @@
+id: no-constructor-parameter-properties-ts
+valid:
+  - |
+    class Service {
+      private readonly deps: Deps;
+      constructor(deps: Deps) {
+        this.deps = deps;
+      }
+    }
+  - |
+    class Service<T> {
+      constructor(deps: T, id?: string) {}
+      read(options: { readonly enabled: boolean }) {}
+    }
+invalid:
+  - |
+    class Service {
+      constructor(private readonly deps: Deps) {}
+    }
+  - |
+    class PlayerSession {
+      constructor(public id: string, protected logger: Logger) {}
+    }
+  - |
+    class ReadonlySession {
+      constructor(readonly id?: string) {}
+    }
+  - |
+    function createService<T>(deps: T) {
+      return new class {
+        constructor(private value: T = deps) {}
+      }();
+    }

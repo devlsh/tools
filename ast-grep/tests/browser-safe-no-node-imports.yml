@@ -2,9 +2,43 @@ id: browser-safe-no-node-imports
 valid:
   - |
     import { log } from 'evlog/client';
+    const view = <Status onClick={() => log('ready')} />;
+  - |
+    import { read } from './fs';
+    import { createPath } from 'path-browserify';
+  - |
+    export { log } from 'evlog/client';
+    export * from './browser';
+  - |
+    const client = await import('evlog/client');
+    const view = <Client module={client} />;
+  - |
+    const local = await import('./browser');
+  - |
+    const fs = require('node:fs');
+  - |
+    const moduleName = 'node:fs';
+    const loaded = await import(moduleName);
+  - |
+    import { log } from 'evlog/client';
   - |
     const moduleName = 'node:fs';
 invalid:
+  - |
+    import { readFileSync } from 'node:fs';
+    const view = <Status />;
+  - |
+    import 'fs/promises';
+  - |
+    export * from 'stream';
+    const view = <Status />;
+  - |
+    export { Buffer } from 'buffer';
+  - |
+    const crypto = await import("crypto");
+    const view = <Status />;
+  - |
+    const url = await import('url');
   - |
     import { readFileSync } from 'node:fs';
   - |

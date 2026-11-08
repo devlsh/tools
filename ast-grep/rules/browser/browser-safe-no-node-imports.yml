@@ -3,7 +3,7 @@ language: Tsx
 severity: error
 message: Browser-safe modules must not import Node-only APIs.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.tsx'
 rule:
   any:
     - all:

@@ -3,7 +3,7 @@ language: TypeScript
 severity: hint
 message: 'Short predicate helper functions are often AI-added slop. Re-review this 1-statement helper: inline it, use an existing shared helper, or replace it with a real domain parser at the boundary.'
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   all:
     - any:

@@ -1,0 +1,38 @@
+id: no-one-expect-helper-bodies-tsx
+snapshots:
+  "const assertResponse = function (response: unknown) {\n  expect(render(<Status response={response} />)).toBeVisible();\n};\n":
+    labels:
+      - source: |-
+          const assertResponse = function (response: unknown) {
+            expect(render(<Status response={response} />)).toBeVisible();
+          };
+        style: primary
+        start: 0
+        end: 120
+  "const expectMetadata = (metadata: unknown) => {\n  expect(render(<Status metadata={metadata} />)).toBeVisible();\n};\n":
+    labels:
+      - source: |-
+          const expectMetadata = (metadata: unknown) => {
+            expect(render(<Status metadata={metadata} />)).toBeVisible();
+          };
+        style: primary
+        start: 0
+        end: 114
+  "function assertResult(result: Result<unknown, Error>) {\n  expect(result.isOk()).toBe(true);\n}\n":
+    labels:
+      - source: |-
+          function assertResult(result: Result<unknown, Error>) {
+            expect(result.isOk()).toBe(true);
+          }
+        style: primary
+        start: 0
+        end: 93
+  "function expectValue(value: unknown) {\n  expect(render(<Status value={value} />)).toBeVisible();\n}\n":
+    labels:
+      - source: |-
+          function expectValue(value: unknown) {
+            expect(render(<Status value={value} />)).toBeVisible();
+          }
+        style: primary
+        start: 0
+        end: 98

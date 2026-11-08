@@ -1,0 +1,47 @@
+id: no-error-factory-helpers-tsx
+valid:
+  - |
+    function Status(connected: boolean) {
+      if (!connected) {
+        return Result.err(new RoomConnectionError({ message: 'Room failed' }));
+      }
+      return <section>Connected</section>;
+    }
+  - |
+    const Status = () => <section>Error</section>;
+  - |
+    const makeMessage = () => new Message({ content: <section /> });
+invalid:
+  - |
+    function createRoomError(cause: unknown) {
+      return new RoomConnectionError({ message: 'Room failed', cause });
+    }
+    const view = <section />;
+  - |
+    const makeValidationFailure = (message: string) => new ValidationFailure({ message });
+    const view = <section />;
+  - |
+    function createConfigError(): never {
+      throw new InvalidConfigError({ message: 'Invalid config' });
+    }
+    const view = <section />;
+  - |
+    function invalidPresenceRecord(context: string): PresenceError {
+      return new PresenceError({ message: `Invalid ${context}` });
+    }
+    const view = <section />;
+  - |
+    function unauthorized(): Result<never, GameCommandError> {
+      return Result.err(new GameCommandError({ code: 'UNAUTHORIZED' }));
+    }
+    const view = <section />;
+  - |
+    const Status = () => {
+      const notJoined = (): Result<never, GameCommandFailure> => Result.err(new GameCommandFailure({ code: 'NOT_JOINED' }));
+      return <section>{notJoined().error.message}</section>;
+    };
+  - |
+    const view = <Button onClick={() => {
+      const createError = (): ActionError => new ActionError({ message: 'Failed' });
+      consume(createError());
+    }} />;

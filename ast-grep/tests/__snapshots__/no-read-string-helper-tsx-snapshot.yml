@@ -1,0 +1,33 @@
+id: no-read-string-helper-tsx
+snapshots:
+  "const readString = (value: unknown): string | undefined => typeof value === 'string' ? value : undefined;\nconst view = <section />;\n":
+    labels:
+      - source: "const readString = (value: unknown): string | undefined => typeof value === 'string' ? value : undefined;"
+        style: primary
+        start: 0
+        end: 105
+  "const view = <section>{readString(record, 'name')}</section>;\n":
+    labels:
+      - source: readString(record, 'name')
+        style: primary
+        start: 23
+        end: 49
+  "function Status() {\n  const readString = (value: unknown): string | undefined => {\n    return typeof value === 'string' ? value : undefined;\n  };\n  return <section />;\n}\n":
+    labels:
+      - source: |-
+          const readString = (value: unknown): string | undefined => {
+              return typeof value === 'string' ? value : undefined;
+            };
+        style: primary
+        start: 22
+        end: 145
+  "function readString(record: Record<string, unknown>, key: string): string | undefined {\n  const value = record[key];\n  return typeof value === 'string' ? value : undefined;\n}\nconst view = <section />;\n":
+    labels:
+      - source: |-
+          function readString(record: Record<string, unknown>, key: string): string | undefined {
+            const value = record[key];
+            return typeof value === 'string' ? value : undefined;
+          }
+        style: primary
+        start: 0
+        end: 174

@@ -3,7 +3,7 @@ language: Tsx
 severity: error
 message: Do not author class-based React components.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.tsx'
 rule:
   any:
     - pattern: class $NAME extends React.Component { $$$BODY }

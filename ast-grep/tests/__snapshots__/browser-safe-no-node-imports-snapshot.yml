@@ -1,15 +1,45 @@
 id: browser-safe-no-node-imports
 snapshots:
-  ? |
-    const fs = await import('node:fs/promises');
-  : labels:
+  "const crypto = await import(\"crypto\");\nconst view = <Status />;\n":
+    labels:
+      - source: import("crypto")
+        style: primary
+        start: 21
+        end: 37
+  "const fs = await import('node:fs/promises');\n":
+    labels:
       - source: import('node:fs/promises')
         style: primary
         start: 17
         end: 43
-  ? |
-    export { readFileSync } from 'node:fs';
-  : labels:
+  "const url = await import('url');\n":
+    labels:
+      - source: import('url')
+        style: primary
+        start: 18
+        end: 31
+  "export * from 'stream';\nconst view = <Status />;\n":
+    labels:
+      - source: export * from 'stream';
+        style: primary
+        start: 0
+        end: 23
+      - source: stream
+        style: secondary
+        start: 15
+        end: 21
+  "export { Buffer } from 'buffer';\n":
+    labels:
+      - source: export { Buffer } from 'buffer';
+        style: primary
+        start: 0
+        end: 32
+      - source: buffer
+        style: secondary
+        start: 24
+        end: 30
+  "export { readFileSync } from 'node:fs';\n":
+    labels:
       - source: export { readFileSync } from 'node:fs';
         style: primary
         start: 0
@@ -18,9 +48,18 @@ snapshots:
         style: secondary
         start: 30
         end: 37
-  ? |
-    import path from 'path';
-  : labels:
+  "import 'fs/promises';\n":
+    labels:
+      - source: import 'fs/promises';
+        style: primary
+        start: 0
+        end: 21
+      - source: fs/promises
+        style: secondary
+        start: 8
+        end: 19
+  "import path from 'path';\n":
+    labels:
       - source: import path from 'path';
         style: primary
         start: 0
@@ -29,9 +68,18 @@ snapshots:
         style: secondary
         start: 18
         end: 22
-  ? |
-    import { readFileSync } from 'node:fs';
-  : labels:
+  "import { readFileSync } from 'node:fs';\n":
+    labels:
+      - source: import { readFileSync } from 'node:fs';
+        style: primary
+        start: 0
+        end: 39
+      - source: node:fs
+        style: secondary
+        start: 30
+        end: 37
+  "import { readFileSync } from 'node:fs';\nconst view = <Status />;\n":
+    labels:
       - source: import { readFileSync } from 'node:fs';
         style: primary
         start: 0

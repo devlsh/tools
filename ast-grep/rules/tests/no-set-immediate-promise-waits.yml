@@ -3,8 +3,8 @@ language: TypeScript
 severity: warning
 message: Prefer an observable delivery/idle promise over direct setImmediate Promise waits in tests.
 files:
-  - '**/*.{test,spec}.{ts,tsx}'
-  - '**/tests/**/*.{ts,tsx}'
+  - '**/*.{test,spec}.ts'
+  - '**/tests/**/*.ts'
 utils:
   directSetImmediateWait:
     any:

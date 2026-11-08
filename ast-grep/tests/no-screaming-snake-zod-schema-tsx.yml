@@ -1,0 +1,44 @@
+id: no-screaming-snake-zod-schema-tsx
+valid:
+  - |
+    const UserInput = z.object({ name: z.string() });
+    const view = <Form schema={UserInput} />;
+  - |
+    const userInput = z.object({ name: z.string() });
+    const view = <Form schema={userInput} />;
+  - |
+    const SERVER_URL = 'https://example.com';
+    const ROLE_VALUES = ['USER', 'ADMIN'] as const;
+    const USER_SCHEMA_DATA = { name: 'Ada' };
+    const view = <Status data={USER_SCHEMA_DATA} />;
+  - |
+    const Pathname = z.string().min(1);
+    const serverCommentInput = z.object({ body: z.string() }).strict();
+    const USER_SCHEMA_NAME = z.string;
+invalid:
+  - |
+    const USER_SCHEMA = z.object({ name: z.string() });
+    const view = <Form schema={USER_SCHEMA} />;
+  - |
+    const USER_INPUT_SCHEMA = z.object({ name: z.string() }).strict();
+    const view = <Form schema={USER_INPUT_SCHEMA} />;
+  - |
+    const ROLE_SCHEMA = z.enum(['USER', 'ADMIN']);
+  - |
+    const SEARCH_SCHEMA = z.union([z.string(), z.number()]);
+  - |
+    const EVENT_SCHEMA = z.discriminatedUnion('type', [created, deleted]);
+  - |
+    const TAGS_SCHEMA = z.array(z.string());
+  - |
+    const RECORD_SCHEMA = z.record(z.string());
+  - |
+    const TUPLE_SCHEMA = z.tuple([z.string(), z.number()]);
+  - |
+    const NAME_SCHEMA = z.string().min(1);
+  - |
+    const COUNT_SCHEMA = z.number().int();
+  - |
+    const ENABLED_SCHEMA = z.boolean();
+  - |
+    const KIND_SCHEMA = z.literal('release');

@@ -1,9 +1,13 @@
 id: no-source-structure-tests
 snapshots:
-  ? |
-    import ts from 'typescript';
-    const sourceFile = ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest);
-  : labels:
+  "const view = <Status />;\nconst source = readFileSync('src/status.tsx', 'utf8');\n":
+    labels:
+      - source: readFileSync('src/status.tsx', 'utf8')
+        style: primary
+        start: 40
+        end: 78
+  "import ts from 'typescript';\nconst sourceFile = ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest);\n":
+    labels:
       - source: import ts from 'typescript';
         style: primary
         start: 0
@@ -12,21 +16,14 @@ snapshots:
         style: secondary
         start: 16
         end: 26
-  ? |
-    import { readFileSync } from 'node:fs';
-    const source = readFileSync('src/index.ts', 'utf8');
-    expect(source).toContain('export');
-  : labels:
+  "import { readFileSync } from 'node:fs';\nconst source = readFileSync('src/index.ts', 'utf8');\nexpect(source).toContain('export');\n":
+    labels:
       - source: readFileSync('src/index.ts', 'utf8')
         style: primary
         start: 55
         end: 91
-  ? |
-    import { readFileSync } from 'node:fs';
-    import { join } from 'node:path';
-    const reference = readFileSync(join(root, 'apps/server/src/entities/schema/index.ts'), 'utf8');
-    expect(reference).toContain('export');
-  : labels:
+  "import { readFileSync } from 'node:fs';\nimport { join } from 'node:path';\nconst reference = readFileSync(join(root, 'apps/server/src/entities/schema/index.ts'), 'utf8');\nexpect(reference).toContain('export');\n":
+    labels:
       - source: readFileSync(join(root, 'apps/server/src/entities/schema/index.ts'), 'utf8')
         style: primary
         start: 92

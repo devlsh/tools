@@ -3,7 +3,7 @@ language: TypeScript
 severity: warning
 message: Keep shader source in local shaders/ files and import it through Vite raw imports.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   any:
     - pattern: const $NAME = `$$$SOURCE`

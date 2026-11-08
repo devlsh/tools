@@ -1,0 +1,44 @@
+id: no-response-builder-helpers-tsx
+valid:
+  - |
+    function handleRequest(input: unknown) {
+      const parsed = Input.safeParse(input);
+      if (!parsed.success) {
+        return Response.json({ error: 'invalid_request' }, { status: 400 });
+      }
+      return Response.json(parsed.data);
+    }
+    const view = <section />;
+  - |
+    const Status = () => <section>Ready</section>;
+  - |
+    const view = <Status response={new Response('ready')} />;
+  - |
+    function createRequest() {
+      return new Request('https://example.com');
+    }
+    const view = <section />;
+invalid:
+  - |
+    function invalidRequest() {
+      return Response.json({ error: 'invalid_request' }, { status: 400 });
+    }
+    const view = <section />;
+  - |
+    function redirectResponse(): Response {
+      return Response.redirect('https://example.com');
+    }
+    const view = <section />;
+  - |
+    const internalError = () => Response.json({ error: 'internal_error' }, { status: 500 });
+    const view = <section />;
+  - |
+    const emptyResponse = (): Response => new Response(null, { status: 204 });
+    const view = <section />;
+  - |
+    function Status() {
+      function textResponse(): Response {
+        return new Response('ready');
+      }
+      return <section>{textResponse().status}</section>;
+    }

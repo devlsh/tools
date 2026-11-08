@@ -1,0 +1,50 @@
+id: no-fixed-promise-resolve-drains-tsx
+valid:
+  - |
+    render(<Status />);
+    await Promise.resolve();
+    expect(delivered).toBe(true);
+  - |
+    async function flushOneTurnForResolvedPromise() {
+      await Promise.resolve();
+    }
+  - |
+    render(<Status />);
+    await writer.idle();
+  - |
+    await explicitIdlePromise;
+  - |
+    for (const event of events) {
+      render(<Event data={event} />);
+      await event.delivered;
+    }
+invalid:
+  - |
+    async function flushRouteDispatch() {
+      render(<Status />);
+      await Promise.resolve();
+      await Promise.resolve();
+    }
+  - |
+    async function drainMicrotasks() {
+      for (let i = 0; i < 8; i += 1) {
+        render(<Status />);
+        await Promise.resolve();
+      }
+    }
+  - |
+    for (const event of events) {
+      render(<Event data={event} />);
+      await Promise.resolve();
+    }
+  - |
+    while (pendingTurns > 0) {
+      render(<Status />);
+      pendingTurns -= 1;
+      await Promise.resolve();
+    }
+  - |
+    do {
+      render(<Status />);
+      await Promise.resolve();
+    } while (needsAnotherTurn());

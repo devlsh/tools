@@ -1,0 +1,11 @@
+id: no-raw-string-errors-tsx
+language: Tsx
+severity: warning
+message: Do not use raw strings as primary errors.
+files:
+  - '**/*.tsx'
+rule:
+  any:
+    - pattern: throw '$MSG'
+    - pattern: Result.err('$MSG')
+    - pattern: err('$MSG')

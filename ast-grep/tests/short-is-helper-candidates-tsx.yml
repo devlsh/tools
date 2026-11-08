@@ -1,0 +1,51 @@
+id: short-is-helper-candidates-tsx
+valid:
+  - |
+    const Status = () => <section>Ready</section>;
+  - |
+    function isVisible(droplet: RainDroplet, bounds: RainBounds) {
+      if (droplet.y < 0) {
+        return false;
+      }
+      return droplet.y < bounds.height;
+    }
+    const view = <section />;
+  - |
+    function readAreaKey(value: unknown): AreaKey | undefined {
+      return enumValue(AreaKey, value);
+    }
+    const view = <section />;
+invalid:
+  - |
+    function isAreaKey(value: unknown): value is AreaKey {
+      return typeof value === 'string' && Object.values(AreaKey).includes(value as AreaKey);
+    }
+    const view = <section />;
+  - |
+    function hasMessage(value: unknown): value is { message: string } {
+      return typeof value === 'object' && value !== null && 'message' in value;
+    }
+    const view = <section />;
+  - |
+    export function isProd() {
+      return stageEnv.STAGE === 'production';
+    }
+    const view = <section />;
+  - |
+    const isObject = (value: unknown): value is object => typeof value === 'object' && value !== null;
+    const view = <section />;
+  - |
+    const isRecord = (value: unknown): value is Record<string, unknown> => {
+      return typeof value === 'object' && value !== null;
+    };
+    const view = <section />;
+  - |
+    function isVisible(droplet: RainDroplet, bounds: RainBounds) {
+      return droplet.y < bounds.height;
+    }
+    const view = <section />;
+  - |
+    function Status() {
+      const hasViewAdd = (spy: Mock): boolean => spy.mock.calls.length > 0;
+      return <section>{String(hasViewAdd(spy))}</section>;
+    }

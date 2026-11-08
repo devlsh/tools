@@ -3,7 +3,7 @@ language: TypeScript
 severity: error
 message: Do not add trivial type-predicate helpers for native checks. Re-review this change for one-shot/no-added-value helpers and inline the guard or replace it with a meaningful domain parser.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   any:
     - pattern: 'function $NAME($VALUE: unknown): $VALUE is $TYPE { return typeof $VALUE === $KIND }'

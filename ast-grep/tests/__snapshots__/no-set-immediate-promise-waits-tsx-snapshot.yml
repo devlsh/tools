@@ -1,0 +1,62 @@
+id: no-set-immediate-promise-waits-tsx
+snapshots:
+  "render(<Status />);\nawait new Promise((resolve) => setImmediate(resolve));\n":
+    labels:
+      - source: new Promise((resolve) => setImmediate(resolve))
+        style: primary
+        start: 26
+        end: 73
+  "render(<Status />);\nawait new Promise((resolve) => {\n  setImmediate(resolve);\n});\n":
+    labels:
+      - source: |-
+          new Promise((resolve) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 26
+        end: 80
+  "render(<Status />);\nawait new Promise((resolve, reject) => setImmediate(resolve));\n":
+    labels:
+      - source: new Promise((resolve, reject) => setImmediate(resolve))
+        style: primary
+        start: 26
+        end: 81
+  "render(<Status />);\nawait new Promise((resolve, reject) => {\n  setImmediate(resolve);\n});\n":
+    labels:
+      - source: |-
+          new Promise((resolve, reject) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 26
+        end: 88
+  "render(<Status />);\nawait new Promise<void>((resolve) => setImmediate(resolve));\n":
+    labels:
+      - source: new Promise<void>((resolve) => setImmediate(resolve))
+        style: primary
+        start: 26
+        end: 79
+  "render(<Status />);\nawait new Promise<void>((resolve) => {\n  setImmediate(resolve);\n});\n":
+    labels:
+      - source: |-
+          new Promise<void>((resolve) => {
+            setImmediate(resolve);
+          })
+        style: primary
+        start: 26
+        end: 86
+  "render(<Status />);\nawait new Promise<void>((resolve, reject) => setImmediate(resolve));\n":
+    labels:
+      - source: new Promise<void>((resolve, reject) => setImmediate(resolve))
+        style: primary
+        start: 26
+        end: 87
+  "test('renders a status', async () => {\n  render(<Status />);\n  await new Promise<void>((resolve, reject) => {\n    setImmediate(resolve);\n  });\n});\n":
+    labels:
+      - source: |-
+          new Promise<void>((resolve, reject) => {
+              setImmediate(resolve);
+            })
+        style: primary
+        start: 69
+        end: 141

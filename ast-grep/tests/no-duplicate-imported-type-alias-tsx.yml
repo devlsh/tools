@@ -1,0 +1,25 @@
+id: no-duplicate-imported-type-alias-tsx
+valid:
+  - |
+    import { Entity, type Player as PlayerType } from '@example/entities';
+    const view = <Entity />;
+  - |
+    import { type Entity as EntityType } from '@example/entities';
+    const view = <section />;
+  - |
+    import { Entity } from '@example/entities';
+    import { type Entity as EntityType } from '@example/entity-types';
+    const view = <Entity />;
+invalid:
+  - |
+    import { Entity, type Entity as EntityType } from '@example/entities';
+    const view = <Entity />;
+  - |
+    import { type Player as PlayerType, Player } from '@example/entities';
+    const view = <section><Player /></section>;
+  - |
+    import { Area, Entity, type Entity as EntityType, Player } from '@example/entities';
+    const view = <Area><Entity /><Player /></Area>;
+  - |
+    import { Entity, type Entity } from '@example/entities';
+    const view = <Entity />;

@@ -1,5 +1,7 @@
 # Base Rules
 
+Each policy has separate TypeScript (`.ts`) and TSX (`.tsx`) rules. Load this directory to enable both grammars; the examples below apply to both unless they contain JSX.
+
 ## [`no-runtime-freeze`](no-runtime-freeze.yml)
 
 Enforces no `Object.freeze` calls.
@@ -117,6 +119,8 @@ const StatusCard = () => (
 
 ## [`no-read-string-helper`](no-read-string-helper.yml)
 
+TypeScript rule; TSX counterpart: [`no-read-string-helper-tsx`](no-read-string-helper-tsx.yml).
+
 Disallows `readString` helpers and calls.
 
 **Allowed:**
@@ -134,6 +138,8 @@ const name = readString(record, 'name');
 
 ## [`no-raw-string-errors`](no-raw-string-errors.yml)
 
+TypeScript rule; TSX counterpart: [`no-raw-string-errors-tsx`](no-raw-string-errors-tsx.yml).
+
 Flags single-quoted strings used as errors.
 
 **Allowed:**
@@ -150,6 +156,8 @@ throw 'Missing config';
 
 ## [`no-response-builder-helpers`](no-response-builder-helpers.yml)
 
+TypeScript rule; TSX counterpart: [`no-response-builder-helpers-tsx`](no-response-builder-helpers-tsx.yml).
+
 Disallows one-line `Response` wrapper functions.
 
 **Allowed:**
@@ -165,6 +173,8 @@ const emptyResponse = (): Response => new Response(null, { status: 204 });
 ```
 
 ## [`no-trivial-type-predicate-helper`](no-trivial-type-predicate-helper.yml)
+
+TypeScript rule; TSX counterpart: [`no-trivial-type-predicate-helper-tsx`](no-trivial-type-predicate-helper-tsx.yml).
 
 Disallows helpers such as `isString` that only wrap a native check.
 
@@ -185,6 +195,8 @@ function isString(value: unknown): value is string {
 ```
 
 ## [`no-inline-parameter-object-types`](no-inline-parameter-object-types.yml)
+
+TSX rule; TypeScript counterpart: [`no-inline-parameter-object-types-ts`](no-inline-parameter-object-types-ts.yml).
 
 Requires named types for object parameters.
 
@@ -209,6 +221,8 @@ function createRuntime(options: { enabled: boolean }) {
 
 ## [`short-is-helper-candidates`](short-is-helper-candidates.yml)
 
+TypeScript rule; TSX counterpart: [`short-is-helper-candidates-tsx`](short-is-helper-candidates-tsx.yml).
+
 Flags one-line `is...` and `has...` helpers for review.
 
 **Allowed:**
@@ -228,6 +242,8 @@ function isVisible(droplet: RainDroplet, bounds: RainBounds) {
 ```
 
 ## [`no-constructor-parameter-properties`](no-constructor-parameter-properties.yml)
+
+TSX rule; TypeScript counterpart: [`no-constructor-parameter-properties-ts`](no-constructor-parameter-properties-ts.yml).
 
 Disallows constructor parameter properties.
 
@@ -252,6 +268,8 @@ class Service {
 
 ## [`no-duplicate-imported-type-alias`](no-duplicate-imported-type-alias.yml)
 
+TypeScript rule; TSX counterpart: [`no-duplicate-imported-type-alias-tsx`](no-duplicate-imported-type-alias-tsx.yml).
+
 Flags duplicate value and type imports of the same name in one statement.
 
 **Allowed:**
@@ -267,6 +285,8 @@ import { Entity, type Entity as EntityType } from '@example/entities';
 ```
 
 ## [`no-error-factory-helpers`](no-error-factory-helpers.yml)
+
+TypeScript rule; TSX counterpart: [`no-error-factory-helpers-tsx`](no-error-factory-helpers-tsx.yml).
 
 Flags helpers that only create or throw an error.
 

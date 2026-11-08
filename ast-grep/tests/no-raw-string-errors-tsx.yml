@@ -1,0 +1,19 @@
+id: no-raw-string-errors-tsx
+valid:
+  - |
+    const view = <Button onClick={() => { throw new InvalidConfigError({ message: 'Missing config' }); }} />;
+  - |
+    const view = <Status result={Result.err(new RoomConnectionError({ message: 'Disconnected' }))} />;
+  - |
+    const view = <Status result={err(new ResultError({ message: 'Failed' }))} />;
+  - |
+    const view = <section>{'Missing config'}</section>;
+invalid:
+  - |
+    const view = <Button onClick={() => { throw 'Missing config'; }} />;
+  - |
+    const view = <Status result={Result.err('Disconnected')} />;
+  - |
+    function Status() {
+      return <section>{err('Failed')}</section>;
+    }

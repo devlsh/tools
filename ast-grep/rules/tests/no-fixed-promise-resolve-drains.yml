@@ -3,8 +3,8 @@ language: TypeScript
 severity: warning
 message: Prefer an observable idle/completion promise over fixed Promise.resolve microtask drains.
 files:
-  - '**/*.{test,spec}.{ts,tsx}'
-  - '**/tests/**/*.{ts,tsx}'
+  - '**/*.{test,spec}.ts'
+  - '**/tests/**/*.ts'
 utils:
   promiseResolveAwait:
     pattern: await Promise.resolve();

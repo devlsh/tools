@@ -1,0 +1,58 @@
+id: no-source-structure-tests-ts
+snapshots:
+  "const source = await fs.readFile('src/index.ts', 'utf8');\n":
+    labels:
+      - source: fs.readFile('src/index.ts', 'utf8')
+        style: primary
+        start: 21
+        end: 56
+  "const source = await readFile('src/index.ts', 'utf8');\n":
+    labels:
+      - source: readFile('src/index.ts', 'utf8')
+        style: primary
+        start: 21
+        end: 53
+  "const source = fs.readFileSync('src/index.ts', 'utf8');\n":
+    labels:
+      - source: fs.readFileSync('src/index.ts', 'utf8')
+        style: primary
+        start: 15
+        end: 54
+  "const source = readFileSync('src/index.ts', 'utf8');\n":
+    labels:
+      - source: readFileSync('src/index.ts', 'utf8')
+        style: primary
+        start: 15
+        end: 51
+  "const sourceFile = project.addSourceFileAtPath('src/index.ts');\n":
+    labels:
+      - source: project.addSourceFileAtPath('src/index.ts')
+        style: primary
+        start: 19
+        end: 62
+  "const sourceFile = ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest);\n":
+    labels:
+      - source: ts.createSourceFile('x.ts', source, ts.ScriptTarget.Latest)
+        style: primary
+        start: 19
+        end: 78
+  "import ts from 'typescript';\n":
+    labels:
+      - source: import ts from 'typescript';
+        style: primary
+        start: 0
+        end: 28
+      - source: typescript
+        style: secondary
+        start: 16
+        end: 26
+  "import { Project } from 'ts-morph';\n":
+    labels:
+      - source: import { Project } from 'ts-morph';
+        style: primary
+        start: 0
+        end: 35
+      - source: ts-morph
+        style: secondary
+        start: 25
+        end: 33

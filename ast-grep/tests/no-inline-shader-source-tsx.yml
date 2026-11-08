@@ -1,0 +1,24 @@
+id: no-inline-shader-source-tsx
+valid:
+  - |
+    import fragmentShader from './shaders/lighting.frag?raw';
+    const view = <Canvas fragment={fragmentShader} />;
+  - |
+    const shaderPath = './shaders/lighting.frag?raw';
+    const view = <Canvas path={shaderPath} />;
+  - |
+    const label = `Ready`;
+    const view = <Status>{label}</Status>;
+invalid:
+  - |
+    const fragmentShader = `
+      varying vec2 vTextureCoord;
+      void main() {}
+    `;
+    const view = <Canvas fragment={fragmentShader} />;
+  - |
+    import vertexShader from './lighting.glsl';
+    const view = <Canvas vertex={vertexShader} />;
+  - |
+    import fragmentShader from './lighting.wgsl';
+    const view = <Canvas fragment={fragmentShader} />;

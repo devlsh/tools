@@ -1,0 +1,59 @@
+id: no-react-class-components-ts
+valid:
+  - |
+    function StatusCard() {
+      return createElement('section');
+    }
+  - |
+    class StatusModel extends Model<Props> {}
+  - |
+    const props = <Props>value;
+invalid:
+  - |
+    class StatusCard extends React.Component {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends React.Component<Props> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends React.Component<Props, State> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends React.PureComponent {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends React.PureComponent<Props> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends React.PureComponent<Props, State> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends Component {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends Component<Props> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends Component<Props, State> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends PureComponent {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends PureComponent<Props> {
+      render() { return createElement('section'); }
+    }
+  - |
+    class StatusCard extends PureComponent<Props, State> {
+      render() { return createElement('section'); }
+    }

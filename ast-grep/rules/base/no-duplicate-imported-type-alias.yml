@@ -3,7 +3,7 @@ language: TypeScript
 severity: warning
 message: Do not import the same symbol as both a value and a type alias. Use the value import as the type.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   all:
     - kind: import_statement

@@ -1,0 +1,55 @@
+id: no-zero-delay-promise-timeout-waits-tsx
+valid:
+  - |
+    render(<Status />);
+    await new Promise((resolve) => setTimeout(resolve, 1));
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve) => setTimeout(resolve, 25));
+  - |
+    const failureGuard = new Promise((_, reject) => setTimeout(reject, 100));
+  - |
+    render(<Status />);
+    vi.useFakeTimers();
+    const timer = setTimeout(onTimeout, 0);
+    await vi.advanceTimersByTimeAsync(0);
+    clearTimeout(timer);
+  - |
+    scheduleProductionTimer(() => setTimeout(flush, 0));
+  - |
+    await commandCompleted;
+invalid:
+  - |
+    render(<Status />);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+  - |
+    render(<Status />);
+    await new Promise((resolve, reject) => setTimeout(resolve, 0));
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve, reject) => setTimeout(resolve, 0));
+  - |
+    render(<Status />);
+    await new Promise((resolve) => {
+      setTimeout(resolve, 0);
+    });
+  - |
+    render(<Status />);
+    await new Promise<void>((resolve) => {
+      setTimeout(resolve, 0);
+    });
+  - |
+    render(<Status />);
+    await new Promise((resolve, reject) => {
+      setTimeout(resolve, 0);
+    });
+  - |
+    test('renders a status', async () => {
+      render(<Status />);
+      await new Promise<void>((resolve, reject) => {
+        setTimeout(resolve, 0);
+      });
+    });

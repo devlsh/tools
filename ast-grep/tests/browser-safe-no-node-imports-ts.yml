@@ -1,0 +1,37 @@
+id: browser-safe-no-node-imports-ts
+valid:
+  - |
+    import { log } from 'evlog/client';
+  - |
+    import { read } from './fs';
+    import { createPath } from 'path-browserify';
+  - |
+    export { log } from 'evlog/client';
+    export * from './browser';
+  - |
+    const client = await import('evlog/client');
+    const local = await import('./browser');
+  - |
+    const moduleName = 'node:fs';
+    const loaded = await import(moduleName);
+  - |
+    const fs = require('node:fs');
+invalid:
+  - |
+    import { readFileSync } from 'node:fs';
+  - |
+    import path from 'path';
+  - |
+    import 'fs/promises';
+  - |
+    export { readFileSync } from 'node:fs';
+  - |
+    export * from 'stream';
+  - |
+    export { Buffer } from 'buffer';
+  - |
+    const fs = await import('node:fs/promises');
+  - |
+    const crypto = await import("crypto");
+  - |
+    const url = await import('url');

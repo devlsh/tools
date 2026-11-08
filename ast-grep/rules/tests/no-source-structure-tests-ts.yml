@@ -1,0 +1,21 @@
+id: no-source-structure-tests-ts
+language: TypeScript
+severity: warning
+message: Tests should not read or parse source files to enforce imports, exports, enum lists, route lists, or boundaries.
+files:
+  - '**/*.test.ts'
+  - '**/*.spec.ts'
+rule:
+  any:
+    - all:
+        - kind: import_statement
+        - has:
+            kind: string_fragment
+            regex: '^(typescript|ts-morph)$'
+            stopBy: end
+    - pattern: readFileSync($$$ARGS)
+    - pattern: readFile($$$ARGS)
+    - pattern: $FS.readFileSync($$$ARGS)
+    - pattern: $FS.readFile($$$ARGS)
+    - pattern: $PROJECT.addSourceFileAtPath($$$ARGS)
+    - pattern: $TS.createSourceFile($$$ARGS)

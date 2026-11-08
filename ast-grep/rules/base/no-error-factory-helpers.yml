@@ -3,7 +3,7 @@ language: TypeScript
 severity: warning
 message: Do not add helper functions whose main job is constructing, wrapping, throwing, or returning errors.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   any:
     - pattern: function $NAME($$$ARGS) { return new $ERR($$$VALUES) }

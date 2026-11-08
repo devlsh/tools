@@ -3,8 +3,8 @@ language: Tsx
 severity: warning
 message: Tests should not read or parse source files to enforce imports, exports, enum lists, route lists, or boundaries.
 files:
-  - '**/*.test.{ts,tsx}'
-  - '**/*.spec.{ts,tsx}'
+  - '**/*.test.tsx'
+  - '**/*.spec.tsx'
 rule:
   any:
     - all:

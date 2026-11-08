@@ -3,7 +3,7 @@ language: TypeScript
 severity: warning
 message: Zod schemas should use PascalCase or lower camel case, not SCREAMING_SNAKE_CASE.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   any:
     - pattern: const $NAME = z.$METHOD($$$ARGS)

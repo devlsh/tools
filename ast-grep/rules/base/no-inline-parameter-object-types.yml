@@ -3,7 +3,7 @@ language: Tsx
 severity: warning
 message: Do not inline object type literals in function parameters. Use a named interface or type.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.tsx'
 rule:
   all:
     - kind: object_type

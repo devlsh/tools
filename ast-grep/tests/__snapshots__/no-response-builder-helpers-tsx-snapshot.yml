@@ -1,0 +1,41 @@
+id: no-response-builder-helpers-tsx
+snapshots:
+  "const emptyResponse = (): Response => new Response(null, { status: 204 });\nconst view = <section />;\n":
+    labels:
+      - source: 'const emptyResponse = (): Response => new Response(null, { status: 204 });'
+        style: primary
+        start: 0
+        end: 74
+  "const internalError = () => Response.json({ error: 'internal_error' }, { status: 500 });\nconst view = <section />;\n":
+    labels:
+      - source: "const internalError = () => Response.json({ error: 'internal_error' }, { status: 500 });"
+        style: primary
+        start: 0
+        end: 88
+  "function Status() {\n  function textResponse(): Response {\n    return new Response('ready');\n  }\n  return <section>{textResponse().status}</section>;\n}\n":
+    labels:
+      - source: |-
+          function textResponse(): Response {
+              return new Response('ready');
+            }
+        style: primary
+        start: 22
+        end: 95
+  "function invalidRequest() {\n  return Response.json({ error: 'invalid_request' }, { status: 400 });\n}\nconst view = <section />;\n":
+    labels:
+      - source: |-
+          function invalidRequest() {
+            return Response.json({ error: 'invalid_request' }, { status: 400 });
+          }
+        style: primary
+        start: 0
+        end: 100
+  "function redirectResponse(): Response {\n  return Response.redirect('https://example.com');\n}\nconst view = <section />;\n":
+    labels:
+      - source: |-
+          function redirectResponse(): Response {
+            return Response.redirect('https://example.com');
+          }
+        style: primary
+        start: 0
+        end: 92

@@ -3,7 +3,7 @@ language: TypeScript
 severity: warning
 message: Do not use raw strings as primary errors.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   any:
     - pattern: throw '$MSG'

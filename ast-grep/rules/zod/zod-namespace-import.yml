@@ -3,7 +3,7 @@ language: TypeScript
 severity: error
 message: Import Zod with `import * as z from 'zod';` or `import type * as z from 'zod';`.
 files:
-  - '**/*.{ts,tsx}'
+  - '**/*.ts'
 rule:
   all:
     - kind: import_statement
