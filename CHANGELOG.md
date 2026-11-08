@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/devlsh/tools/compare/v1.5.0...v1.5.1) (2026-11-08)
+
+
+### Bug Fixes
+
+* **ast-grep:** add separate TypeScript and TSX rules ([c788ab4](https://github.com/devlsh/tools/commit/c788ab46ef79c84440141dd82f23c0b98ca9676c))
+
 ## [1.5.0](https://github.com/devlsh/tools/compare/v1.4.0...v1.5.0) (2026-11-07)
 
 
